@@ -1,0 +1,10 @@
+SiDIF.comment="Example 1"(String)
+Concept -- isA --> Concept
+concept_name -- addsTo --> it
+Property -- isA --> Concept
+Property -- linksTo --> Concept
+property_name -- addsTo --> it
+Type -- isA --> Concept
+Text -- isA --> Type
+Boolean -- isA --> Type
+URL -- isA --> Type

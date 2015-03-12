@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>BNF for SiDIF.jjt</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN=CENTER>BNF for SiDIF.jjt</H1>
+<H2 ALIGN=CENTER>TOKENS</H2>
+<TABLE>
+ <!-- Special token -->
+ <TR>
+  <TD>
+<PRE>
+/* WHITESPACE AND COMMENTS */</PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; SKIP : {
+" "
+| "\n"
+| "\r"
+| "\r\n"
+| &lt;"#" (~["\n","\r"])* ("\n" | "\r" | "\r\n")&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Special token -->
+ <TR>
+  <TD>
+<PRE>
+/* TOKENS for Productions */</PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;IS: "is"&gt;
+| &lt;OF: "of"&gt;
+| &lt;HAS: "has"&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Special token -->
+ <TR>
+  <TD>
+<PRE>
+/* Literals */</PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;INTEGER_LITERAL: &lt;DECIMAL_LITERAL&gt; (["l","L"])? | &lt;HEX_LITERAL&gt; (["l","L"])? | &lt;OCTAL_LITERAL&gt; (["l","L"])?&gt;
+| &lt;#DECIMAL_LITERAL: ["1"-"9"] (["0"-"9"])*&gt;
+| &lt;#HEX_LITERAL: "0" ["x","X"] (["0"-"9","a"-"f","A"-"F"])+&gt;
+| &lt;#OCTAL_LITERAL: "0" (["0"-"7"])*&gt;
+| &lt;FLOATING_POINT_LITERAL: (["0"-"9"])+ "." (["0"-"9"])* (&lt;EXPONENT&gt;)? (["f","F","d","D"])? | "." (["0"-"9"])+ (&lt;EXPONENT&gt;)? (["f","F","d","D"])? | (["0"-"9"])+ &lt;EXPONENT&gt; (["f","F","d","D"])? | (["0"-"9"])+ (&lt;EXPONENT&gt;)? ["f","F","d","D"]&gt;
+| &lt;#EXPONENT: ["e","E"] (["+","-"])? (["0"-"9"])+&gt;
+| &lt;CHARACTER_LITERAL: "\'" (~["\'","\\","\n","\r"] | "\\" (["n","t","b","r","f","\\","\'","\""] | ["0"-"7"] (["0"-"7"])? | ["0"-"3"] ["0"-"7"] ["0"-"7"])) "\'"&gt;
+| &lt;STRING_LITERAL: "\"" (~["\"","\\"] | "\\" (["n","t","b","r","f","\\","\'","\""] | ["0"-"7"] (["0"-"7"])? | ["0"-"3"] ["0"-"7"] ["0"-"7"]))* "\""&gt;
+| &lt;DATETIME_LITERAL: &lt;DATE_LITERAL&gt; ((&lt;WHITESPACE&gt;)+ &lt;TIME_LITERAL&gt;)?&gt;
+| &lt;#DATE_LITERAL: ["0"-"9"] ["0"-"9"] ["0"-"9"] ["0"-"9"] "-" ["0"-"9"] ["0"-"9"] "-" ["0"-"9"] ["0"-"9"]&gt;
+| &lt;TIME_LITERAL: ["0"-"9"] ["0"-"9"] ":" ["0"-"9"] ["0"-"9"] (":" ["0"-"9"] ["0"-"9"])?&gt;
+| &lt;TRUE: "true"&gt;
+| &lt;FALSE: "false"&gt;
+| &lt;NULL: "null"&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;#WHITESPACE: " " | "\t" | "\n" | "\r" | "\f"&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;URI: &lt;SCHEME&gt; (~[" ","\t","\n","\r"])+&gt;
+| &lt;#SCHEME: "aaa:" | "aaas:" | "about:" | "acap:" | "acct:" | "cap:" | "cid:" | "coap:" | "coaps:" | "crid:" | "data:" | "dav:" | "dict:" | "dns:" | "file:" | "ftp:" | "geo:" | "go:" | "gopher:" | "h323:" | "http:" | "https:" | "iax:" | "icap:" | "im:" | "imap:" | "info:" | "ipp:" | "ipps:" | "iris:" | "iris.beep:" | "iris.xpc:" | "iris.xpcs:" | "iris.lwz:" | "jabber:" | "ldap:" | "mailto:" | "mid:" | "msrp:" | "msrps:" | "mtqp:" | "mupdate:" | "news:" | "nfs:" | "ni:" | "nih:" | "nntp:" | "opaquelocktoken:" | "pkcs11:" | "pop:" | "pres:" | "reload:" | "rtsp:" | "rtsps:" | "rtspu:" | "service:" | "session:" | "shttp:" | "sieve:" | "sip:" | "sips:" | "sms:" | "snmp:" | "soap.beep:" | "soap.beeps:" | "stun:" | "stuns:" | "tag:" | "tel:" | "telnet:" | "tftp:" | "thismessage:" | "tn3270:" | "tip:" | "turn:" | "turns:" | "tv:" | "urn:" | "vemmi:" | "ws:" | "wss:" | "xcon:" | "xcon-userid:" | "xmlrpc.beep:" | "xmlrpc.beeps:" | "xmpp:" | "z39.50r:" | "z39.50s:"&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Special token -->
+ <TR>
+  <TD>
+<PRE>
+/* IDENTIFIER */</PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;IDENTIFIER: &lt;LETTER&gt; (&lt;LETTER&gt; | "_" | &lt;DIGIT&gt;)*&gt;
+| &lt;#LETTER: ["$","A"-"Z","a"-"z","\u00c0"-"\u00d6","\u00d8"-"\u00f6","\u00f8"-"\u00ff","\u0100"-"\u1fff","\u3040"-"\u318f","\u3300"-"\u337f","\u3400"-"\u3d2d","\u4e00"-"\u9fff","\uf900"-"\ufaff"]&gt;
+| &lt;#DIGIT: ["0"-"9","\u0660"-"\u0669","\u06f0"-"\u06f9","\u0966"-"\u096f","\u09e6"-"\u09ef","\u0a66"-"\u0a6f","\u0ae6"-"\u0aef","\u0b66"-"\u0b6f","\u0be7"-"\u0bef","\u0c66"-"\u0c6f","\u0ce6"-"\u0cef","\u0d66"-"\u0d6f","\u0e50"-"\u0e59","\u0ed0"-"\u0ed9","\u1040"-"\u1049"]&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Special token -->
+ <TR>
+  <TD>
+<PRE>
+// Catch-all tokens.  Must be last.  
+// Any non-whitespace.  Causes a parser exception, rather than a
+// token manager error (with hidden line numbers).
+</PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;#UNKNOWN: (~[" ","\t","\n","\r","\f"])+&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+</TABLE>
+<H2 ALIGN=CENTER>NON-TERMINALS</H2>
+<TABLE>
+ <!-- Special token -->
+ <TR>
+  <TD>
+<PRE>
+/*******************************************
+ * THE SiDIF LANGUAGE GRAMMAR STARTS HERE *
+ *******************************************/
+
+/* just as list of links */</PRE>
+  </TD>
+ </TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod1">Links</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod2">Link</A> | <A HREF="#prod3">Value</A> )+ &lt;EOF&gt;</TD>
+</TR>
+ <!-- Special token -->
+ <TR>
+  <TD>
+<PRE>
+/**
+ * a single link assignment
+ */</PRE>
+  </TD>
+ </TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod2">Link</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( ( &lt;IDENTIFIER&gt; &lt;IDENTIFIER&gt; &lt;IDENTIFIER&gt; ) | ( &lt;IDENTIFIER&gt; &lt;IS&gt; &lt;IDENTIFIER&gt; &lt;OF&gt; &lt;IDENTIFIER&gt; ) | ( &lt;IDENTIFIER&gt; &lt;HAS&gt; &lt;IDENTIFIER&gt; &lt;IDENTIFIER&gt; ) )</TD>
+</TR>
+ <!-- Special token -->
+ <TR>
+  <TD>
+<PRE>
+/**
+ * Literal Value assignment
+ */</PRE>
+  </TD>
+ </TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod3">Value</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod4">Literal</A> &lt;IS&gt; &lt;IDENTIFIER&gt; &lt;OF&gt; &lt;IDENTIFIER&gt; )</TD>
+</TR>
+ <!-- Special token -->
+ <TR>
+  <TD>
+<PRE>
+/**
+ * Handle Literal values 
+ */</PRE>
+  </TD>
+ </TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod4">Literal</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( &lt;INTEGER_LITERAL&gt; | &lt;FLOATING_POINT_LITERAL&gt; | &lt;CHARACTER_LITERAL&gt; | &lt;STRING_LITERAL&gt; | &lt;DATETIME_LITERAL&gt; | &lt;TIME_LITERAL&gt; | &lt;URI&gt; | &lt;TRUE&gt; | &lt;FALSE&gt; | &lt;NULL&gt; )</TD>
+</TR>
+</TABLE>
+</BODY>
+</HTML>

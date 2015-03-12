@@ -1,0 +1,36 @@
+SiDIF.comment="
+ VCard Example
+ Alexander Krauß 2015-02
+"(String)
+ModelPart -- isA --> Context
+it.comment="
+ model Part
+"(String)
+VCard -- isA --> Concept
+name -- addsTo --> it
+firstname -- addsTo --> it
+title -- addsTo --> it
+subtitle -- addsTo --> it
+email -- addsTo --> it
+mobile -- addsTo --> it
+akVCard -- isA --> VCard
+it.name="Krauß"(String)
+it.firstname="Alexander"(String)
+it.title="Marketing"(String)
+it.subtitle="Praktikant"(String)
+it.email="xxx@yyy.com"(String)
+it.mobile="+49 XXX YYYY ZZZ"(String)
+mfVisitenkarte -- isA --> VCard
+it.name="Fahl"(String)
+it.firstname="Maria"(String)
+it.title="Assistentin"(String)
+it.subtitle="der Geschäftsführung"(String)
+it.email="xxx@yyy.com"(String)
+it.mobile="+49 XXX YYYY ZZZ"(String)
+hlVisitenkarte -- isA --> VCard
+it.name="Le"(String)
+it.firstname="Thi Kieu Hanh"(String)
+it.title="Software Entwicklung"(String)
+it.subtitle=""(String)
+it.email="xxx@yyy.com"(String)
+it.mobile="+49 XXX YYYY ZZZ"(String)

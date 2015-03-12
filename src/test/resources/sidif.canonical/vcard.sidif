@@ -1,0 +1,36 @@
+"
+ VCard Example
+ Alexander Krauß 2015-02
+" is comment of SiDIF
+ModelPart isA Context
+"
+ model Part
+" is comment of ModelPart
+VCard isA Concept
+name addsTo VCard
+firstname addsTo VCard
+title addsTo VCard
+subtitle addsTo VCard
+email addsTo VCard
+mobile addsTo VCard
+akVCard isA VCard
+"Krauß" is name of akVCard
+"Alexander" is firstname of akVCard
+"Marketing" is title of akVCard
+"Praktikant" is subtitle of akVCard
+"xxx@yyy.com" is email of akVCard
+"+49 XXX YYYY ZZZ" is mobile of akVCard
+mfVisitenkarte isA VCard
+"Fahl" is name of mfVisitenkarte
+"Maria" is firstname of mfVisitenkarte
+"Assistentin" is title of mfVisitenkarte
+"der Geschäftsführung" is subtitle of mfVisitenkarte
+"xxx@yyy.com" is email of mfVisitenkarte
+"+49 XXX YYYY ZZZ" is mobile of mfVisitenkarte
+hlVisitenkarte isA VCard
+"Le" is name of hlVisitenkarte
+"Thi Kieu Hanh" is firstname of hlVisitenkarte
+"Software Entwicklung" is title of hlVisitenkarte
+"" is subtitle of hlVisitenkarte
+"xxx@yyy.com" is email of hlVisitenkarte
+"+49 XXX YYYY ZZZ" is mobile of hlVisitenkarte

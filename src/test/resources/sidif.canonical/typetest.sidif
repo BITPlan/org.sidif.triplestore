@@ -1,0 +1,69 @@
+"
+ Test supported basetypes for SiDIF
+  see http://www.sidif.org
+" is commment of SiDIF
+Metamodel isA Context
+"
+Metamodel level
+" is comment of Metamodel
+Metamodel Context Context
+Metamodel Context Type
+Metamodel Context TypeSource
+Context isA Concept
+Type isA Concept
+name addsTo Type
+allowedValue addsTo Type
+TypeSource isA Concept
+TypeSource linksTo Type
+url addsTo TypeSource
+Model isA Context
+"
+  Model level
+" is comment of Model
+Model Context Schema_Org
+Schema_Org isA TypeSource
+http://www.schema.org/DataType is url of Schema_Org
+Boolean linksTo Schema_Org
+Boolean linksTo SMW
+Boolean isA Type
+"Boolean" is name of Boolean
+true is allowedValue of Boolean
+false is allowedValue of Boolean
+Date linksTo Schema_Org
+Date linksTo SMW
+Date isA Type
+"Date" is name of Date
+2015-02-25 is exampleValue of Date
+DateTime linksTo Schema_Org
+DateTime isA Type
+2015-02-25 12:34:00 is exampleValue of DateTime
+Number linksTo Schema_Org
+Number linksTo SMW
+Number isA Type
+1 is exampleValue of Number
+3.1415926 is exampleValue of Number
+Text linksTo Schema_Org
+Text linksTo SMW
+Text isA Type
+"Hello World!" is exampleValue of Text
+Time linksTo Schema_Org
+Time isA Type
+12:24:00 is exampleValue of Time
+SMW isA TypeSource
+https://semantic-mediawiki.org/wiki/Help:List_of_datatypes is url of SMW
+Annotation_URI linksTo SMW
+Code linksTo SMW
+Code isA Type
+Email linksTo SMW
+Email isA Type
+Geographic_coordinate linksTo SMW
+Geographic_coordinate isA Type
+Page linksTo SMW
+Page isA Type
+Quantity linksTo SMW
+Record linksTo SMW
+Telephone_number linksTo SMW
+Temperature linksTo SMW
+URL linksTo SMW
+IRI isA Type
+http://www.bitplan.com is exampleValue of IRI

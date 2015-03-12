@@ -1,0 +1,11 @@
+Publisher isA Concept
+name addsTo Publisher
+mbox addsTo Publisher
+knows addsTo Publisher
+Bob isA Publisher
+"Bob" is name of Bob
+mailto:bob@oldcorp.example.org is mbox of Bob
+Bob linksTo Alice
+Alice isA Publisher
+"Alice" is name of Alice
+mailto:alice@work.example.org is mbox of Alice

@@ -1,0 +1,11 @@
+Publisher -- isA --> Concept
+name -- addsTo --> Publisher
+mbox -- addsTo --> Publisher
+knows -- addsTo --> Publisher
+Bob -- isA --> Publisher
+it.name="Bob"(String)
+it.mbox=mailto:bob@oldcorp.example.org(IRI)
+it -- linksTo --> Alice
+Alice -- isA --> Publisher
+it.name="Alice"(String)
+it.mbox=mailto:alice@work.example.org(IRI)

@@ -1,0 +1,43 @@
+MetaLevel isA Context
+" 
+Meta level
+" is comment of it
+Concept isA Concept
+name addsTo Concept
+description addsTo Concept
+"Concept" is name of it
+"This is a concept" is description of it
+Link isA Concept
+"Link" is name of it
+"A link has a subject a link and a target" is description of it
+subject addsTo Link
+link addsTo Link
+target addsTo Link
+isA isA Link
+addsTo isA Link
+sameAs isA Link
+Property isA Concept
+Property linksTo Concept
+Type isA Concept
+Type addsTo Property
+Text isA Type
+Boolean isA Type
+ModelLevel isA Context
+" 
+ Model Level
+" is comment of it
+Presentation isA Concept
+Slide isA Concept
+Slide linksTo Presentation
+page addsTo Slide
+title addsTo Slide
+page isA Property
+creationDate addsTo Slide
+creationDate addsTo Presentation
+creationDate isA Property
+SiDIFTutorial isA Presentation
+2015-02-10 is creationDate of it
+SlideSiDIF isA Slide
+"SiDIF" is title of it
+1 is page of it
+2015-02-10 is creationDate of it

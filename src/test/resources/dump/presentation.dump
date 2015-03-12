@@ -1,0 +1,43 @@
+MetaLevel -- isA --> Context
+it.comment=" 
+Meta level
+"(String)
+Concept -- isA --> Concept
+name -- addsTo --> Concept
+description -- addsTo --> Concept
+it.name="Concept"(String)
+it.description="This is a concept"(String)
+Link -- isA --> Concept
+it.name="Link"(String)
+it.description="A link has a subject a link and a target"(String)
+subject -- addsTo --> Link
+link -- addsTo --> Link
+target -- addsTo --> Link
+isA -- isA --> Link
+addsTo -- isA --> Link
+sameAs -- isA --> Link
+Property -- isA --> Concept
+Property -- linksTo --> Concept
+Type -- isA --> Concept
+Type -- addsTo --> Property
+Text -- isA --> Type
+Boolean -- isA --> Type
+ModelLevel -- isA --> Context
+it.comment=" 
+ Model Level
+"(String)
+Presentation -- isA --> Concept
+Slide -- isA --> Concept
+Slide -- linksTo --> Presentation
+page -- addsTo --> Slide
+title -- addsTo --> Slide
+page -- isA --> Property
+creationDate -- addsTo --> Slide
+creationDate -- addsTo --> Presentation
+creationDate -- isA --> Property
+SiDIFTutorial -- isA --> Presentation
+it.creationDate=2015-02-10(Date)
+SlideSiDIF -- isA --> Slide
+it.title="SiDIF"(String)
+it.page=1(Integer)
+it.creationDate=2015-02-10(Date)

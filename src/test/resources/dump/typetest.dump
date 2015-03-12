@@ -1,0 +1,69 @@
+SiDIF.commment="
+ Test supported basetypes for SiDIF
+  see http://www.sidif.org
+"(String)
+Metamodel -- isA --> Context
+it.comment="
+Metamodel level
+"(String)
+Context -- isA --> Concept
+Metamodel -- Context --> it
+Type -- isA --> Concept
+Metamodel -- Context --> it
+name -- addsTo --> it
+allowedValue -- addsTo --> it
+TypeSource -- isA --> Concept
+Metamodel -- Context --> it
+url -- addsTo --> it
+TypeSource -- linksTo --> Type
+Model -- isA --> Context
+it.comment="
+  Model level
+"(String)
+Schema_Org -- isA --> TypeSource
+Model -- Context --> it
+Boolean -- linksTo --> it
+Date -- linksTo --> it
+DateTime -- linksTo --> it
+Number -- linksTo --> it
+Text -- linksTo --> it
+Time -- linksTo --> it
+it.url=http://www.schema.org/DataType(IRI)
+SMW -- isA --> TypeSource
+Annotation_URI -- linksTo --> it
+Boolean -- linksTo --> it
+Code -- linksTo --> it
+Date -- linksTo --> it
+Email -- linksTo --> it
+Geographic_coordinate -- linksTo --> it
+Number -- linksTo --> it
+Page -- linksTo --> it
+Quantity -- linksTo --> it
+Record -- linksTo --> it
+Telephone_number -- linksTo --> it
+Temperature -- linksTo --> it
+Text -- linksTo --> it
+URL -- linksTo --> it
+it.url=https://semantic-mediawiki.org/wiki/Help:List_of_datatypes(IRI)
+Boolean -- isA --> Type
+Boolean.name="Boolean"(String)
+Code -- isA --> Type
+Date -- isA --> Type
+Date.name="Date"(String)
+DateTime -- isA --> Type
+Email -- isA --> Type
+Geographic_coordinate -- isA --> Type
+Number -- isA --> Type
+Page -- isA --> Type
+Text -- isA --> Type
+Time -- isA --> Type
+IRI -- isA --> Type
+Boolean.allowedValue=true(Boolean)
+Boolean.allowedValue=false(Boolean)
+Date.exampleValue=2015-02-25(Date)
+DateTime.exampleValue=2015-02-25 11:34(Timestamp)
+Number.exampleValue=1(Integer)
+Number.exampleValue=3.1415926(Double)
+Text.exampleValue="Hello World!"(String)
+Time.exampleValue=11:24(Time)
+IRI.exampleValue=http://www.bitplan.com(IRI)

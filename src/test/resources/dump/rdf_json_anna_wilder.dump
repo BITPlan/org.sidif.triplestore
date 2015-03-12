@@ -1,0 +1,8 @@
+Anna_Wilder -- isA --> person
+it.name="Anna Wilder"(String)
+it.firstname="Anna"(String)
+it.surname="Wilder"(String)
+it.depiction=http://example.org/pic.jpg(IRI)
+it.nick="wildling"(String)
+it.nick="wilda"(String)
+it.mbox_sha1sum="69e31bbcf58d432950127593e292a55975bc66fd"(String)

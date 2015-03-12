@@ -1,0 +1,280 @@
+/**
+ * Copyright 2015 BITPlan GmbH
+ * Author: Wolfgang Fahl
+ * see http://www.sidif.org
+ *
+ * this is the Language definition for the Simple Data Interchange Format
+ *
+ * it is specified using jjtree syntax and uses the
+ * Java Compiler Compiler tm (JavaCC tm) - The Java Parser Generator to
+ * generate java code based on this input
+ *  
+ * when using eclipse you might want to install the javacc eclipse plugin
+ * see http://eclipse-javacc.sourceforge.net/
+ */
+// see https://javacc.java.net/doc/javaccgrm.html
+// for option definitionsoptions{
+  // make sure unicode input is supported
+  UNICODE_INPUT = true;
+  // create visitors  VISITOR = true;  MULTI = true;
+  // the parse is and instance  STATIC = false;
+  // do not use any prefix for the node classes e.g. don't use the default AST ...  NODE_PREFIX = "";
+  // uncomment to turn on lookahead ambiguity checking 
+  /** FORCE_LA_CHECK=true; */
+  ERROR_REPORTING = true;
+  /** uncomment to debug the Parser **/
+  // DEBUG_PARSER=true;
+  /** uncomment to debug the Token Manager **/
+  // DEBUG_TOKEN_MANAGER   = true ;}PARSER_BEGIN(SiDIF)package org.sidif.parser.jjtree;import org.sidif.triple.ObjectHolder;import java.io.File;
+import java.io.FileReader;
+import java.io.StringReader;/**
+ * SiDIF parser
+ */public class SiDIF{
+  /**
+   * get a SiDIF Parser from the given sidifText
+   * @param sidifText
+   * @return
+   */
+  public static SiDIF fromText(String sidifText) {
+    StringReader reader=new StringReader(sidifText);
+    SiDIF sidif=new SiDIF(reader);
+    return sidif;
+  }
+  
+   /**
+   * get a SiDIF Parser from the given sidifFile
+   * @param sidifFile
+   * @return - the parser
+   * @throws Exception
+   */
+  public static SiDIF fromFile(File sidifFile) throws Exception {
+    FileReader reader = new FileReader(sidifFile);
+    SiDIF sidif = new SiDIF(reader);
+    return sidif;
+  }
+      /**
+   * get a visitor result for the given visitor and startValue
+   * @param visitor
+   * @param startValue
+   * @return the result of the visitor
+   * @throws ParseException
+   */  public < T > T visit(SiDIFVisitor visitor, T startValue) throws ParseException  {    Links links = this.Links();    ObjectHolder < T > result = new ObjectHolder < T > ();    result.setObject(startValue);    links.jjtAccept(visitor, result);    return result.getObject();  }}PARSER_END(SiDIF)
+/* WHITESPACE AND COMMENTS */
+SKIP : {
+  " " | "\n" | "\r" | "\r\n" 
+  | <"#" (~["\n","\r"])* ("\n"|"\r"|"\r\n")>
+}
+/* TOKENS for Productions */
+TOKEN :
+{
+  < IS:       "is"       > |
+  < OF:       "of"       > |
+  < HAS:      "has"      > 
+}
+/* Literals */
+TOKEN :{  < INTEGER_LITERAL :    < DECIMAL_LITERAL > ([ "l", "L" ])?  | < HEX_LITERAL > ([ "l", "L" ])?  | < OCTAL_LITERAL > ([ "l", "L" ])? >| < #DECIMAL_LITERAL : [ "1"-"9" ] ([ "0"-"9" ])* >| < #HEX_LITERAL : "0" [ "x", "X" ] ([ "0"-"9", "a"-"f", "A"-"F" ])+ >| < #OCTAL_LITERAL : "0" ([ "0"-"7" ])* >| < FLOATING_POINT_LITERAL :    ([ "0"-"9" ])+ "." ([ "0"-"9" ])* (< EXPONENT >)? ([ "f", "F", "d", "D" ])?  | "." ([ "0"-"9" ])+ (< EXPONENT >)? ([ "f", "F", "d", "D" ])?  | ([ "0"-"9" ])+ < EXPONENT > ([ "f", "F", "d", "D" ])?  | ([ "0"-"9" ])+ (< EXPONENT >)? [ "f", "F", "d", "D" ] >| < #EXPONENT : [ "e", "E" ] ([ "+", "-" ])? ([ "0"-"9" ])+ >| < CHARACTER_LITERAL :    "'"    (      (~[ "'", "\\", "\n", "\r" ])    |      (        "\\"        (          [ "n", "t", "b", "r", "f", "\\", "'", "\"" ]        | [ "0"-"7" ] ([ "0"-"7" ])?        | [ "0"-"3" ] [ "0"-"7" ] [ "0"-"7" ]        )      )    )    "'" >| < STRING_LITERAL :    "\""    (      (~[ "\"", "\\" ])    |      (        "\\"        (          [ "n", "t", "b", "r", "f", "\\", "'", "\"" ]        | [ "0"-"7" ] ([ "0"-"7" ])?        | [ "0"-"3" ] [ "0"-"7" ] [ "0"-"7" ]        )      )    )*    "\"" >
+| < DATETIME_LITERAL:  < DATE_LITERAL > ((<WHITESPACE>)+ < TIME_LITERAL > )? >
+|   <  #DATE_LITERAL: ["0"-"9"]["0"-"9"]["0"-"9"]["0"-"9"] "-" ["0"-"9"]["0"-"9"] "-" ["0"-"9"]["0"-"9"] >
+| <  TIME_LITERAL: ["0"-"9"]["0"-"9"]":"["0"-"9"]["0"-"9"] (":"["0"-"9"]["0"-"9"])? >
+| < TRUE : "true" >| < FALSE : "false" >| < NULL : "null" >}
+TOKEN: {
+<#WHITESPACE: " " | "\t" | "\n" | "\r" | "\f">
+} 
+TOKEN : {
+ /** http://docs.oracle.com/javase/7/docs/api/java/net/URI.html */
+< URI:  < SCHEME >  (~[ " ", "\t", "\n", "\r" ])+ >
+|  /** http://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml */
+  < #SCHEME :
+    (
+      "aaa:"
+    | "aaas:"
+    | "about:"
+    | "acap:"
+    | "acct:"
+    | "cap:"
+    | "cid:"
+    | "coap:"
+    | "coaps:"
+    | "crid:"
+    | "data:"
+    | "dav:"
+    | "dict:"
+    | "dns:"
+    | "file:"
+    | "ftp:"
+    | "geo:"
+    | "go:"
+    | "gopher:"
+    | "h323:"
+    | "http:"
+    | "https:"
+    | "iax:"
+    | "icap:"
+    | "im:"
+    | "imap:"
+    | "info:"
+    | "ipp:"
+    | "ipps:"
+    | "iris:"
+    | "iris.beep:"
+    | "iris.xpc:"
+    | "iris.xpcs:"
+    | "iris.lwz:"
+    | "jabber:"
+    | "ldap:"
+    | "mailto:"
+    | "mid:"
+    | "msrp:"
+    | "msrps:"
+    | "mtqp:"
+    | "mupdate:"
+    | "news:"
+    | "nfs:"
+    | "ni:"
+    | "nih:"
+    | "nntp:"
+    | "opaquelocktoken:"
+    | "pkcs11:"
+    | "pop:"
+    | "pres:"
+    | "reload:"
+    | "rtsp:"
+    | "rtsps:"
+    | "rtspu:"
+    | "service:"
+    | "session:"
+    | "shttp:"
+    | "sieve:"
+    | "sip:"
+    | "sips:"
+    | "sms:"
+    | "snmp:"
+    | "soap.beep:"
+    | "soap.beeps:"
+    | "stun:"
+    | "stuns:"
+    | "tag:"
+    | "tel:"
+    | "telnet:"
+    | "tftp:"
+    | "thismessage:"
+    | "tn3270:"
+    | "tip:"
+    | "turn:"
+    | "turns:"
+    | "tv:"
+    | "urn:"
+    | "vemmi:"
+    | "ws:"
+    | "wss:"
+    | "xcon:"
+    | "xcon-userid:"
+    | "xmlrpc.beep:"
+    | "xmlrpc.beeps:"
+    | "xmpp:"
+    | "z39.50r:"
+    | "z39.50s:"
+    ) >
+}
+
+/* IDENTIFIER */
+TOKEN :
+{
+  < IDENTIFIER: <LETTER> (<LETTER>|"_"| <DIGIT>)* >
+|
+  < #LETTER:
+      [
+       "\u0024",
+       "\u0041"-"\u005a",
+       "\u0061"-"\u007a",
+       "\u00c0"-"\u00d6",
+       "\u00d8"-"\u00f6",
+       "\u00f8"-"\u00ff",
+       "\u0100"-"\u1fff",
+       "\u3040"-"\u318f",
+       "\u3300"-"\u337f",
+       "\u3400"-"\u3d2d",
+       "\u4e00"-"\u9fff",
+       "\uf900"-"\ufaff"
+      ]
+  >
+|
+  < #DIGIT:
+      [
+       "\u0030"-"\u0039",
+       "\u0660"-"\u0669",
+       "\u06f0"-"\u06f9",
+       "\u0966"-"\u096f",
+       "\u09e6"-"\u09ef",
+       "\u0a66"-"\u0a6f",
+       "\u0ae6"-"\u0aef",
+       "\u0b66"-"\u0b6f",
+       "\u0be7"-"\u0bef",
+       "\u0c66"-"\u0c6f",
+       "\u0ce6"-"\u0cef",
+       "\u0d66"-"\u0d6f",
+       "\u0e50"-"\u0e59",
+       "\u0ed0"-"\u0ed9",
+       "\u1040"-"\u1049"
+      ]
+  >
+}
+// Catch-all tokens.  Must be last.  
+// Any non-whitespace.  Causes a parser exception, rather than a
+// token manager error (with hidden line numbers).
+TOKEN:
+{
+  <#UNKNOWN: (~[" ","\t","\n","\r","\f" ])+ >
+}
+/*******************************************
+ * THE SiDIF LANGUAGE GRAMMAR STARTS HERE *
+ *******************************************/
+
+/* just as list of links */
+Links Links() : {} {
+  ( Link() | Value() )+
+  <EOF>
+  { return jjtThis; }
+}
+
+/**
+ * a single link assignment
+ */
+Link Link() :{  Token t;  String subject;  String link;  String target;}{  (    (t = < IDENTIFIER >    {      subject = t.image;    }    t = < IDENTIFIER >    {      link = t.image;    }    t = < IDENTIFIER >    {      target = t.image;    }    )  | (t = < IDENTIFIER >    {      subject = t.image;    }    < IS > t = < IDENTIFIER >    {      link = t.image;    }    < OF > t = < IDENTIFIER >    {      target = t.image;    }    )
+    | (t = < IDENTIFIER >
+    {
+      subject = t.image;
+    }
+    < HAS > t = < IDENTIFIER >
+    {
+      link = t.image;
+    }
+    t = < IDENTIFIER >
+    {
+      target = t.image;
+    }
+    )  )  {    ((Link) jjtThis).setLink(subject, link, target); // set the link relation
+  }  {    return (Link) jjtThis;  }}/**
+ * Literal Value assignment
+ */Value Value() :{  Token t;  Literal literal;  String property;  String concept;}{  (    literal = Literal() < IS > t = < IDENTIFIER >    {      property = t.image;    }    < OF > t = < IDENTIFIER >    {      concept = t.image;    }  )  {    ((Value) jjtThis).setValue(literal, property, concept);  }  {    return (Value) jjtThis;  }}
+
+/**
+ * Handle Literal values 
+ */
+Literal Literal() :{  Token t;  Literal literal;}{  (    t = < INTEGER_LITERAL >    {      ((Literal) jjtThis).init("int", t);    }  | t = < FLOATING_POINT_LITERAL >    {      ((Literal) jjtThis).init("double", t);    }  | t = < CHARACTER_LITERAL >    {      ((Literal) jjtThis).init("char", t);    }  | t = < STRING_LITERAL >    {      ((Literal) jjtThis).init("String", t);    }
+  | t = <  DATETIME_LITERAL >
+    {
+      ((Literal) jjtThis).init("DateTime",t);
+    }
+  | t = <  TIME_LITERAL >
+    {
+      ((Literal) jjtThis).init("Time",t);
+    }
+  | t = < URI >    {
+      ((Literal) jjtThis).init("IRI",t);    }
+  | t = < TRUE >    {      ((Literal) jjtThis).init("boolean", t);    }  | t = < FALSE >    {      ((Literal) jjtThis).init("boolean", t);    }  | t = < NULL >    {      ((Literal) jjtThis).init("Object", t);    }  )  {    return (Literal) jjtThis;  }}
+
+
+
+ 
+ 

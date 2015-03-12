@@ -1,0 +1,209 @@
+Type isA Concept
+Text isA Type
+Date isA Type
+Boolean isA Type
+Person isA Concept
+name addsTo Person
+name hasType Text
+name addsTo Family
+nobleTitle addsTo Person
+nobleTitle hasType Text
+born addsTo Person
+born hasType Date
+yearBorn addsTo Person
+yearBorn hasType Number
+monthBorn addsTo Person
+monthBorn hasType Number
+birthPlace addsTo Person
+birthPlace hasType Text
+died addsTo Person
+died hasType Date
+diedAt addsTo Person
+diedAt hasType Text
+yearDied addsTo Person
+yearDied hasType Number
+monthDied addsTo Person
+monthDied hasType Number
+Family isA Concept
+weddingDate addsTo Family
+weddingDate hasType Date
+weddingPlace addsTo Family
+weddingPlace hasType Text
+yearMarried addsTo Family
+yearMarried hasType Number
+monthMarried addsTo Family
+monthMarried hasType Number
+divorced addsTo Family
+divorced hasType Boolean
+childOf addsTo Family
+childOf hasType Family
+parentOf addsTo Family
+parentOf hasType Family
+husbandOf addsTo Family
+husbandOf hasType Family
+Victoria_Hanover parentOf F1
+Victoria_Hanover childOf F42
+Victoria_Hanover isA Person
+"I1" is id of Victoria_Hanover
+"Victoria /Hanover/" is name of Victoria_Hanover
+1819-05-24 is born of Victoria_Hanover
+1819 is yearBorn of Victoria_Hanover
+5 is monthBorn of Victoria_Hanover
+"Kensington,Palace,London,England" is birthPlace of Victoria_Hanover
+1901-01-22 is died of Victoria_Hanover
+1901 is yearDied of Victoria_Hanover
+1 is monthDied of Victoria_Hanover
+"Royal Mausoleum,Frogmore,Berkshire,England" is diedAt of Victoria_Hanover
+"female" is sex of Victoria_Hanover
+"Queen of England" is nobleTitle of Victoria_Hanover
+Albert_Augustus_Charles parentOf F1
+Albert_Augustus_Charles childOf F43
+Albert_Augustus_Charles isA Person
+"I2" is id of Albert_Augustus_Charles
+"Albert Augustus Charles" is name of Albert_Augustus_Charles
+1819-08-26 is born of Albert_Augustus_Charles
+1819 is yearBorn of Albert_Augustus_Charles
+8 is monthBorn of Albert_Augustus_Charles
+"Schloss Rosenau,Near Coburg,Germany" is birthPlace of Albert_Augustus_Charles
+1861-12-14 is died of Albert_Augustus_Charles
+1861 is yearDied of Albert_Augustus_Charles
+12 is monthDied of Albert_Augustus_Charles
+"Royal Masoleum,Frogmore,Windsor,England" is diedAt of Albert_Augustus_Charles
+"male" is sex of Albert_Augustus_Charles
+"Prince" is nobleTitle of Albert_Augustus_Charles
+Victoria_Adelaide_Mary parentOf F3
+Victoria_Adelaide_Mary childOf F1
+Victoria_Adelaide_Mary isA Person
+"I3" is id of Victoria_Adelaide_Mary
+"Victoria Adelaide Mary" is name of Victoria_Adelaide_Mary
+1841-02-10 is born of Victoria_Adelaide_Mary
+1841 is yearBorn of Victoria_Adelaide_Mary
+2 is monthBorn of Victoria_Adelaide_Mary
+"Throne Room,Buckingham Palac,England" is birthPlace of Victoria_Adelaide_Mary
+1901-08-05 is died of Victoria_Adelaide_Mary
+1901 is yearDied of Victoria_Adelaide_Mary
+8 is monthDied of Victoria_Adelaide_Mary
+"Friedenskirche,Potsdam" is diedAt of Victoria_Adelaide_Mary
+"female" is sex of Victoria_Adelaide_Mary
+"Princess Royal" is nobleTitle of Victoria_Adelaide_Mary
+Edward_VII_Wettin parentOf F2
+Edward_VII_Wettin childOf F1
+Edward_VII_Wettin isA Person
+"I4" is id of Edward_VII_Wettin
+"Edward_VII /Wettin/" is name of Edward_VII_Wettin
+1841-11-09 is born of Edward_VII_Wettin
+1841 is yearBorn of Edward_VII_Wettin
+11 is monthBorn of Edward_VII_Wettin
+"Buckingham,Palace,London,England" is birthPlace of Edward_VII_Wettin
+1910-05-20 is died of Edward_VII_Wettin
+1910 is yearDied of Edward_VII_Wettin
+5 is monthDied of Edward_VII_Wettin
+"Windsor,Berkshire,England" is diedAt of Edward_VII_Wettin
+"male" is sex of Edward_VII_Wettin
+"King of England" is nobleTitle of Edward_VII_Wettin
+Alice_Maud_Mary parentOf F8
+Alice_Maud_Mary childOf F1
+Alice_Maud_Mary isA Person
+"I5" is id of Alice_Maud_Mary
+"Alice Maud Mary" is name of Alice_Maud_Mary
+1843-04-25 is born of Alice_Maud_Mary
+1843 is yearBorn of Alice_Maud_Mary
+4 is monthBorn of Alice_Maud_Mary
+"Buckingham,Palace,London,England" is birthPlace of Alice_Maud_Mary
+1878-12-14 is died of Alice_Maud_Mary
+1878 is yearDied of Alice_Maud_Mary
+12 is monthDied of Alice_Maud_Mary
+"Darmstadt,,,Germany" is diedAt of Alice_Maud_Mary
+"female" is sex of Alice_Maud_Mary
+"Princess" is nobleTitle of Alice_Maud_Mary
+Alfred_Ernest_Albert parentOf F26
+Alfred_Ernest_Albert childOf F1
+Alfred_Ernest_Albert isA Person
+"I6" is id of Alfred_Ernest_Albert
+"Alfred Ernest Albert" is name of Alfred_Ernest_Albert
+1844-08-06 is born of Alfred_Ernest_Albert
+1844 is yearBorn of Alfred_Ernest_Albert
+8 is monthBorn of Alfred_Ernest_Albert
+"Windsor Castle,Berkshire,England" is birthPlace of Alfred_Ernest_Albert
+1900-07-30 is died of Alfred_Ernest_Albert
+1900 is yearDied of Alfred_Ernest_Albert
+7 is monthDied of Alfred_Ernest_Albert
+"Schloss Rosenau,Near Coburg" is diedAt of Alfred_Ernest_Albert
+"male" is sex of Alfred_Ernest_Albert
+"Prince" is nobleTitle of Alfred_Ernest_Albert
+Helena_Augusta_Victoria parentOf F32
+Helena_Augusta_Victoria childOf F1
+Helena_Augusta_Victoria isA Person
+"I7" is id of Helena_Augusta_Victoria
+"Helena Augusta Victoria" is name of Helena_Augusta_Victoria
+1846-05-25 is born of Helena_Augusta_Victoria
+1846 is yearBorn of Helena_Augusta_Victoria
+5 is monthBorn of Helena_Augusta_Victoria
+"Buckingham,Palace,London,England" is birthPlace of Helena_Augusta_Victoria
+1923-06-09 is died of Helena_Augusta_Victoria
+1923 is yearDied of Helena_Augusta_Victoria
+6 is monthDied of Helena_Augusta_Victoria
+"Schomberg House,Pall Mall,London,England" is diedAt of Helena_Augusta_Victoria
+"female" is sex of Helena_Augusta_Victoria
+"Princess" is nobleTitle of Helena_Augusta_Victoria
+Louise_Caroline_Alberta parentOf F69
+Louise_Caroline_Alberta childOf F1
+Louise_Caroline_Alberta isA Person
+"I8" is id of Louise_Caroline_Alberta
+"Louise Caroline Alberta" is name of Louise_Caroline_Alberta
+1848-03-18 is born of Louise_Caroline_Alberta
+1848 is yearBorn of Louise_Caroline_Alberta
+3 is monthBorn of Louise_Caroline_Alberta
+"Buckingham,Palace,London,England" is birthPlace of Louise_Caroline_Alberta
+1939-12-03 is died of Louise_Caroline_Alberta
+1939 is yearDied of Louise_Caroline_Alberta
+12 is monthDied of Louise_Caroline_Alberta
+"Frogmore,,,England" is diedAt of Louise_Caroline_Alberta
+"female" is sex of Louise_Caroline_Alberta
+"Princess" is nobleTitle of Louise_Caroline_Alberta
+Arthur_William_Patrick parentOf F34
+Arthur_William_Patrick childOf F1
+Arthur_William_Patrick isA Person
+"I9" is id of Arthur_William_Patrick
+"Arthur William Patrick" is name of Arthur_William_Patrick
+1850-05-01 is born of Arthur_William_Patrick
+1850 is yearBorn of Arthur_William_Patrick
+5 is monthBorn of Arthur_William_Patrick
+"Buckingham,Palace,London,England" is birthPlace of Arthur_William_Patrick
+1942-01-16 is died of Arthur_William_Patrick
+1942 is yearDied of Arthur_William_Patrick
+1 is monthDied of Arthur_William_Patrick
+"Bagshot Park,Surrey" is diedAt of Arthur_William_Patrick
+"male" is sex of Arthur_William_Patrick
+"Prince" is nobleTitle of Arthur_William_Patrick
+Leopold_George_Duncan parentOf F5
+Leopold_George_Duncan childOf F1
+Leopold_George_Duncan isA Person
+"I10" is id of Leopold_George_Duncan
+"Leopold George Duncan" is name of Leopold_George_Duncan
+1853-04-07 is born of Leopold_George_Duncan
+1853 is yearBorn of Leopold_George_Duncan
+4 is monthBorn of Leopold_George_Duncan
+"Buckingham,Palace,London,England" is birthPlace of Leopold_George_Duncan
+1884-03-28 is died of Leopold_George_Duncan
+1884 is yearDied of Leopold_George_Duncan
+3 is monthDied of Leopold_George_Duncan
+"Cannes" is diedAt of Leopold_George_Duncan
+"male" is sex of Leopold_George_Duncan
+"Prince" is nobleTitle of Leopold_George_Duncan
+Beatrice_Mary_Victoria parentOf F6
+Beatrice_Mary_Victoria childOf F1
+Beatrice_Mary_Victoria isA Person
+"I11" is id of Beatrice_Mary_Victoria
+"Beatrice Mary Victoria" is name of Beatrice_Mary_Victoria
+1857-04-14 is born of Beatrice_Mary_Victoria
+1857 is yearBorn of Beatrice_Mary_Victoria
+4 is monthBorn of Beatrice_Mary_Victoria
+"Buckingham,Palace,London,England" is birthPlace of Beatrice_Mary_Victoria
+1944-10-26 is died of Beatrice_Mary_Victoria
+1944 is yearDied of Beatrice_Mary_Victoria
+10 is monthDied of Beatrice_Mary_Victoria
+"Bantridge Park,Balcombe,Sussex,England" is diedAt of Beatrice_Mary_Victoria
+"female" is sex of Beatrice_Mary_Victoria
+"Princess" is nobleTitle of Beatrice_Mary_Victoria
+Alexandra_of_Denmark_Alix parentOf F2

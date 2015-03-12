@@ -1,0 +1,10 @@
+SiDIF.comment="  http://en.wikipedia.org/wiki/Notation3
+  @prefix dc: <http://purl.org/dc/elements/1.1/>.
+ 
+ <http://en.wikipedia.org/wiki/Tony_Benn>
+  dc:title 'Tony Benn';
+  dc:publisher 'Wikipedia'.
+"(String)
+Tony_Benn -- isA --> WikiPage
+it.title="Tony Benn"(String)
+it.publisher="Wikipedia"(String)

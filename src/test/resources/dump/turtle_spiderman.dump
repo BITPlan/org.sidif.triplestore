@@ -1,0 +1,8 @@
+ComicFigure -- isA --> Concept
+name -- addsTo --> ComicFigure
+Enemy -- isA --> Concept
+Enemy -- isA --> ComicFigure
+Spiderman -- isA --> ComicFigure
+Spiderman.name="spiderman"(String)
+GreenGoblin -- isA --> Enemy
+GreenGoblin.name="green goblin"(String)

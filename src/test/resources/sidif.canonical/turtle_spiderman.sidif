@@ -1,0 +1,8 @@
+ComicFigure isA Concept
+name addsTo ComicFigure
+Enemy isA Concept
+Enemy isA ComicFigure
+Spiderman isA ComicFigure
+"spiderman" is name of Spiderman
+GreenGoblin isA Enemy
+"green goblin" is name of GreenGoblin

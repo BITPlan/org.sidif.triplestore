@@ -1,0 +1,15 @@
+"Example 2" is comment of SiDIF
+Object sameAs Concept
+Concept sameAs Topic
+Topic sameAs Category
+Property sameAs Attribute
+Property isA Topic
+Attribute sameAs Field
+name addsTo Topic
+name isA Property
+name addsTo Property
+name addsTo City
+description addsTo Topic
+value addsTo Property
+Tokyo isA City
+City isA Concept
