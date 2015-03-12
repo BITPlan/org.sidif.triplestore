@@ -81,7 +81,7 @@ public class Triple {
  
   /**
    * is this Triple representing a literal?
-   * @return
+   * @return true or false
    */
   public boolean isLiteral() {
     boolean result = false;
@@ -113,7 +113,7 @@ public class Triple {
   /**
    * get a NullValue representation
    * @param o
-   * @return
+   * @return the nullValue
    */
   public String nullValue(Object o) {
     if (o==null) 
@@ -124,6 +124,7 @@ public class Triple {
   
   /**
    * return a string representation of me
+   * @return the string representation
    */
   public String toString() {
     String result=nullValue(subject)+" "+nullValue(predicate)+" "+nullValue(object);

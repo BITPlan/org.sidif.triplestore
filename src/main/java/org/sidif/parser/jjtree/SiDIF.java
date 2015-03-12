@@ -14,7 +14,7 @@ public class SiDIF/*@bgen(jjtree)*/implements SiDIFTreeConstants, SiDIFConstants
   protected JJTSiDIFState jjtree = new JJTSiDIFState();/**
    * get a SiDIF Parser from the given sidifText
    * @param sidifText
-   * @return
+   * @return - the SiDIF parser for this sidifText
    */
   public static SiDIF fromText(String sidifText) {
     StringReader reader=new StringReader(sidifText);

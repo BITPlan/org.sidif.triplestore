@@ -40,7 +40,7 @@ public class FileUtils {
   /**
    * read lines from the given inputFile
    * @param inputFile
-   * @return
+   * @return a list of Strings
    * @throws Exception
    */
   public static List<String> readLines(File inputFile)

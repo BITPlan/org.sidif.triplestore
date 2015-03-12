@@ -53,8 +53,8 @@ public class ObjectHolder<T> {
   /**
    * equality ...
    * 
-   * @param other
-   * @return
+   * @param other - the objectHolder to compare me with
+   * @return whether this ObjectHolder is equal to the other
    */
   public boolean equals(Object other) {
     boolean result = false;

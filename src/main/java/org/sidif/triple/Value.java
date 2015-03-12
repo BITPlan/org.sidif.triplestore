@@ -14,7 +14,6 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.TimeZone;
 
 /**
  * a value that might be a literal or an object
@@ -62,7 +61,7 @@ public class Value<T> extends ObjectHolder<T> {
   /**
    * return me as a SiDIF String
    * 
-   * @return
+   * @return the sidif representation
    */
   public String asSiDIF() {
     String result;
@@ -78,7 +77,7 @@ public class Value<T> extends ObjectHolder<T> {
    * get a TimeStamp with the given time value
    * 
    * @param time
-   * @return
+   * @return the wrapped time
    */
   public static Value<Timestamp> getTimeStamp(long time) {
     Value<java.sql.Timestamp> result = new Value<java.sql.Timestamp>();
@@ -92,7 +91,7 @@ public class Value<T> extends ObjectHolder<T> {
    * get a data value from the given long time
    * 
    * @param time
-   * @return
+   * @return the wrapped date
    */
   public static Value<Date> getDate(long time) {
     Date date = new Date(time);
@@ -104,7 +103,7 @@ public class Value<T> extends ObjectHolder<T> {
    * get a Date value
    * 
    * @param parseDate
-   * @return
+   * @return the wrapped date
    */
   public static Value<Date> getDate(Date parseDate) {
     Value<Date> result = new Value<Date>();
@@ -118,7 +117,7 @@ public class Value<T> extends ObjectHolder<T> {
    * get a Time Value
    * 
    * @param time
-   * @return
+   * @return the wrapped time
    */
   public static Value<Time> getTime(long time) {
     Value<java.sql.Time> result = new Value<java.sql.Time>();
@@ -132,7 +131,7 @@ public class Value<T> extends ObjectHolder<T> {
    * get a number for the given number string
    * 
    * @param numberString
-   * @return
+   * @return the wrapped integer
    */
   public static Value<?> getInteger(String numberString) {
     Value<?> result = getInteger(new Integer(numberString));
@@ -143,7 +142,7 @@ public class Value<T> extends ObjectHolder<T> {
    * get the number for the given Integer
    * 
    * @param pInteger
-   * @return
+   * @return the wrapped integer
    */
   public static Value<?> getInteger(Integer pInteger) {
     Value<Integer> result = new Value<Integer>();
@@ -157,7 +156,7 @@ public class Value<T> extends ObjectHolder<T> {
    * get a number for the given number string
    * 
    * @param numberString
-   * @return
+   * @return the wrapped double
    */
   public static Value<?> getDouble(String numberString) {
     Value<?> result = getDouble(new Double(numberString));
@@ -168,7 +167,7 @@ public class Value<T> extends ObjectHolder<T> {
    * get the number for the given Double
    * 
    * @param pDouble
-   * @return
+   * @return the wrapped double
    */
   public static Value<?> getDouble(Double pDouble) {
     Value<Double> result = new Value<Double>();
@@ -182,7 +181,7 @@ public class Value<T> extends ObjectHolder<T> {
    * get a Character value
    * 
    * @param pChar
-   * @return
+   * @return the wrapped char
    */
   public static Value<?> getCharacter(char pChar) {
     Value<Character> result = new Value<Character>();
@@ -196,7 +195,7 @@ public class Value<T> extends ObjectHolder<T> {
    * get a String value
    * 
    * @param string
-   * @return
+   * @return the wrapped string
    */
   public static Value<?> getString(String string) {
     Value<String> result = new Value<String>();
@@ -210,7 +209,7 @@ public class Value<T> extends ObjectHolder<T> {
    * get the given IRI value
    * 
    * @param iri
-   * @return
+   * @return the wrapped iri
    * @throws URISyntaxException
    */
   public static Value<?> getIRI(String iri) throws URISyntaxException {

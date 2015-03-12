@@ -53,9 +53,9 @@ public class TripleStoreDumper {
   }
 
   /**
-   * dump the given triple Query
+   * dump the given triple Query and indentation
    * @param tripleQuery
-   * @param title
+   * @param indent - the indentation
    */
   public static void dump(TripleQuery tripleQuery,String indent) {
     for (Triple triple:tripleQuery.getTriples()) {
@@ -66,7 +66,7 @@ public class TripleStoreDumper {
   /**
    * dump the given Triple Container
    * 
-   * @param tripleQuery
+   * @param tripleContainer
    * @param title
    */
   public static void dump(TripleContainer tripleContainer, String title) {

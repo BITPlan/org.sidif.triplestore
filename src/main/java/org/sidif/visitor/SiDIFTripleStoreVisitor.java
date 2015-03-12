@@ -33,8 +33,8 @@ public class SiDIFTripleStoreVisitor implements SiDIFVisitor {
   /**
    * get a triple Store from the given sidifText
    * @param sidifText
-   * @return
    * @throws Exception
+   * @return the tripleStore derived form the given sidifText
    */
   public static TripleStore fromSiDIFText(String sidifText) throws Exception {
     SiDIF sidif=SiDIF.fromText(sidifText);
@@ -57,7 +57,7 @@ public class SiDIFTripleStoreVisitor implements SiDIFVisitor {
   /**
    * create a TripleStore from the given sidif Parser
    * @param sidif
-   * @return
+   * @return the tripleStore
    * @throws Exception
    */
   public static TripleStore fromSiDIF(SiDIF sidif) throws Exception {

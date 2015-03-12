@@ -24,9 +24,8 @@ import java.util.Set;
 public class TripleStore {
   
   /**
-   * return a triple Query
-   * @param topicType
-   * @return
+   * return a default triple Query for all my triples
+   * @return the default query
    */
   public TripleQuery query() {
     return new TripleQuery(this);
@@ -61,7 +60,7 @@ public class TripleStore {
     /**
      * get the Triples
      * 
-     * @return
+     * @return all the triples
      */
     public List<Triple> getTriples() {
       List<Triple> result = new ArrayList<Triple>();
@@ -137,7 +136,7 @@ public class TripleStore {
     /**
      * get the keys
      * 
-     * @return
+     * @return the set of keys
      */
     public Set<Object> getKeys() {
       Set<Object> result = this.tripleLookup.keySet();
@@ -147,7 +146,7 @@ public class TripleStore {
     /**
      * get my size
      * 
-     * @return
+     * @return the size
      */
     public int size() {
       int result = tripleLookup.size();
@@ -184,7 +183,7 @@ public class TripleStore {
    * utility function
    * 
    * @param c
-   * @return
+   * @return a sorted List
    */
   public static <T extends Comparable<? super T>> List<T> asSortedList(
       Collection<T> c) {
@@ -196,7 +195,7 @@ public class TripleStore {
   /**
    * get the subjects of this tripleStore
    * 
-   * @return
+   * @return the set of subjects
    */
   public Set<Object> getSubjects() {
     Set<Object> subjects = this.bySubject.tripleLookup.keySet();
@@ -206,7 +205,7 @@ public class TripleStore {
   /**
    * get the predicates of this tripleStore
    * 
-   * @return
+   * @return the set of predicates
    */
   public Set<Object> getPredicates() {
     Set<Object> predicates = this.byPredicate.tripleLookup.keySet();
@@ -216,7 +215,7 @@ public class TripleStore {
   /**
    * get the objects of this tripleStore
    * 
-   * @return
+   * @return the set of objects
    */
   public Set<Object> getObjects() {
     Set<Object> objects = this.byObject.tripleLookup.keySet();
@@ -269,10 +268,8 @@ public class TripleStore {
   }
 
   /**
-   * add the given select to the target TripleStore
-   * 
-   * @param target
-   * @param source
+   * add the given select from the given source TripleStore to me
+   * @param source - the tripleStore to select triples from
    * @param subject
    * @param predicate
    * @param object
@@ -289,7 +286,7 @@ public class TripleStore {
   /**
    * get the list of all myTriples
    * 
-   * @return
+   * @return all my triples
    */
   public List<Triple> getTriples() {
     List<Triple> result = this.bySubject.getTriples();
@@ -299,7 +296,7 @@ public class TripleStore {
   /**
    * get the size of this triple Store
    * 
-   * @return
+   * @return my size
    */
   public int size() {
     return getTriples().size();

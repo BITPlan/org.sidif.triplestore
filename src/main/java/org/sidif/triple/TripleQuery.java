@@ -52,9 +52,9 @@ public class TripleQuery {
   }
 
   /**
-   * 
+   * change the query topic
    * @param topicType
-   * @return
+   * @return the query
    */
   public TripleQuery queryTopic(TopicType topicType) {
     TripleQuery result = new TripleQuery(this);
@@ -64,7 +64,7 @@ public class TripleQuery {
   
   /**
    * get the TripleContainer
-   * @return
+   * @return the tripleContainer of the current topic type
    */
   public TripleContainer getTripleContainer() {
     TripleContainer result;
@@ -85,8 +85,8 @@ public class TripleQuery {
   }
   
   /**
-   * get the Topic
-   * @return
+   * get the Topic for the current topic type subject predicate or object
+   * @return the object
    */
   public Object getTopic() {
     Object topic=null;
@@ -111,8 +111,8 @@ public class TripleQuery {
    * 
    * @param subject
    * @param predicate
-   * @param object
-   * @return
+   * @param object 
+   * @return the selected list of triples
    */
   public List<Triple> select(Object subject, Object predicate, Object object) {
     TripleQuery tripleQuery = this.query(subject,
@@ -125,7 +125,7 @@ public class TripleQuery {
    * select the triples for the given "template" triple
    * 
    * @param select
-   * @return
+   * @return the selected list of triples
    */
   public List<Triple> select(Triple select) {
     TripleQuery tripleQuery = this.queryTriple(select);
@@ -155,7 +155,7 @@ public class TripleQuery {
    * @param subject
    * @param predicate
    * @param object
-   * @return
+   * @return the query
    */
   public TripleQuery query(Object subject,
       Object predicate, Object object) {
@@ -169,7 +169,7 @@ public class TripleQuery {
    * @param subject
    * @param predicate
    * @param object
-   * @return
+   * @return the triple
    */
   public Triple selectSingle(Object subject, Object predicate, Object object) {
     List<Triple> triples = this.select(subject, predicate, object);
@@ -226,7 +226,7 @@ public class TripleQuery {
 
   /**
    * set my triples
-   * @param pTriple - the triples to use
+   * @param pTriples - the triples to use
    */
   public void setTriples(List<Triple> pTriples) {
     triples=pTriples;
@@ -248,7 +248,7 @@ public class TripleQuery {
    * that is the list triples of me combined with the list of triples of the other triple query
    * see https://en.wikipedia.org/wiki/Union_%28set_theory%29
    * @param other
-   * @return
+   * @return the union
    */
   public TripleQuery union(TripleQuery other) {
     TripleQuery result=new TripleQuery(this);
@@ -264,7 +264,7 @@ public class TripleQuery {
    * that is the list of triples that are part of my triples and part ot the otherQueries triples
    * see https://en.wikipedia.org/wiki/Intersection_%28set_theory%29#Intersecting_and_disjoint_sets
    * @param otherQuery
-   * @return
+   * @return the intersection
    */
   public TripleQuery intersect(TripleQuery otherQuery) {
     TripleQuery result=new TripleQuery(this);
@@ -285,7 +285,7 @@ public class TripleQuery {
    * create a relative complement that is the triples that are in me but not in otherQuery
    * see https://en.wikipedia.org/wiki/Complement_%28set_theory%29#Relative_complement
    * @param otherQuery
-   * @return
+   * @return the complement
    */
   public TripleQuery complement(TripleQuery otherQuery) {
     TripleQuery result=new TripleQuery(this);
@@ -304,7 +304,7 @@ public class TripleQuery {
 
   /**
    * return the size of my triples 
-   * @return
+   * @return my size
    */
   public int size() {
     int result=this.triples.size();
@@ -313,7 +313,7 @@ public class TripleQuery {
 
   /**
    * return my Triples
-   * @return
+   * @return my triples
    */
   public List<Triple> getTriples() {
     return triples;

@@ -7,11 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-import org.sidif.parser.jjtree.*;
 import org.sidif.parser.jjtree.ParseException;
 import org.sidif.parser.jjtree.SiDIF;
 import org.sidif.parser.jjtree.Token;
-import org.sidif.parser.node.SiDIFVisitor;
 
 public
 class Literal extends SimpleNode {
@@ -63,7 +61,7 @@ class Literal extends SimpleNode {
    * 
    * @param token
    * @param f
-   * @return
+   * @return the date for the given token and date format
    */
   public Date toDate(Token token, SimpleDateFormat f) {
     f.setTimeZone(TimeZone.getTimeZone("UTC"));
@@ -78,8 +76,8 @@ class Literal extends SimpleNode {
   /**
    * 
    * @param token
-   * @return
    * @throws ParseException
+   * @return the Value for this token
    */
   public org.sidif.triple.Value<?> toDate(Token token) throws ParseException {
     // first try date/time combinations
@@ -158,9 +156,8 @@ class Literal extends SimpleNode {
   }
 
   /**
-   * init this literal
+   * init this literal for the given literalValue and String representation 
    * 
-   * @param type
    * @param literalValue
    * @param literal
    */

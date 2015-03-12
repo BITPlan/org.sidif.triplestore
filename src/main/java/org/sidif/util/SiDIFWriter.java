@@ -24,9 +24,9 @@ public class SiDIFWriter {
   private static boolean canonical;
 
   /**
-   * get a sidif String from the given tripleStore
+   * get a sidif String from the given TripleStore
    * @param tripleStore
-   * @return
+   * @return the sidif string created for the given TripleStore
    */
   public static String asSiDIF(TripleStore tripleStore) {
     String result=asSiDIF(tripleStore,false);
@@ -37,7 +37,8 @@ public class SiDIFWriter {
    * get the SiDIF representation of the given TripleStore
    * 
    * @param tripleStore
-   * @return
+   * @param canonical - if true the canonical version is used
+   * @return the sidif String 
    */
   public static String asSiDIF(TripleStore tripleStore, boolean canonical) {
     SiDIFWriter.canonical=canonical;
@@ -52,7 +53,7 @@ public class SiDIFWriter {
   /**
    * get the subject's to string or "it" if the subject is the current Subject
    * @param subject
-   * @return
+   * @return the string
    */
   public static String getIt(Object subject) {
     String subjectString;
@@ -68,7 +69,7 @@ public class SiDIFWriter {
    * as SiDIF
    * 
    * @param triple
-   * @return
+   * @return the sidif representation of the triple
    */
   public static String asSiDIF(Triple triple) {
     String sidif = "";
@@ -76,6 +77,7 @@ public class SiDIFWriter {
     Object predicate = triple.getPredicate();
     Object object = triple.getObject();
     if (object instanceof Value) {
+      @SuppressWarnings("rawtypes")
       Value value = (Value) object;  
       if (value.type!=null && value.type.equals("Reference")) {
         sidif += subject + " " + predicate + " " + getIt(value.getObject()) + "\n";       
