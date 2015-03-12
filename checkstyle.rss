@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<rss version="0.91">
+  <channel>
+    <title>org.sidif.triplestore - Checkstyle report</title>
+    <link>https://github.com/BITPlan/org.sidif.triplestore</link>
+    <description>org.sidif.triplestore - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2015</copyright>
+    <item>
+      <title>File: 29,
+             Errors: 4972,
+             Warnings: 0,
+             Infos: 0
+      </title>
+            <link>https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html</link>
+      <description>
+        <p>Click <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.util.TripleStoreDumper.java">org/sidif/util/TripleStoreDumper.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  39
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.util.SiDIFWriter.java">org/sidif/util/SiDIFWriter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  53
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.triple.MultiValueMap.java">org/sidif/triple/MultiValueMap.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  58
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.parser.jjtree.TokenMgrError.java">org/sidif/parser/jjtree/TokenMgrError.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  61
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.visitor.SiDIFLinkListVisitor.java">org/sidif/visitor/SiDIFLinkListVisitor.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  49
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.triple.TripleStore.java">org/sidif/triple/TripleStore.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  110
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.visitor.SiDIFTripleStoreVisitor.java">org/sidif/visitor/SiDIFTripleStoreVisitor.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  61
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.parser.node.Node.java">org/sidif/parser/node/Node.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  23
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.parser.node.JJTSiDIFState.java">org/sidif/parser/node/JJTSiDIFState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  54
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.parser.jjtree.SimpleCharStream.java">org/sidif/parser/jjtree/SimpleCharStream.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  349
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.parser.node.SiDIFVisitor.java">org/sidif/parser/node/SiDIFVisitor.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.util.FileUtils.java">org/sidif/util/FileUtils.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  25
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.parser.jjtree.Token.java">org/sidif/parser/jjtree/Token.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  39
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.triple.Triple.java">org/sidif/triple/Triple.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  74
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.parser.jjtree.SiDIF.java">org/sidif/parser/jjtree/SiDIF.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  517
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.parser.jjtree.ParseException.java">org/sidif/parser/jjtree/ParseException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  39
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.triple.ObjectHolder.java">org/sidif/triple/ObjectHolder.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  29
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.parser.jjtree.SiDIFTokenManager.java">org/sidif/parser/jjtree/SiDIFTokenManager.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2479
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.visitor.SiDIFDumpVisitor.java">org/sidif/visitor/SiDIFDumpVisitor.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  92
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.parser.node.Literal.java">org/sidif/parser/node/Literal.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  95
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.triple.TripleQuery.java">org/sidif/triple/TripleQuery.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  217
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.parser.node.SimpleNode.java">org/sidif/parser/node/SimpleNode.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  66
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.triple.Value.java">org/sidif/triple/Value.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  65
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.parser.node.Value.java">org/sidif/parser/node/Value.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  49
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.triple.LinkedMultiValueMap.java">org/sidif/triple/LinkedMultiValueMap.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  234
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.parser.jjtree.SiDIFConstants.java">org/sidif/parser/jjtree/SiDIFConstants.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.parser.node.Links.java">org/sidif/parser/node/Links.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  16
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.parser.node.SiDIFTreeConstants.java">org/sidif/parser/node/SiDIFTreeConstants.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  17
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/BITPlan/org.sidif.triplestore/checkstyle.html#org.sidif.parser.node.Link.java">org/sidif/parser/node/Link.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  46
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+
