@@ -29,8 +29,8 @@ public class BaseSiDIFTest {
   boolean debug = false;
 
   /**
-   * get all example Nemas
-   * @return
+   * get all example Names
+   * @return all example names
    */
   String[] getAllExampleNames() {
     String examples[] = { "example1", "example2","familyTree","graph1", "json_ld_manu_sporny","notation3_TonyBenn",
@@ -59,7 +59,7 @@ public class BaseSiDIFTest {
    * get a SiDIF graph from the given example
    * 
    * @param exampleName
-   * @return
+   * @return the SiDIF parser result
    * @throws Exception
    */
   public SiDIF getSiDIFFromExample(String exampleName) throws Exception {
@@ -72,8 +72,8 @@ public class BaseSiDIFTest {
    * get the TripleStore for the given example Name
    * 
    * @param exampleName
-   * @return
    * @throws Exception
+   * @return the triple for the given example name
    */
   public TripleStore getTripleStoreFromExample(String exampleName)
       throws Exception {
