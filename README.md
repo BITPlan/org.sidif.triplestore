@@ -12,7 +12,7 @@ see http://www.sidif.org
 ### Distribution
 Available at Maven Central see 
 
-http://search.maven.org/#artifactdetails|com.bitplan|org.sidif.triplestore|0.0.1|jar
+http://search.maven.org/#artifactdetails|com.bitplan|org.sidif.triplestore|0.0.2|jar
 
 Maven dependency:
 
@@ -20,9 +20,10 @@ Maven dependency:
 <dependency>
     <groupId>com.bitplan</groupId>
     <artifactId>org.sidif.triplestore</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
 </dependency>
 ```
 
 ## Version history
 * 0.0.1 - 2015-03-12: first release
+* 0.0.2 - 2015-03-13: adds command line interface

@@ -4,6 +4,8 @@ import org.sidif.parser.node.*;
 import org.sidif.triple.ObjectHolder;
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.StringReader;
 
 /** Token Manager. */

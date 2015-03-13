@@ -10,6 +10,7 @@
 package org.sidif.visitor;
 
 import java.io.File;
+import java.io.InputStream;
 
 import org.sidif.parser.jjtree.SiDIF;
 import org.sidif.parser.node.Link;
@@ -43,13 +44,25 @@ public class SiDIFTripleStoreVisitor implements SiDIFVisitor {
   }
   
   /**
-   * get a TripleStore from the given sidifFile
+   * get a TripleStore from the given sidif File
    * @param sidifFile
    * @return a triple Store
    * @throws Exception
    */
   public static TripleStore fromSiDIFFile(File sidifFile) throws Exception {
     SiDIF sidif=SiDIF.fromFile(sidifFile);
+    TripleStore result=fromSiDIF(sidif);
+    return result;
+  }
+  
+  /**
+   * create a TripleStore from the given sidif inputStream
+   * @param in - the inputStream to read from
+   * @return - the tripleStore
+   * @throws Exception 
+   */
+  public static TripleStore fromSiDIFStream(InputStream in) throws Exception {
+    SiDIF sidif=SiDIF.fromStream(in);
     TripleStore result=fromSiDIF(sidif);
     return result;
   }

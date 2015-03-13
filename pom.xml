@@ -12,7 +12,7 @@
 	<artifactId>org.sidif.triplestore</artifactId>
 	<packaging>jar</packaging>
 	<name>org.sidif.triplestore</name>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<description>Simple Data Interchange Format (SiDIF) and Triplestore see http://www.sidif.org</description>
 	<url>https://github.com/BITPlan/org.sidif.triplestore</url>
 	<licenses>
@@ -46,6 +46,7 @@
 		<github.global.server>github</github.global.server>
 		<!-- Dependency versions -->
 		<junit4.version>4.11</junit4.version>
+		<args4j.version>2.0.29</args4j.version>
 	</properties>
 	<dependencies>
 		<!-- JUnit testing -->
@@ -54,6 +55,12 @@
 			<artifactId>junit</artifactId>
 			<version>${junit4.version}</version>
 			<scope>test</scope>
+		</dependency>
+		<!-- args4j command line utility -->
+		<dependency>
+			<groupId>args4j</groupId>
+			<artifactId>args4j</artifactId>
+			<version>${args4j.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -85,7 +92,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>org.sidif.triplestore.TripleStore</mainClass>
+							<mainClass>org.sidif.triplestore.util.TripleStoreBuilder</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -102,7 +109,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>org.sidif.triplestore.TripleStore</mainClass>
+							<mainClass>org.sidif.triplestore.util.TripleStoreBuilder</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
@@ -275,6 +282,10 @@
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-javadoc-plugin</artifactId>
 							<version>2.9</version>
+							<configuration>
+								<overview>${basedir}\src\main\java\overview.html</overview>
+								<verbose>true</verbose>
+							</configuration>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>

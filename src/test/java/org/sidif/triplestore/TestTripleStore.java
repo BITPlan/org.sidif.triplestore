@@ -29,14 +29,16 @@ import org.sidif.util.TripleStoreDumper;
  */
 public class TestTripleStore extends BaseSiDIFTest {
 
+  /**
+   * test the multimaps used for the triplestore
+   * attempt to add the same triple twice
+   */
   @Test
   public void testMultiMap() {
     TripleStore tripleStore = new TripleStore();
     Triple triple1 = new Triple("s", "p", "o");
     Triple triple2 = new Triple("s", "p", "o");
-    ;
     Triple triple3 = new Triple("s", "p3", "o3");
-    ;
     tripleStore.add(triple1);
     tripleStore.add(triple2);
     tripleStore.add(triple3);
@@ -56,6 +58,10 @@ public class TestTripleStore extends BaseSiDIFTest {
     assertEquals(0, tripleStore.bySubject.getTriples("undefined").size());
   }
 
+  /**
+   * test select function
+   * @throws Exception
+   */
   @Test
   public void testSelect() throws Exception {
     TripleStore tripleStore = super.getTripleStoreFromExample("triple1");

@@ -18,7 +18,7 @@ import org.junit.runners.Suite;
  * @author wf
  *
  */
-@Suite.SuiteClasses({TestSiDIFParser.class,TestSiDIFWriter.class,TestTripleStore.class,TestGraph.class, TestTypes.class})
+@Suite.SuiteClasses({TestSiDIFParser.class,TestSiDIFWriter.class,TestTripleStore.class,TestTripleStoreBuilder.class,TestGraph.class, TestTypes.class})
 public class TestSuite {
  
 }

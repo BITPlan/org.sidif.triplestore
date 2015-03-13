@@ -5,6 +5,8 @@ import org.sidif.parser.node.*;
 import org.sidif.triple.ObjectHolder;
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.StringReader;
 
 /**
@@ -30,6 +32,17 @@ public class SiDIF/*@bgen(jjtree)*/implements SiDIFTreeConstants, SiDIFConstants
    */
   public static SiDIF fromFile(File sidifFile) throws Exception {
     FileReader reader = new FileReader(sidifFile);
+    SiDIF sidif = new SiDIF(reader);
+    return sidif;
+  }
+
+   /**
+   * get a SiDIF Parser from the given inputstream
+   * @param in
+   * @return
+   */
+  public static SiDIF fromStream(InputStream in) {
+    InputStreamReader reader = new InputStreamReader(in);
     SiDIF sidif = new SiDIF(reader);
     return sidif;
   }
@@ -368,70 +381,6 @@ public class SiDIF/*@bgen(jjtree)*/implements SiDIFTreeConstants, SiDIFConstants
     finally { jj_save(15, xla); }
   }
 
-  private boolean jj_3_7() {
-    if (jj_scan_token(INTEGER_LITERAL)) return true;
-    return false;
-  }
-
-  private boolean jj_3_2() {
-    if (jj_3R_3()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_4() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3_7()) {
-    jj_scanpos = xsp;
-    if (jj_3_8()) {
-    jj_scanpos = xsp;
-    if (jj_3_9()) {
-    jj_scanpos = xsp;
-    if (jj_3_10()) {
-    jj_scanpos = xsp;
-    if (jj_3_11()) {
-    jj_scanpos = xsp;
-    if (jj_3_12()) {
-    jj_scanpos = xsp;
-    if (jj_3_13()) {
-    jj_scanpos = xsp;
-    if (jj_3_14()) {
-    jj_scanpos = xsp;
-    if (jj_3_15()) {
-    jj_scanpos = xsp;
-    if (jj_3_16()) return true;
-    }
-    }
-    }
-    }
-    }
-    }
-    }
-    }
-    }
-    return false;
-  }
-
-  private boolean jj_3_3() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3_1()) {
-    jj_scanpos = xsp;
-    if (jj_3_2()) return true;
-    }
-    return false;
-  }
-
-  private boolean jj_3_1() {
-    if (jj_3R_2()) return true;
-    return false;
-  }
-
-  private boolean jj_3_16() {
-    if (jj_scan_token(NULL)) return true;
-    return false;
-  }
-
   private boolean jj_3_6() {
     if (jj_scan_token(IDENTIFIER)) return true;
     if (jj_scan_token(HAS)) return true;
@@ -495,6 +444,11 @@ public class SiDIF/*@bgen(jjtree)*/implements SiDIFTreeConstants, SiDIFConstants
     return false;
   }
 
+  private boolean jj_3_8() {
+    if (jj_scan_token(FLOATING_POINT_LITERAL)) return true;
+    return false;
+  }
+
   private boolean jj_3R_2() {
     Token xsp;
     xsp = jj_scanpos;
@@ -508,8 +462,67 @@ public class SiDIF/*@bgen(jjtree)*/implements SiDIFTreeConstants, SiDIFConstants
     return false;
   }
 
-  private boolean jj_3_8() {
-    if (jj_scan_token(FLOATING_POINT_LITERAL)) return true;
+  private boolean jj_3_7() {
+    if (jj_scan_token(INTEGER_LITERAL)) return true;
+    return false;
+  }
+
+  private boolean jj_3_2() {
+    if (jj_3R_3()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_4() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3_7()) {
+    jj_scanpos = xsp;
+    if (jj_3_8()) {
+    jj_scanpos = xsp;
+    if (jj_3_9()) {
+    jj_scanpos = xsp;
+    if (jj_3_10()) {
+    jj_scanpos = xsp;
+    if (jj_3_11()) {
+    jj_scanpos = xsp;
+    if (jj_3_12()) {
+    jj_scanpos = xsp;
+    if (jj_3_13()) {
+    jj_scanpos = xsp;
+    if (jj_3_14()) {
+    jj_scanpos = xsp;
+    if (jj_3_15()) {
+    jj_scanpos = xsp;
+    if (jj_3_16()) return true;
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    return false;
+  }
+
+  private boolean jj_3_3() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3_1()) {
+    jj_scanpos = xsp;
+    if (jj_3_2()) return true;
+    }
+    return false;
+  }
+
+  private boolean jj_3_1() {
+    if (jj_3R_2()) return true;
+    return false;
+  }
+
+  private boolean jj_3_16() {
+    if (jj_scan_token(NULL)) return true;
     return false;
   }
 

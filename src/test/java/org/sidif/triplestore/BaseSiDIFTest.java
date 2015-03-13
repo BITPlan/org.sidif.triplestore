@@ -15,7 +15,7 @@ import java.io.File;
 
 import org.sidif.parser.jjtree.SiDIF;
 import org.sidif.triple.TripleStore;
-import org.sidif.visitor.SiDIFTripleStoreVisitor;
+import org.sidif.util.TripleStoreBuilder;
 
 /**
  * Base class for sidif tests
@@ -24,7 +24,12 @@ import org.sidif.visitor.SiDIFTripleStoreVisitor;
  *
  */
 public class BaseSiDIFTest {
-
+  /**
+   * Logging may be enabled by setting debug to true
+   */
+  protected static java.util.logging.Logger LOGGER = java.util.logging.Logger
+      .getLogger("org.sidif.triplestore");
+  
   // set to true for debugging
   boolean debug = false;
 
@@ -78,8 +83,7 @@ public class BaseSiDIFTest {
   public TripleStore getTripleStoreFromExample(String exampleName)
       throws Exception {
     File exampleFile = getExampleFile(exampleName);
-    TripleStore tripleStore = SiDIFTripleStoreVisitor
-        .fromSiDIFFile(exampleFile);
+    TripleStore tripleStore = TripleStoreBuilder.fromSiDIFFile(exampleFile);
     return tripleStore;
   }
 
