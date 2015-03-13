@@ -96,7 +96,7 @@ public class Triple {
   /**
    * check if the given object is a literal
    * @param object
-   * @return
+   * @return whether the given object is a literal
    */
   static boolean isLiteral(Object object) {
     boolean result=object instanceof Integer
