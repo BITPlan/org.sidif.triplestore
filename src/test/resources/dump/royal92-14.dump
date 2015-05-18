@@ -42,8 +42,8 @@ parentOf -- addsTo --> Family
 parentOf -- hasType --> Family
 husbandOf -- addsTo --> Family
 husbandOf -- hasType --> Family
-Victoria_Hanover -- parentOf --> F1
-Victoria_Hanover -- childOf --> F42
+F1 -- parentOf --> Victoria_Hanover
+F42 -- childOf --> Victoria_Hanover
 Victoria_Hanover -- isA --> Person
 it.id="I1"(String)
 it.name="Victoria /Hanover/"(String)
@@ -57,8 +57,8 @@ it.monthDied=1(Integer)
 it.diedAt="Royal Mausoleum,Frogmore,Berkshire,England"(String)
 it.sex="female"(String)
 it.nobleTitle="Queen of England"(String)
-Albert_Augustus_Charles -- parentOf --> F1
-Albert_Augustus_Charles -- childOf --> F43
+F1 -- parentOf --> Albert_Augustus_Charles
+F43 -- childOf --> Albert_Augustus_Charles
 Albert_Augustus_Charles -- isA --> Person
 it.id="I2"(String)
 it.name="Albert Augustus Charles"(String)
@@ -72,8 +72,8 @@ it.monthDied=12(Integer)
 it.diedAt="Royal Masoleum,Frogmore,Windsor,England"(String)
 it.sex="male"(String)
 it.nobleTitle="Prince"(String)
-Victoria_Adelaide_Mary -- parentOf --> F3
-Victoria_Adelaide_Mary -- childOf --> F1
+F3 -- parentOf --> Victoria_Adelaide_Mary
+F1 -- childOf --> Victoria_Adelaide_Mary
 Victoria_Adelaide_Mary -- isA --> Person
 it.id="I3"(String)
 it.name="Victoria Adelaide Mary"(String)
@@ -87,8 +87,8 @@ it.monthDied=8(Integer)
 it.diedAt="Friedenskirche,Potsdam"(String)
 it.sex="female"(String)
 it.nobleTitle="Princess Royal"(String)
-Edward_VII_Wettin -- parentOf --> F2
-Edward_VII_Wettin -- childOf --> F1
+F2 -- parentOf --> Edward_VII_Wettin
+F1 -- childOf --> Edward_VII_Wettin
 Edward_VII_Wettin -- isA --> Person
 it.id="I4"(String)
 it.name="Edward_VII /Wettin/"(String)
@@ -102,8 +102,8 @@ it.monthDied=5(Integer)
 it.diedAt="Windsor,Berkshire,England"(String)
 it.sex="male"(String)
 it.nobleTitle="King of England"(String)
-Alice_Maud_Mary -- parentOf --> F8
-Alice_Maud_Mary -- childOf --> F1
+F8 -- parentOf --> Alice_Maud_Mary
+F1 -- childOf --> Alice_Maud_Mary
 Alice_Maud_Mary -- isA --> Person
 it.id="I5"(String)
 it.name="Alice Maud Mary"(String)
@@ -117,8 +117,8 @@ it.monthDied=12(Integer)
 it.diedAt="Darmstadt,,,Germany"(String)
 it.sex="female"(String)
 it.nobleTitle="Princess"(String)
-Alfred_Ernest_Albert -- parentOf --> F26
-Alfred_Ernest_Albert -- childOf --> F1
+F26 -- parentOf --> Alfred_Ernest_Albert
+F1 -- childOf --> Alfred_Ernest_Albert
 Alfred_Ernest_Albert -- isA --> Person
 it.id="I6"(String)
 it.name="Alfred Ernest Albert"(String)
@@ -132,8 +132,8 @@ it.monthDied=7(Integer)
 it.diedAt="Schloss Rosenau,Near Coburg"(String)
 it.sex="male"(String)
 it.nobleTitle="Prince"(String)
-Helena_Augusta_Victoria -- parentOf --> F32
-Helena_Augusta_Victoria -- childOf --> F1
+F32 -- parentOf --> Helena_Augusta_Victoria
+F1 -- childOf --> Helena_Augusta_Victoria
 Helena_Augusta_Victoria -- isA --> Person
 it.id="I7"(String)
 it.name="Helena Augusta Victoria"(String)
@@ -147,8 +147,8 @@ it.monthDied=6(Integer)
 it.diedAt="Schomberg House,Pall Mall,London,England"(String)
 it.sex="female"(String)
 it.nobleTitle="Princess"(String)
-Louise_Caroline_Alberta -- parentOf --> F69
-Louise_Caroline_Alberta -- childOf --> F1
+F69 -- parentOf --> Louise_Caroline_Alberta
+F1 -- childOf --> Louise_Caroline_Alberta
 Louise_Caroline_Alberta -- isA --> Person
 it.id="I8"(String)
 it.name="Louise Caroline Alberta"(String)
@@ -162,8 +162,8 @@ it.monthDied=12(Integer)
 it.diedAt="Frogmore,,,England"(String)
 it.sex="female"(String)
 it.nobleTitle="Princess"(String)
-Arthur_William_Patrick -- parentOf --> F34
-Arthur_William_Patrick -- childOf --> F1
+F34 -- parentOf --> Arthur_William_Patrick
+F1 -- childOf --> Arthur_William_Patrick
 Arthur_William_Patrick -- isA --> Person
 it.id="I9"(String)
 it.name="Arthur William Patrick"(String)
@@ -177,8 +177,8 @@ it.monthDied=1(Integer)
 it.diedAt="Bagshot Park,Surrey"(String)
 it.sex="male"(String)
 it.nobleTitle="Prince"(String)
-Leopold_George_Duncan -- parentOf --> F5
-Leopold_George_Duncan -- childOf --> F1
+F5 -- parentOf --> Leopold_George_Duncan
+F1 -- childOf --> Leopold_George_Duncan
 Leopold_George_Duncan -- isA --> Person
 it.id="I10"(String)
 it.name="Leopold George Duncan"(String)
@@ -192,8 +192,8 @@ it.monthDied=3(Integer)
 it.diedAt="Cannes"(String)
 it.sex="male"(String)
 it.nobleTitle="Prince"(String)
-Beatrice_Mary_Victoria -- parentOf --> F6
-Beatrice_Mary_Victoria -- childOf --> F1
+F6 -- parentOf --> Beatrice_Mary_Victoria
+F1 -- childOf --> Beatrice_Mary_Victoria
 Beatrice_Mary_Victoria -- isA --> Person
 it.id="I11"(String)
 it.name="Beatrice Mary Victoria"(String)
@@ -207,4 +207,4 @@ it.monthDied=10(Integer)
 it.diedAt="Bantridge Park,Balcombe,Sussex,England"(String)
 it.sex="female"(String)
 it.nobleTitle="Princess"(String)
-Alexandra_of_Denmark_Alix -- parentOf --> F2
+F2 -- parentOf --> Alexandra_of_Denmark_Alix

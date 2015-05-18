@@ -253,7 +253,7 @@ Links Links() : {} {
 /**
  * a single link assignment
  */
-Link Link() :{  Token t;  String subject;  String link;  String target;}{  (    (t = < IDENTIFIER >    {      subject = t.image;    }    t = < IDENTIFIER >    {      link = t.image;    }    t = < IDENTIFIER >    {      target = t.image;    }    )  | (t = < IDENTIFIER >    {      subject = t.image;    }    < IS > t = < IDENTIFIER >    {      link = t.image;    }    < OF > t = < IDENTIFIER >    {      target = t.image;    }    )
+Link Link() :{  Token t;  String subject;  String link;  String target;}{  (    (t = < IDENTIFIER >    {      subject = t.image;    }    t = < IDENTIFIER >    {      link = t.image;    }    t = < IDENTIFIER >    {      target = t.image;    }    )  | (t = < IDENTIFIER >    {      target = t.image;    }    < IS > t = < IDENTIFIER >    {      link = t.image;    }    < OF > t = < IDENTIFIER >    {      subject = t.image;    }    )
     | (t = < IDENTIFIER >
     {
       subject = t.image;

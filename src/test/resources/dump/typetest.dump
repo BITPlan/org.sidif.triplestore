@@ -7,13 +7,13 @@ it.comment="
 Metamodel level
 "(String)
 Context -- isA --> Concept
-Metamodel -- Context --> it
+it -- Context --> Metamodel
 Type -- isA --> Concept
-Metamodel -- Context --> it
+it -- Context --> Metamodel
 name -- addsTo --> it
 allowedValue -- addsTo --> it
 TypeSource -- isA --> Concept
-Metamodel -- Context --> it
+it -- Context --> Metamodel
 url -- addsTo --> it
 TypeSource -- linksTo --> Type
 Model -- isA --> Context
@@ -21,7 +21,7 @@ it.comment="
   Model level
 "(String)
 Schema_Org -- isA --> TypeSource
-Model -- Context --> it
+it -- Context --> Model
 Boolean -- linksTo --> it
 Date -- linksTo --> it
 DateTime -- linksTo --> it

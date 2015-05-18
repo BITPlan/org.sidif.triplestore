@@ -41,8 +41,18 @@ parentOf addsTo Family
 parentOf hasType Family
 husbandOf addsTo Family
 husbandOf hasType Family
-Victoria_Hanover parentOf F1
-Victoria_Hanover childOf F42
+F1 parentOf Victoria_Hanover
+F1 parentOf Albert_Augustus_Charles
+F1 childOf Victoria_Adelaide_Mary
+F1 childOf Edward_VII_Wettin
+F1 childOf Alice_Maud_Mary
+F1 childOf Alfred_Ernest_Albert
+F1 childOf Helena_Augusta_Victoria
+F1 childOf Louise_Caroline_Alberta
+F1 childOf Arthur_William_Patrick
+F1 childOf Leopold_George_Duncan
+F1 childOf Beatrice_Mary_Victoria
+F42 childOf Victoria_Hanover
 Victoria_Hanover isA Person
 "I1" is id of Victoria_Hanover
 "Victoria /Hanover/" is name of Victoria_Hanover
@@ -56,8 +66,7 @@ Victoria_Hanover isA Person
 "Royal Mausoleum,Frogmore,Berkshire,England" is diedAt of Victoria_Hanover
 "female" is sex of Victoria_Hanover
 "Queen of England" is nobleTitle of Victoria_Hanover
-Albert_Augustus_Charles parentOf F1
-Albert_Augustus_Charles childOf F43
+F43 childOf Albert_Augustus_Charles
 Albert_Augustus_Charles isA Person
 "I2" is id of Albert_Augustus_Charles
 "Albert Augustus Charles" is name of Albert_Augustus_Charles
@@ -71,8 +80,7 @@ Albert_Augustus_Charles isA Person
 "Royal Masoleum,Frogmore,Windsor,England" is diedAt of Albert_Augustus_Charles
 "male" is sex of Albert_Augustus_Charles
 "Prince" is nobleTitle of Albert_Augustus_Charles
-Victoria_Adelaide_Mary parentOf F3
-Victoria_Adelaide_Mary childOf F1
+F3 parentOf Victoria_Adelaide_Mary
 Victoria_Adelaide_Mary isA Person
 "I3" is id of Victoria_Adelaide_Mary
 "Victoria Adelaide Mary" is name of Victoria_Adelaide_Mary
@@ -86,8 +94,8 @@ Victoria_Adelaide_Mary isA Person
 "Friedenskirche,Potsdam" is diedAt of Victoria_Adelaide_Mary
 "female" is sex of Victoria_Adelaide_Mary
 "Princess Royal" is nobleTitle of Victoria_Adelaide_Mary
-Edward_VII_Wettin parentOf F2
-Edward_VII_Wettin childOf F1
+F2 parentOf Edward_VII_Wettin
+F2 parentOf Alexandra_of_Denmark_Alix
 Edward_VII_Wettin isA Person
 "I4" is id of Edward_VII_Wettin
 "Edward_VII /Wettin/" is name of Edward_VII_Wettin
@@ -101,8 +109,7 @@ Edward_VII_Wettin isA Person
 "Windsor,Berkshire,England" is diedAt of Edward_VII_Wettin
 "male" is sex of Edward_VII_Wettin
 "King of England" is nobleTitle of Edward_VII_Wettin
-Alice_Maud_Mary parentOf F8
-Alice_Maud_Mary childOf F1
+F8 parentOf Alice_Maud_Mary
 Alice_Maud_Mary isA Person
 "I5" is id of Alice_Maud_Mary
 "Alice Maud Mary" is name of Alice_Maud_Mary
@@ -116,8 +123,7 @@ Alice_Maud_Mary isA Person
 "Darmstadt,,,Germany" is diedAt of Alice_Maud_Mary
 "female" is sex of Alice_Maud_Mary
 "Princess" is nobleTitle of Alice_Maud_Mary
-Alfred_Ernest_Albert parentOf F26
-Alfred_Ernest_Albert childOf F1
+F26 parentOf Alfred_Ernest_Albert
 Alfred_Ernest_Albert isA Person
 "I6" is id of Alfred_Ernest_Albert
 "Alfred Ernest Albert" is name of Alfred_Ernest_Albert
@@ -131,8 +137,7 @@ Alfred_Ernest_Albert isA Person
 "Schloss Rosenau,Near Coburg" is diedAt of Alfred_Ernest_Albert
 "male" is sex of Alfred_Ernest_Albert
 "Prince" is nobleTitle of Alfred_Ernest_Albert
-Helena_Augusta_Victoria parentOf F32
-Helena_Augusta_Victoria childOf F1
+F32 parentOf Helena_Augusta_Victoria
 Helena_Augusta_Victoria isA Person
 "I7" is id of Helena_Augusta_Victoria
 "Helena Augusta Victoria" is name of Helena_Augusta_Victoria
@@ -146,8 +151,7 @@ Helena_Augusta_Victoria isA Person
 "Schomberg House,Pall Mall,London,England" is diedAt of Helena_Augusta_Victoria
 "female" is sex of Helena_Augusta_Victoria
 "Princess" is nobleTitle of Helena_Augusta_Victoria
-Louise_Caroline_Alberta parentOf F69
-Louise_Caroline_Alberta childOf F1
+F69 parentOf Louise_Caroline_Alberta
 Louise_Caroline_Alberta isA Person
 "I8" is id of Louise_Caroline_Alberta
 "Louise Caroline Alberta" is name of Louise_Caroline_Alberta
@@ -161,8 +165,7 @@ Louise_Caroline_Alberta isA Person
 "Frogmore,,,England" is diedAt of Louise_Caroline_Alberta
 "female" is sex of Louise_Caroline_Alberta
 "Princess" is nobleTitle of Louise_Caroline_Alberta
-Arthur_William_Patrick parentOf F34
-Arthur_William_Patrick childOf F1
+F34 parentOf Arthur_William_Patrick
 Arthur_William_Patrick isA Person
 "I9" is id of Arthur_William_Patrick
 "Arthur William Patrick" is name of Arthur_William_Patrick
@@ -176,8 +179,7 @@ Arthur_William_Patrick isA Person
 "Bagshot Park,Surrey" is diedAt of Arthur_William_Patrick
 "male" is sex of Arthur_William_Patrick
 "Prince" is nobleTitle of Arthur_William_Patrick
-Leopold_George_Duncan parentOf F5
-Leopold_George_Duncan childOf F1
+F5 parentOf Leopold_George_Duncan
 Leopold_George_Duncan isA Person
 "I10" is id of Leopold_George_Duncan
 "Leopold George Duncan" is name of Leopold_George_Duncan
@@ -191,8 +193,7 @@ Leopold_George_Duncan isA Person
 "Cannes" is diedAt of Leopold_George_Duncan
 "male" is sex of Leopold_George_Duncan
 "Prince" is nobleTitle of Leopold_George_Duncan
-Beatrice_Mary_Victoria parentOf F6
-Beatrice_Mary_Victoria childOf F1
+F6 parentOf Beatrice_Mary_Victoria
 Beatrice_Mary_Victoria isA Person
 "I11" is id of Beatrice_Mary_Victoria
 "Beatrice Mary Victoria" is name of Beatrice_Mary_Victoria
@@ -206,4 +207,3 @@ Beatrice_Mary_Victoria isA Person
 "Bantridge Park,Balcombe,Sussex,England" is diedAt of Beatrice_Mary_Victoria
 "female" is sex of Beatrice_Mary_Victoria
 "Princess" is nobleTitle of Beatrice_Mary_Victoria
-Alexandra_of_Denmark_Alix parentOf F2

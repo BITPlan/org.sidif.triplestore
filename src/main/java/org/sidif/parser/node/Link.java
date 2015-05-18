@@ -68,6 +68,12 @@ class Link extends SimpleNode {
     return visitor.visit(this, data);
   }
 
+  /**
+   * set a Link with the given subject link and target
+   * @param subject
+   * @param link
+   * @param target
+   */
   public void setLink(String subject, String link, String target) {
     this.subject=subject;
     this.link=link;

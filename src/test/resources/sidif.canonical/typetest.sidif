@@ -6,22 +6,22 @@ Metamodel isA Context
 "
 Metamodel level
 " is comment of Metamodel
-Metamodel Context Context
-Metamodel Context Type
-Metamodel Context TypeSource
 Context isA Concept
+Context Context Metamodel
 Type isA Concept
+Type Context Metamodel
 name addsTo Type
 allowedValue addsTo Type
 TypeSource isA Concept
+TypeSource Context Metamodel
 TypeSource linksTo Type
 url addsTo TypeSource
 Model isA Context
 "
   Model level
 " is comment of Model
-Model Context Schema_Org
 Schema_Org isA TypeSource
+Schema_Org Context Model
 http://www.schema.org/DataType is url of Schema_Org
 Boolean linksTo Schema_Org
 Boolean linksTo SMW

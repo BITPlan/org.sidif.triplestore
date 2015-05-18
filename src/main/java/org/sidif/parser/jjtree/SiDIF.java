@@ -137,13 +137,13 @@ public class SiDIF/*@bgen(jjtree)*/implements SiDIFTreeConstants, SiDIFConstants
       target = t.image;
       } else if (jj_2_5(3)) {
         t = jj_consume_token(IDENTIFIER);
-      subject = t.image;
+      target = t.image;
         jj_consume_token(IS);
         t = jj_consume_token(IDENTIFIER);
       link = t.image;
         jj_consume_token(OF);
         t = jj_consume_token(IDENTIFIER);
-      target = t.image;
+      subject = t.image;
       } else if (jj_2_6(3)) {
         t = jj_consume_token(IDENTIFIER);
       subject = t.image;

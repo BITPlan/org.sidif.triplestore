@@ -145,4 +145,18 @@ public class TestTripleStore extends BaseSiDIFTest {
     assertEquals(3, union.size());
   }
 
+  @Test
+  public void testHasVersusIsOf() throws Exception {
+    TripleStore tripleStore = getTripleStoreFromExample("roles");
+    //debug=true;
+    if (debug) {
+      TripleStoreDumper.dump(tripleStore);
+    }
+    Triple triple = tripleStore.query().selectSingle("properties","source",null);
+    assertNotNull(triple);
+    assertEquals("Topic",triple.getObject().toString());
+    triple=tripleStore.query().selectSingle("topicConfiguration","source",null);
+    assertNotNull(triple);
+    assertEquals("Topic",triple.getObject().toString());;
+  }
 }
