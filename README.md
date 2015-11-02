@@ -28,3 +28,4 @@ Maven dependency:
 * 0.0.1 - 2015-03-12: first release
 * 0.0.2 - 2015-03-13: adds command line interface
 * 0.0.3 - 2015-05-18: fixes issue #1
+          2015-11-02: adds travis build
