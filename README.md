@@ -4,6 +4,7 @@ Simple Data Interchange Format and Triplestore
 see http://www.sidif.org
 
 ## Project
+[![Build Status](https://travis-ci.org/BITPlan/org.sidif.triplestore.svg?branch=master)](https://travis-ci.org/BITPlan/org.sidif.triplestore)
 
 ### Documentation
 * [Project pages] http://bitplan.github.io/org.sidif.triplestore/
