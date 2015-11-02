@@ -304,6 +304,8 @@
 		</plugins>
 	</build>
 	<profiles>
+	  <!--  GPG on travis needs to be switched off by default
+	  -->
 		<!--
 			Work around Oracle's (IMHO silly) decision to make doclint default.
 			http://blog.joda.org/2014/02/turning-off-doclint-in-jdk-8-javadoc.html
