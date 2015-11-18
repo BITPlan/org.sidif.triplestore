@@ -12,6 +12,7 @@ package org.sidif.util;
 import java.util.List;
 
 import org.sidif.triple.Triple;
+import org.sidif.triple.TripleI;
 import org.sidif.triple.TripleQuery;
 import org.sidif.triple.TripleStore;
 import org.sidif.triple.TripleStore.TripleContainer;
@@ -33,19 +34,19 @@ public class TripleStoreDumper {
 
   /**
    * dump the given triple with the given indentation
-   * @param triple
+   * @param cardTriple
    * @param indent
    */
-  public static void dump(Triple triple, String indent) {
+  public static void dump(TripleI cardTriple, String indent) {
     System.out.print(indent);
-    dump(triple.subject);
+    dump(cardTriple.getSubject());
     System.out.print(" --");
-    dump(triple.predicate);
+    dump(cardTriple.getPredicate());
     System.out.print("-> ");
-    dump(triple.object);
-    if (triple.object instanceof Value) {
+    dump(cardTriple.getObject());
+    if (cardTriple.getObject() instanceof Value) {
       @SuppressWarnings("unchecked")
-      Value<Object> value=(Value<Object>) triple.object;
+      Value<Object> value=(Value<Object>) cardTriple.getObject();
       if (value.literal)
         dump("("+value.type+")");
     }
@@ -58,7 +59,7 @@ public class TripleStoreDumper {
    * @param indent - the indentation
    */
   public static void dump(TripleQuery tripleQuery,String indent) {
-    for (Triple triple:tripleQuery.getTriples()) {
+    for (TripleI triple:tripleQuery.getTriples()) {
       dump(triple,indent);
     }
   }
@@ -76,12 +77,12 @@ public class TripleStoreDumper {
       System.out.print(indent);
       dump(concept);
       System.out.println();
-      List<Triple> triples = tripleContainer.tripleLookup
+      List<TripleI> triples = tripleContainer.tripleLookup
           .get(concept);
       if (triples == null) {
         System.out.println("concept "+concept.toString()+" has no triples");
       } else {
-        for (Triple triple : triples) {
+        for (TripleI triple : triples) {
           dump(triple, indent);
         }
       }

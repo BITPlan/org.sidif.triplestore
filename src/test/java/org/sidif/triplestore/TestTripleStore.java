@@ -16,9 +16,12 @@ import java.util.Set;
 
 import org.junit.Test;
 import org.sidif.triple.Triple;
+import org.sidif.triple.TripleI;
 import org.sidif.triple.TripleQuery;
-import org.sidif.triple.TripleQuery.TopicType;
+import org.sidif.triple.TripleQueryImpl;
+import org.sidif.triple.TripleQueryImpl.TopicType;
 import org.sidif.triple.TripleStore;
+import org.sidif.util.TripleStoreBuilder;
 import org.sidif.util.TripleStoreDumper;
 
 /**
@@ -69,7 +72,7 @@ public class TestTripleStore extends BaseSiDIFTest {
     if (debug) {
       TripleStoreDumper.dump(tripleStore);
     }
-    List<Triple> select1 = tripleStore.query().select("s", null, null);
+    List<TripleI> select1 = tripleStore.query().select("s", null, null);
     assertEquals(4, select1.size());
     Set<Object> os1 = tripleStore.byPredicate.getObjectSet("p1");
     if (debug) {
@@ -88,7 +91,7 @@ public class TestTripleStore extends BaseSiDIFTest {
   @Test
   public void testQuery() throws Exception {
     TripleStore tripleStore = getTripleStoreFromExample("triple1");
-    TripleQuery query = tripleStore.query();
+    TripleQueryImpl query = tripleStore.query();
     // debug=true;
     if (debug) {
       TripleStoreDumper.dump(tripleStore);
@@ -152,11 +155,30 @@ public class TestTripleStore extends BaseSiDIFTest {
     if (debug) {
       TripleStoreDumper.dump(tripleStore);
     }
-    Triple triple = tripleStore.query().selectSingle("properties","source",null);
+    TripleI triple = tripleStore.query().selectSingle("properties","source",null);
     assertNotNull(triple);
     assertEquals("Topic",triple.getObject().toString());
     triple=tripleStore.query().selectSingle("topicConfiguration","source",null);
     assertNotNull(triple);
     assertEquals("Topic",triple.getObject().toString());;
+  }
+  
+  @Test
+  public void testSelectQuery() throws Exception {
+    String sidif="Context hasName Training\n" + 
+        "ZQuestion needs Properties\n" + 
+        "ZAnswer needs Properties";
+    TripleStore tripleStore=TripleStoreBuilder.fromSiDIFText(sidif);
+    // debug=true;
+    if (debug) {
+      TripleStoreDumper.dump(tripleStore);
+    }
+    TripleQuery query=tripleStore.query();
+    TripleQuery needed=query.query(null,"needs","Properties");
+    assertEquals(2,needed.size());
+    TripleI contextTriple=query.selectSingle("Context","hasName",null);
+    String contextName=contextTriple.getObject().toString();
+    assertEquals("Training",contextName);
+    
   }
 }

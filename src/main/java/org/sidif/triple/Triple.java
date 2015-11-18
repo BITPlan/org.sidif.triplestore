@@ -18,7 +18,7 @@ package org.sidif.triple;
  * 
  *
  */
-public class Triple {
+public class Triple implements TripleI {
  
   public Object subject;
   public Object predicate;
@@ -37,52 +37,58 @@ public class Triple {
     this.object = object;
   }
 
-  /**
-   * @return the subject
+  /* (non-Javadoc)
+   * @see org.sidif.triple.TripleI#getSubject()
    */
+  @Override
   public Object getSubject() {
     return subject;
   }
 
-  /**
-   * @param subject the subject to set
+  /* (non-Javadoc)
+   * @see org.sidif.triple.TripleI#setSubject(java.lang.Object)
    */
+  @Override
   public void setSubject(Object subject) {
     this.subject = subject;
   }
 
-  /**
-   * @return the predicate
+  /* (non-Javadoc)
+   * @see org.sidif.triple.TripleI#getPredicate()
    */
+  @Override
   public Object getPredicate() {
     return predicate;
   }
 
-  /**
-   * @param predicate the predicate to set
+  /* (non-Javadoc)
+   * @see org.sidif.triple.TripleI#setPredicate(java.lang.Object)
    */
+  @Override
   public void setPredicate(Object predicate) {
     this.predicate = predicate;
   }
 
-  /**
-   * @return the object
+  /* (non-Javadoc)
+   * @see org.sidif.triple.TripleI#getObject()
    */
+  @Override
   public Object getObject() {
     return object;
   }
 
-  /**
-   * @param object the object to set
+  /* (non-Javadoc)
+   * @see org.sidif.triple.TripleI#setObject(org.sidif.triple.Value)
    */
+  @Override
   public void setObject(Value<Object> object) {
     this.object = object;
   }
  
-  /**
-   * is this Triple representing a literal?
-   * @return true or false
+  /* (non-Javadoc)
+   * @see org.sidif.triple.TripleI#isLiteral()
    */
+  @Override
   public boolean isLiteral() {
     boolean result = false;
     if (object instanceof Value) {
@@ -110,11 +116,10 @@ public class Triple {
         return result;
   }
 
-  /**
-   * get a NullValue representation
-   * @param o
-   * @return the nullValue
+  /* (non-Javadoc)
+   * @see org.sidif.triple.TripleI#nullValue(java.lang.Object)
    */
+  @Override
   public String nullValue(Object o) {
     if (o==null) 
       return "null";
@@ -122,10 +127,10 @@ public class Triple {
       return o.toString();
   }
   
-  /**
-   * return a string representation of me
-   * @return the string representation
+  /* (non-Javadoc)
+   * @see org.sidif.triple.TripleI#toString()
    */
+  @Override
   public String toString() {
     String result=nullValue(subject)+" "+nullValue(predicate)+" "+nullValue(object);
     return result;

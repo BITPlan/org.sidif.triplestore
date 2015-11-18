@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.sidif.triple.Triple;
+import org.sidif.triple.TripleI;
 import org.sidif.triple.TripleStore;
 import org.sidif.triple.Value;
 import org.sidif.util.TripleStoreDumper;
@@ -32,12 +33,12 @@ public class TestTypes extends BaseSiDIFTest {
     int tripleStoreSize = tripleStore.size();
     assertEquals(62,tripleStoreSize);
     int literals=0;
-    for (Triple triple:tripleStore.getTriples()) {
+    for (TripleI triple:tripleStore.getTriples()) {
       if (debug)
         TripleStoreDumper.dump(triple,"");
-      assertTrue(triple.object instanceof Value);
+      assertTrue(triple.getObject() instanceof Value);
       @SuppressWarnings("unchecked")
-      Value<Object>value=(Value<Object>) triple.object;
+      Value<Object>value=(Value<Object>) triple.getObject();
       if (value.literal)
         literals++;
     }
