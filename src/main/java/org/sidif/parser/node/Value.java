@@ -74,7 +74,7 @@ class Value extends SimpleNode {
 
 
   /** Accept the visitor. **/
-  public Object jjtAccept(SiDIFVisitor visitor, org.sidif.triple.ObjectHolder data) {
+  public Object jjtAccept(SiDIFVisitor visitor, org.sidif.triple.impl.ObjectHolder data) {
     return visitor.visit(this, data);
   }
 }

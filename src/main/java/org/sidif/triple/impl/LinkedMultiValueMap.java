@@ -1,4 +1,4 @@
-package org.sidif.triple;
+package org.sidif.triple.impl;
 /**
  * Verbatim copy of 
  * http://www.javased.com/?source_dir=spring-data-document-examples/couchdb-myrestaurants-android/src/org/springframework/util/LinkedMultiValueMap.java

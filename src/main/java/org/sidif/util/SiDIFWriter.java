@@ -9,7 +9,7 @@
  */
 package org.sidif.util;
 
-import org.sidif.triple.TripleI;
+import org.sidif.triple.Triple;
 import org.sidif.triple.TripleStore;
 import org.sidif.triple.Value;
 
@@ -44,7 +44,7 @@ public class SiDIFWriter {
     SiDIFWriter.canonical=canonical;
     String sidif = "";
     currentSubject=null;
-    for (TripleI triple : tripleStore.getTriples()) {
+    for (Triple triple : tripleStore.getTriples()) {
       sidif += asSiDIF(triple);
     }
     return sidif;
@@ -71,7 +71,7 @@ public class SiDIFWriter {
    * @param triple
    * @return the sidif representation of the triple
    */
-  public static String asSiDIF(TripleI triple) {
+  public static String asSiDIF(Triple triple) {
     String sidif = "";
     Object subject = triple.getSubject();
     Object predicate = triple.getPredicate();

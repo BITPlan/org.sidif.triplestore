@@ -34,7 +34,7 @@ class Literal extends SimpleNode {
 
   /** Accept the visitor. **/
   public Object jjtAccept(SiDIFVisitor visitor,
-      org.sidif.triple.ObjectHolder data) {
+      org.sidif.triple.impl.ObjectHolder data) {
     return visitor.visit(this, data);
   }
 

@@ -16,10 +16,10 @@ import java.util.Set;
 
 import org.junit.Test;
 import org.sidif.triple.Triple;
-import org.sidif.triple.TripleI;
 import org.sidif.triple.TripleQuery;
-import org.sidif.triple.TripleQueryImpl;
-import org.sidif.triple.TripleQueryImpl.TopicType;
+import org.sidif.triple.impl.TripleImpl;
+import org.sidif.triple.impl.TripleQueryImpl;
+import org.sidif.triple.impl.TripleQueryImpl.TopicType;
 import org.sidif.triple.TripleStore;
 import org.sidif.util.TripleStoreBuilder;
 import org.sidif.util.TripleStoreDumper;
@@ -39,9 +39,9 @@ public class TestTripleStore extends BaseSiDIFTest {
   @Test
   public void testMultiMap() {
     TripleStore tripleStore = new TripleStore();
-    Triple triple1 = new Triple("s", "p", "o");
-    Triple triple2 = new Triple("s", "p", "o");
-    Triple triple3 = new Triple("s", "p3", "o3");
+    TripleImpl triple1 = new TripleImpl("s", "p", "o");
+    TripleImpl triple2 = new TripleImpl("s", "p", "o");
+    TripleImpl triple3 = new TripleImpl("s", "p3", "o3");
     tripleStore.add(triple1);
     tripleStore.add(triple2);
     tripleStore.add(triple3);
@@ -72,7 +72,7 @@ public class TestTripleStore extends BaseSiDIFTest {
     if (debug) {
       TripleStoreDumper.dump(tripleStore);
     }
-    List<TripleI> select1 = tripleStore.query().select("s", null, null);
+    List<Triple> select1 = tripleStore.query().select("s", null, null);
     assertEquals(4, select1.size());
     Set<Object> os1 = tripleStore.byPredicate.getObjectSet("p1");
     if (debug) {
@@ -155,7 +155,7 @@ public class TestTripleStore extends BaseSiDIFTest {
     if (debug) {
       TripleStoreDumper.dump(tripleStore);
     }
-    TripleI triple = tripleStore.query().selectSingle("properties","source",null);
+    Triple triple = tripleStore.query().selectSingle("properties","source",null);
     assertNotNull(triple);
     assertEquals("Topic",triple.getObject().toString());
     triple=tripleStore.query().selectSingle("topicConfiguration","source",null);
@@ -176,7 +176,7 @@ public class TestTripleStore extends BaseSiDIFTest {
     TripleQuery query=tripleStore.query();
     TripleQuery needed=query.query(null,"needs","Properties");
     assertEquals(2,needed.size());
-    TripleI contextTriple=query.selectSingle("Context","hasName",null);
+    Triple contextTriple=query.selectSingle("Context","hasName",null);
     String contextName=contextTriple.getObject().toString();
     assertEquals("Training",contextName);
     

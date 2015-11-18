@@ -5,10 +5,10 @@ import org.sidif.parser.jjtree.*;
 
 public interface SiDIFVisitor
 {
-  public Object visit(SimpleNode node, org.sidif.triple.ObjectHolder data);
-  public Object visit(Links node, org.sidif.triple.ObjectHolder data);
-  public Object visit(Link node, org.sidif.triple.ObjectHolder data);
-  public Object visit(Value node, org.sidif.triple.ObjectHolder data);
-  public Object visit(Literal node, org.sidif.triple.ObjectHolder data);
+  public Object visit(SimpleNode node, org.sidif.triple.impl.ObjectHolder data);
+  public Object visit(Links node, org.sidif.triple.impl.ObjectHolder data);
+  public Object visit(Link node, org.sidif.triple.impl.ObjectHolder data);
+  public Object visit(Value node, org.sidif.triple.impl.ObjectHolder data);
+  public Object visit(Literal node, org.sidif.triple.impl.ObjectHolder data);
 }
 /* JavaCC - OriginalChecksum=747c34c893ad9c86b419c6b03ca8e47f (do not edit this line) */

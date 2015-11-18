@@ -54,13 +54,13 @@ class SimpleNode implements Node {
   public Object jjtGetValue() { return value; }
 
   /** Accept the visitor. **/
-  public Object jjtAccept(SiDIFVisitor visitor, org.sidif.triple.ObjectHolder data)
+  public Object jjtAccept(SiDIFVisitor visitor, org.sidif.triple.impl.ObjectHolder data)
 {
     return visitor.visit(this, data);
   }
 
   /** Accept the visitor. **/
-  public Object childrenAccept(SiDIFVisitor visitor, org.sidif.triple.ObjectHolder data)
+  public Object childrenAccept(SiDIFVisitor visitor, org.sidif.triple.impl.ObjectHolder data)
 {
     if (children != null) {
       for (int i = 0; i < children.length; ++i) {

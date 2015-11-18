@@ -21,9 +21,9 @@ import org.sidif.parser.jjtree.ParseException;
 import org.sidif.parser.jjtree.SiDIF;
 import org.sidif.parser.node.SiDIFVisitor;
 import org.sidif.triple.Triple;
-import org.sidif.triple.TripleI;
 import org.sidif.triple.TripleQuery;
 import org.sidif.triple.TripleStore;
+import org.sidif.triple.impl.TripleImpl;
 import org.sidif.util.TripleStoreDumper;
 import org.sidif.visitor.SiDIFDumpVisitor;
 
@@ -116,12 +116,12 @@ public class TestSiDIFParser extends BaseSiDIFTest {
     // TripleContainer cardTriples = select(tripleStore,select);
     int cardSize = cardTriples.size();
     assertEquals(3, cardSize);
-    for (TripleI cardTriple : cardTriples.getTriples()) {
+    for (Triple cardTriple : cardTriples.getTriples()) {
       if (debug)
         TripleStoreDumper.dump(cardTriple, "card: ");
-      Triple propertySelect = new Triple(cardTriple.getSubject(), null, null);
+      TripleImpl propertySelect = new TripleImpl(cardTriple.getSubject(), null, null);
       TripleQuery cardProperties = tripleStore.query().queryTriple(propertySelect);
-      for (TripleI cardProperty : cardProperties.getTriples()) {
+      for (Triple cardProperty : cardProperties.getTriples()) {
         if (debug)
           TripleStoreDumper.dump(cardProperty, "");
       }
@@ -138,9 +138,9 @@ public class TestSiDIFParser extends BaseSiDIFTest {
     TripleStore tripleStore = this.getTripleStoreFromExample("utf8");
     if (debug)
       TripleStoreDumper.dump(tripleStore);
-    List<TripleI> triples = tripleStore.query().select(null, "name", null);
+    List<Triple> triples = tripleStore.query().select(null, "name", null);
     assertEquals(1, triples.size());
-    TripleI nameTriple = triples.get(0);
+    Triple nameTriple = triples.get(0);
     assertEquals("東京", nameTriple.getObject().toString());
   }
 

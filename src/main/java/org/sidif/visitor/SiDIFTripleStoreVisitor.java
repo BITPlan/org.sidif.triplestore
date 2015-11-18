@@ -19,9 +19,9 @@ import org.sidif.parser.node.Literal;
 import org.sidif.parser.node.SiDIFVisitor;
 import org.sidif.parser.node.SimpleNode;
 import org.sidif.parser.node.Value;
-import org.sidif.triple.ObjectHolder;
-import org.sidif.triple.TripleI;
+import org.sidif.triple.Triple;
 import org.sidif.triple.TripleStore;
+import org.sidif.triple.impl.ObjectHolder;
 
 /**
  * a dump visitor for SiDIF
@@ -128,7 +128,7 @@ public class SiDIFTripleStoreVisitor implements SiDIFVisitor {
     value.literal=false;
     value.type="Reference";
     Object link = node.getLink();
-    TripleI triple = TripleStore.add(subject, link, value);
+    Triple triple = TripleStore.add(subject, link, value);
     if (link.equals("isA")) {
       setCurrentSubject(subject);
     }
@@ -146,7 +146,7 @@ public class SiDIFTripleStoreVisitor implements SiDIFVisitor {
     TripleStore TripleStore = (TripleStore) data.getObject();
     Object concept = resolve(node.getConcept());
     Object object=node.getLiteral().getLiteralValue();
-    TripleI triple = TripleStore.add(concept, node.getProperty(), object);
+    Triple triple = TripleStore.add(concept, node.getProperty(), object);
     setCurrentSubject(concept);
     node.childrenAccept(this, data);
     return data;

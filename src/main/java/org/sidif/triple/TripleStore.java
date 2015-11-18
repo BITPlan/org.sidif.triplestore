@@ -15,6 +15,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.sidif.triple.impl.LinkedMultiValueMap;
+import org.sidif.triple.impl.MultiValueMap;
+import org.sidif.triple.impl.TripleImpl;
+import org.sidif.triple.impl.TripleQueryImpl;
+
 /**
  * as simple ObjectStore
  * 
@@ -38,12 +43,12 @@ public class TripleStore {
    *
    */
   public static class TripleContainer {
-    public MultiValueMap<Object, TripleI> tripleLookup = new LinkedMultiValueMap<Object, TripleI>();
+    public MultiValueMap<Object, Triple> tripleLookup = new LinkedMultiValueMap<Object, Triple>();
 
     /**
      * @return the tripleLookup
      */
-    public MultiValueMap<Object, TripleI> getTripleLookup() {
+    public MultiValueMap<Object, Triple> getTripleLookup() {
       return tripleLookup;
     }
 
@@ -53,7 +58,7 @@ public class TripleStore {
      * @param key
      * @param triple
      */
-    public void add(Object key, TripleI triple) {
+    public void add(Object key, Triple triple) {
       tripleLookup.add(key, triple);
     }
 
@@ -62,11 +67,11 @@ public class TripleStore {
      * 
      * @return all the triples
      */
-    public List<TripleI> getTriples() {
-      List<TripleI> result = new ArrayList<TripleI>();
-      Collection<List<TripleI>> tripleLists = tripleLookup.values();
-      for (List<TripleI> tripleList : tripleLists) {
-        for (TripleI triple : tripleList) {
+    public List<Triple> getTriples() {
+      List<Triple> result = new ArrayList<Triple>();
+      Collection<List<Triple>> tripleLists = tripleLookup.values();
+      for (List<Triple> tripleList : tripleLists) {
+        for (Triple triple : tripleList) {
           result.add(triple);
         }
       }
@@ -79,10 +84,10 @@ public class TripleStore {
      * @param key
      * @return the triples for that key
      */
-    public List<TripleI> getTriples(Object key) {
-      List<TripleI> triples = tripleLookup.get(key);
+    public List<Triple> getTriples(Object key) {
+      List<Triple> triples = tripleLookup.get(key);
       if (triples == null)
-        triples = new ArrayList<TripleI>();
+        triples = new ArrayList<Triple>();
       return triples;
     }
 
@@ -93,9 +98,9 @@ public class TripleStore {
      * @return - the set of unique objects for that key
      */
     public Set<Object> getSubjectSet(Object key) {
-      List<TripleI> triples = getTriples(key);
+      List<Triple> triples = getTriples(key);
       Set<Object> result = new HashSet<Object>();
-      for (TripleI triple : triples) {
+      for (Triple triple : triples) {
         result.add(triple.getSubject());
       }
       return result;
@@ -108,9 +113,9 @@ public class TripleStore {
      * @return - the set of unique objects for that key
      */
     public Set<Object> getPredicateSet(Object key) {
-      List<TripleI> triples = getTriples(key);
+      List<Triple> triples = getTriples(key);
       Set<Object> result = new HashSet<Object>();
-      for (TripleI triple : triples) {
+      for (Triple triple : triples) {
         result.add(triple.getPredicate());
       }
       return result;
@@ -123,10 +128,10 @@ public class TripleStore {
      * @return - the set of unique objects for that key
      */
     public Set<Object> getObjectSet(Object key) {
-      List<TripleI> triples = getTriples(key);
+      List<Triple> triples = getTriples(key);
       Set<Object> result = new HashSet<Object>();
       if (triples != null) {
-        for (TripleI triple : triples) {
+        for (Triple triple : triples) {
           result.add(triple.getObject());
         }
       }
@@ -229,8 +234,8 @@ public class TripleStore {
    * @param predicate
    * @param object
    */
-  public TripleI add(Object subject, Object predicate, Object object) {
-    Triple triple = new Triple(subject, predicate, object);
+  public Triple add(Object subject, Object predicate, Object object) {
+    TripleImpl triple = new TripleImpl(subject, predicate, object);
     add(triple);
     return triple;
   }
@@ -240,11 +245,11 @@ public class TripleStore {
    * 
    * @param triple
    */
-  public void add(TripleI triple) {
+  public void add(Triple triple) {
     // FIXME null value handling ...
     if (bySubject.tripleLookup.containsKey(triple.getSubject())) {
-      List<TripleI> existingTriples = bySubject.tripleLookup.get(triple.getSubject());
-      for (TripleI etriple : existingTriples) {
+      List<Triple> existingTriples = bySubject.tripleLookup.get(triple.getSubject());
+      for (Triple etriple : existingTriples) {
         if (etriple.getPredicate().equals(triple.getPredicate())
             && etriple.getObject().equals(triple.getObject()))
           // don't add the triple - it exists!
@@ -262,7 +267,7 @@ public class TripleStore {
    * @param tripleContainer
    */
   public void add(TripleContainer tripleContainer) {
-    for (TripleI triple : tripleContainer.getTriples()) {
+    for (Triple triple : tripleContainer.getTriples()) {
       add(triple);
     }
   }
@@ -278,7 +283,7 @@ public class TripleStore {
       Object object) {
     TripleQuery tripleQuery = source.query().query(subject,
         predicate, object);
-    for (TripleI triple:tripleQuery.getTriples()) {
+    for (Triple triple:tripleQuery.getTriples()) {
       add(triple);
     }
   }
@@ -288,8 +293,8 @@ public class TripleStore {
    * 
    * @return all my triples
    */
-  public List<TripleI> getTriples() {
-    List<TripleI> result = this.bySubject.getTriples();
+  public List<Triple> getTriples() {
+    List<Triple> result = this.bySubject.getTriples();
     return result;
   }
 

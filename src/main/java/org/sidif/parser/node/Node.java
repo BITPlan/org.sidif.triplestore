@@ -36,6 +36,6 @@ interface Node {
   public int jjtGetNumChildren();
 
   /** Accept the visitor. **/
-  public Object jjtAccept(SiDIFVisitor visitor, org.sidif.triple.ObjectHolder data);
+  public Object jjtAccept(SiDIFVisitor visitor, org.sidif.triple.impl.ObjectHolder data);
 }
 /* JavaCC - OriginalChecksum=a4b1f0eddbe299cf25bc3d328f88d2d2 (do not edit this line) */

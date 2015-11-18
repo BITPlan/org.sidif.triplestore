@@ -7,11 +7,14 @@
  * http://www.bitplan.com
  * 
  */
-package org.sidif.triple;
+package org.sidif.triple.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.sidif.triple.Triple;
+import org.sidif.triple.TripleQuery;
+import org.sidif.triple.TripleStore;
 import org.sidif.triple.TripleStore.TripleContainer;
 
 /**
@@ -26,9 +29,9 @@ public class TripleQueryImpl implements TripleQuery {
   };
 
   TripleStore tripleStore;
-  public TripleI triple;
+  public Triple triple;
   TopicType topicType;
-  protected  List<TripleI> triples;
+  protected  List<Triple> triples;
 
   /**
    * create a TripleQuery from the given tripleStore
@@ -110,10 +113,10 @@ public class TripleQueryImpl implements TripleQuery {
    * @see org.sidif.triple.TripleQueryI#select(java.lang.Object, java.lang.Object, java.lang.Object)
    */
   @Override
-  public List<TripleI> select(Object subject, Object predicate, Object object) {
+  public List<Triple> select(Object subject, Object predicate, Object object) {
     TripleQueryImpl tripleQuery = this.query(subject,
         predicate, object);
-    List<TripleI> result = tripleQuery.triples;
+    List<Triple> result = tripleQuery.triples;
     return result;
   }
   
@@ -123,9 +126,9 @@ public class TripleQueryImpl implements TripleQuery {
    * @param select
    * @return the selected list of triples
    */
-  public List<TripleI> select(TripleI select) {
+  public List<Triple> select(Triple select) {
     TripleQueryImpl tripleQuery = this.queryTriple(select);
-    List<TripleI> result = tripleQuery.triples;
+    List<Triple> result = tripleQuery.triples;
     return result;
   }
   
@@ -148,7 +151,7 @@ public class TripleQueryImpl implements TripleQuery {
   @Override
   public TripleQueryImpl query(Object subject,
       Object predicate, Object object) {
-    Triple select = new Triple(subject, predicate, object);
+    TripleImpl select = new TripleImpl(subject, predicate, object);
     TripleQueryImpl result = queryTriple(select);
     return result;
   }
@@ -157,14 +160,14 @@ public class TripleQueryImpl implements TripleQuery {
    * @see org.sidif.triple.TripleQueryI#selectSingle(java.lang.Object, java.lang.Object, java.lang.Object)
    */
   @Override
-  public TripleI selectSingle(Object subject, Object predicate, Object object) {
-    List<TripleI> triples = this.select(subject, predicate, object);
+  public Triple selectSingle(Object subject, Object predicate, Object object) {
+    List<Triple> triples = this.select(subject, predicate, object);
     if (triples.size() > 1) {
       String msg="selectSingle subject='"+subject
           +"' predicate='"+predicate
           +"' object='"+object+"' returned "+triples.size()+" triples but there should be only one!";
       for (int i=1;i<=Math.min(triples.size(), 10);i++) {
-        TripleI triple=triples.get(i-1);
+        Triple triple=triples.get(i-1);
         msg+="\n\t"+i+":"+triple.toString();
       }
       throw new IllegalStateException(msg);
@@ -178,11 +181,11 @@ public class TripleQueryImpl implements TripleQuery {
    * @see org.sidif.triple.TripleQueryI#queryTriple(org.sidif.triple.Triple)
    */
   @Override
-  public TripleQueryImpl queryTriple(TripleI select) {
+  public TripleQueryImpl queryTriple(Triple select) {
     TripleQueryImpl result=new TripleQueryImpl(this);
-    result.triples = new ArrayList<TripleI>();
+    result.triples = new ArrayList<Triple>();
     // FIXME - this is inefficient
-    for (TripleI triple : this.getTriples()) {
+    for (Triple triple : this.getTriples()) {
       boolean subjectOk = select.getSubject() == null
           || same(triple.getSubject(), select.getSubject());
       boolean predicateOk = select.getPredicate() == null
@@ -201,7 +204,7 @@ public class TripleQueryImpl implements TripleQuery {
    * add the given Triple to my triples
    * @param triple
    */
-  private void add(TripleI triple) {
+  private void add(Triple triple) {
     if (!triples.contains(triple)) {
       triples.add(triple);
     }
@@ -211,7 +214,7 @@ public class TripleQueryImpl implements TripleQuery {
    * set my triples
    * @param pTriples - the triples to use
    */
-  public void setTriples(List<TripleI> pTriples) {
+  public void setTriples(List<Triple> pTriples) {
     triples=pTriples;
     setTriple();
   }
@@ -232,7 +235,7 @@ public class TripleQueryImpl implements TripleQuery {
   @Override
   public TripleQuery union(TripleQuery other) {
     TripleQueryImpl result=new TripleQueryImpl(this);
-    List<TripleI> triples = new ArrayList<TripleI>();
+    List<Triple> triples = new ArrayList<Triple>();
     triples.addAll(this.getTriples());
     triples.addAll(other.getTriples());
     result.setTriples(triples);
@@ -245,10 +248,10 @@ public class TripleQueryImpl implements TripleQuery {
   @Override
   public TripleQuery intersect(TripleQuery otherQuery) {
     TripleQueryImpl result=new TripleQueryImpl(this);
-    result.triples=new ArrayList<TripleI>();
+    result.triples=new ArrayList<Triple>();
     // FIXME this is ineffecient quadratic O(this.size x otherQuery.size) ...
-    for (TripleI triple:this.getTriples()) {
-      for (TripleI otherTriple:otherQuery.getTriples()) {
+    for (Triple triple:this.getTriples()) {
+      for (Triple otherTriple:otherQuery.getTriples()) {
         if (same(triple,otherTriple)) {
           result.add(triple);
         }
@@ -264,10 +267,10 @@ public class TripleQueryImpl implements TripleQuery {
   @Override
   public TripleQuery complement(TripleQuery otherQuery) {
     TripleQueryImpl result=new TripleQueryImpl(this);
-    result.triples=new ArrayList<TripleI>();
+    result.triples=new ArrayList<Triple>();
     // FIXME this is ineffecient quadratic O(this.size x otherQuery.size) ...
-    for (TripleI triple:this.getTriples()) {
-      for (TripleI otherTriple:otherQuery.getTriples()) {
+    for (Triple triple:this.getTriples()) {
+      for (Triple otherTriple:otherQuery.getTriples()) {
         if (!same(triple,otherTriple)) {
           result.add(triple);
         }
@@ -290,7 +293,7 @@ public class TripleQueryImpl implements TripleQuery {
    * @see org.sidif.triple.TripleQueryI#getTriples()
    */
   @Override
-  public List<TripleI> getTriples() {
+  public List<Triple> getTriples() {
     return triples;
   }
 

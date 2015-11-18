@@ -17,7 +17,7 @@ import org.sidif.parser.node.Literal;
 import org.sidif.parser.node.SiDIFVisitor;
 import org.sidif.parser.node.SimpleNode;
 import org.sidif.parser.node.Value;
-import org.sidif.triple.ObjectHolder;
+import org.sidif.triple.impl.ObjectHolder;
 
 /**
  * a dump visitor for SiDIF

@@ -12,10 +12,10 @@ package org.sidif.util;
 import java.util.List;
 
 import org.sidif.triple.Triple;
-import org.sidif.triple.TripleI;
 import org.sidif.triple.TripleQuery;
 import org.sidif.triple.TripleStore;
 import org.sidif.triple.TripleStore.TripleContainer;
+import org.sidif.triple.impl.TripleImpl;
 import org.sidif.triple.Value;
 
 /**
@@ -37,7 +37,7 @@ public class TripleStoreDumper {
    * @param cardTriple
    * @param indent
    */
-  public static void dump(TripleI cardTriple, String indent) {
+  public static void dump(Triple cardTriple, String indent) {
     System.out.print(indent);
     dump(cardTriple.getSubject());
     System.out.print(" --");
@@ -59,7 +59,7 @@ public class TripleStoreDumper {
    * @param indent - the indentation
    */
   public static void dump(TripleQuery tripleQuery,String indent) {
-    for (TripleI triple:tripleQuery.getTriples()) {
+    for (Triple triple:tripleQuery.getTriples()) {
       dump(triple,indent);
     }
   }
@@ -77,12 +77,12 @@ public class TripleStoreDumper {
       System.out.print(indent);
       dump(concept);
       System.out.println();
-      List<TripleI> triples = tripleContainer.tripleLookup
+      List<Triple> triples = tripleContainer.tripleLookup
           .get(concept);
       if (triples == null) {
         System.out.println("concept "+concept.toString()+" has no triples");
       } else {
-        for (TripleI triple : triples) {
+        for (Triple triple : triples) {
           dump(triple, indent);
         }
       }

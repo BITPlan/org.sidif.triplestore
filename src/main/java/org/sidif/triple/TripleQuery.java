@@ -21,7 +21,7 @@ public interface TripleQuery {
    * @param object 
    * @return the selected list of triples
    */
-  public abstract List<TripleI> select(Object subject, Object predicate,
+  public abstract List<Triple> select(Object subject, Object predicate,
       Object object);
 
   /**
@@ -51,7 +51,7 @@ public interface TripleQuery {
    * @param object
    * @return the triple
    */
-  public abstract TripleI selectSingle(Object subject, Object predicate,
+  public abstract Triple selectSingle(Object subject, Object predicate,
       Object object);
 
   /**
@@ -61,7 +61,7 @@ public interface TripleQuery {
    *          - the Triple to use as a "query"
    * @return - the list of Objects fitting
    */
-  public abstract TripleQuery queryTriple(TripleI select);
+  public abstract TripleQuery queryTriple(Triple select);
 
   /**
    * create a union of me and the other Triple query
@@ -99,6 +99,6 @@ public interface TripleQuery {
    * return my Triples
    * @return my triples
    */
-  public abstract List<TripleI> getTriples();
+  public abstract List<Triple> getTriples();
 
 }

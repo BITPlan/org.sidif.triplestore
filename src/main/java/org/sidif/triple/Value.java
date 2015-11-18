@@ -15,6 +15,8 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.sidif.triple.impl.ObjectHolder;
+
 /**
  * a value that might be a literal or an object
  * 

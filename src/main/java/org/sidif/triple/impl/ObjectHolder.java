@@ -7,7 +7,7 @@
  * http://www.bitplan.com
  * 
  */
-package org.sidif.triple;
+package org.sidif.triple.impl;
 
 import java.util.logging.Logger;
 
