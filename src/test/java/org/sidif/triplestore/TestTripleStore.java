@@ -165,20 +165,24 @@ public class TestTripleStore extends BaseSiDIFTest {
   
   @Test
   public void testSelectQuery() throws Exception {
-    String sidif="Context hasName Training\n" + 
+    String sidif="Training isA Context\n" + 
+        "\"Training#sidif\" is sidif of it\n"+
         "ZQuestion needs Properties\n" + 
         "ZAnswer needs Properties";
     TripleStore tripleStore=TripleStoreBuilder.fromSiDIFText(sidif);
-    // debug=true;
+    debug=true;
     if (debug) {
       TripleStoreDumper.dump(tripleStore);
     }
     TripleQuery query=tripleStore.query();
     TripleQuery needed=query.query(null,"needs","Properties");
     assertEquals(2,needed.size());
-    Triple contextTriple=query.selectSingle("Context","hasName",null);
-    String contextName=contextTriple.getObject().toString();
+    Triple contextTriple=query.selectSingle(null,"isA","Context");
+    String contextName=contextTriple.getSubject().toString();
     assertEquals("Training",contextName);
+    Triple sidifTriple=query.selectSingle(contextName,"sidif", null);
+    String contextSidif=sidifTriple.getObject().toString();
+    assertEquals("Training#sidif",contextSidif);
     
   }
 }
