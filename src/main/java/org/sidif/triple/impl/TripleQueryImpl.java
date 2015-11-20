@@ -166,6 +166,7 @@ public class TripleQueryImpl implements TripleQuery {
       String msg="selectSingle subject='"+subject
           +"' predicate='"+predicate
           +"' object='"+object+"' returned "+triples.size()+" triples but there should be only one!";
+      // we'll show the first (upto) 10 culprits
       for (int i=1;i<=Math.min(triples.size(), 10);i++) {
         Triple triple=triples.get(i-1);
         msg+="\n\t"+i+":"+triple.toString();
