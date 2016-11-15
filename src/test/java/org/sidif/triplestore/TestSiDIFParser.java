@@ -92,7 +92,7 @@ public class TestSiDIFParser extends BaseSiDIFTest {
      * utf8 (3)
      * vcard (31)
      */
-    int expectedSize[] = { 10, 15, 51, 7, 16, 4, 39, 22, 8, 209, 25614, 11, 8,
+    int expectedSize[] = { 11, 15, 51, 7, 16, 4, 39, 22, 8, 209, 25614, 11, 8,
         62, 3, 31 };
     int index = 0;
     for (String example : getAllExampleNames()) {
