@@ -101,4 +101,10 @@ public interface TripleQuery {
    */
   public abstract List<Triple> getTriples();
 
+  /**
+   * get the tripleStore this query belongs to
+   * @return the tripleStore
+   */
+  public abstract TripleStore getTripleStore();
+
 }

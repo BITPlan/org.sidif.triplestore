@@ -298,4 +298,9 @@ public class TripleQueryImpl implements TripleQuery {
     return triples;
   }
 
+  @Override
+  public TripleStore getTripleStore() {
+    return this.tripleStore;
+  }
+
 }

@@ -83,6 +83,16 @@ public class TestTripleStore extends BaseSiDIFTest {
     assertEquals(3, os1.size());
   }
 
+  @Test
+  public void testGetTripleStoreFromQuery() throws Exception {
+    TripleStore tripleStore = getTripleStoreFromExample("triple1");
+    TripleQuery query = tripleStore.query();
+    assertEquals(6,query.size());
+    TripleQuery query2 = query.query("s",null,null);
+    assertEquals(4,query2.size());
+    TripleStore tripleStore2=query2.getTripleStore();
+    assertEquals(6,tripleStore2.query().size());
+  }
   /**
    * test query
    * 
