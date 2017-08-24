@@ -40,7 +40,7 @@ public class BaseSiDIFTest {
   String[] getAllExampleNames() {
     String examples[] = { "example1", "example2","familyTree","graph1", "json_ld_manu_sporny","notation3_TonyBenn",
         "presentation", "rdf_cd", "rdf_json_anna_wilder", "royal92-14", "royal92", "trig_bob_alice", "turtle_spiderman","typetest",
-        "utf8","vcard" };
+        "utf8","vcard","presentation" };
     return examples;
   }
   
