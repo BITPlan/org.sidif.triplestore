@@ -387,7 +387,7 @@ false is cargo of it
 "Presentation" is context of it
 Slide_title addsTo it
 Slide_pageno addsTo it
-Slide_based on addsTo it
+Slide_based_on addsTo it
 Slide_pages addsTo it
 Slide_prev addsTo it
 Slide_next addsTo it
@@ -427,7 +427,7 @@ false is uploadable of it
 false is isLink of it
 "Slide" is topic of it
 # property based on
-Slide_based on isA Property
+Slide_based_on isA Property
 "based on" is name of it
 "base on" is label of it
 "Page" is type of it
