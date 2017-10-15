@@ -1,10 +1,5 @@
-<!--
-	Copyright (c) 2015-2017 BITPlan GmbH
-
-	Project details and license at:
-	https://github.com/BITPlan/org.sidif.triplestore
-
--->
+<!-- Copyright (c) 2015-2017 BITPlan GmbH Project details and license at: 
+	https://github.com/BITPlan/org.sidif.triplestore -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -12,7 +7,7 @@
 	<artifactId>org.sidif.triplestore</artifactId>
 	<packaging>jar</packaging>
 	<name>org.sidif.triplestore</name>
-	<version>0.0.6</version>
+	<version>0.0.7</version>
 	<description>Simple Data Interchange Format (SiDIF) and Triplestore see http://www.sidif.org</description>
 	<url>https://github.com/BITPlan/org.sidif.triplestore</url>
 	<licenses>
@@ -45,15 +40,41 @@
 		<!-- github server corresponds to entry in ~/.m2/settings.xml -->
 		<github.global.server>github</github.global.server>
 		<!-- Dependency versions -->
-		<junit4.version>4.11</junit4.version>
+		<junit4.version>4.12</junit4.version>
 		<args4j.version>2.0.29</args4j.version>
 	</properties>
 	<dependencies>
-		<!-- JUnit testing -->
+			<!-- JUnit testing -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit4.version}</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>hamcrest-core</artifactId>
+					<groupId>org.hamcrest</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all -->
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<version>1.3</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- BITPlan antlr library -->
+		<dependency>
+			<groupId>com.bitplan.antlr</groupId>
+			<artifactId>com.bitplan.antlr</artifactId>
+			<version>0.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.bitplan.antlr</groupId>
+			<artifactId>com.bitplan.antlr</artifactId>
+			<version>0.0.2</version>
+			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
 		<!-- args4j command line utility -->
@@ -97,13 +118,60 @@
 					</archive>
 				</configuration>
 			</plugin>
-			<!--
-				executable jar with dependencies
-				see http://stackoverflow.com/questions/574594/how-can-i-create-an-executable-jar-with-dependencies-using-maven
-
-				run with
-				mvn clean compile assembly:single
-			-->
+			<plugin>
+				<!-- http://code.mycila.com/license-maven-plugin/ -->
+				<groupId>com.mycila.maven-license-plugin</groupId>
+				<artifactId>maven-license-plugin</artifactId>
+				<version>1.9.0</version>
+				<configuration>
+					<header>src/etc/header.txt</header>
+					<strictCheck>true</strictCheck>
+					<includes>
+						<include>src/**/*.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+			<!-- automate antlr grammar handling -->
+			<plugin>
+				<groupId>org.antlr</groupId>
+				<artifactId>antlr4-maven-plugin</artifactId>
+				<version>4.7</version>
+				<configuration>
+					<!-- basically this is the default setting -->
+					<sourceDirectory>src/main/antlr4</sourceDirectory>
+					<libDirectory>target/generated-sources/antlr4</libDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>antlr</id>
+						<goals>
+							<goal>antlr4</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- http://stackoverflow.com/questions/1192596/how-do-i-get-eclipse-to-resolve-classes-generated-with-maven-2 -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.10</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${basedir}/target/generated-sources/antlr4</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- executable jar with dependencies see http://stackoverflow.com/questions/574594/how-can-i-create-an-executable-jar-with-dependencies-using-maven 
+				run with mvn clean compile assembly:single -->
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
@@ -133,12 +201,10 @@
 					<lookAhead>3</lookAhead>
 				</configuration>
 				<executions>
-					<!--
-						http://stackoverflow.com/questions/6352208/how-to-solve-plugin-execution-not-covered-by-lifecycle-configuration-for-sprin
-						https://www.eclipse.org/m2e/documentation/m2e-execution-not-covered.html
-						https://github.com/objectledge/maven-extensions/blob/master/connectors/modules/javacc/plugin/lifecycle-mapping-metadata.xml
-						http://mojo.codehaus.org/javacc-maven-plugin/jjtree-javacc-mojo.html
-					-->
+					<!-- http://stackoverflow.com/questions/6352208/how-to-solve-plugin-execution-not-covered-by-lifecycle-configuration-for-sprin 
+						https://www.eclipse.org/m2e/documentation/m2e-execution-not-covered.html 
+						https://github.com/objectledge/maven-extensions/blob/master/connectors/modules/javacc/plugin/lifecycle-mapping-metadata.xml 
+						http://mojo.codehaus.org/javacc-maven-plugin/jjtree-javacc-mojo.html -->
 					<execution>
 						<id>generate-jjtree</id>
 						<phase>generate-sources</phase>
@@ -161,9 +227,8 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<!-- see http://central.sonatype.org/pages/apache-maven.html Javadoc
-					and Sources Attachments To get Javadoc and Source jar files generated,
-					you
+				<!-- see http://central.sonatype.org/pages/apache-maven.html Javadoc 
+					and Sources Attachments To get Javadoc and Source jar files generated, you 
 					have to configure the javadoc and source Maven plugins. -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
@@ -194,7 +259,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- GPG Signed Components The Maven GPG plugin is used to sign the components
+			<!-- GPG Signed Components The Maven GPG plugin is used to sign the components 
 				with the following configuration. -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -210,13 +275,10 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- according to : http://central.sonatype.org/pages/apache-maven.html
-				Nexus Staging Maven Plugin for Deployment and Release The Nexus Staging
-				Maven
-				Plugin is the recommended way to deploy your components to OSSRH and
-				release
-				them to the Central Repository. To configure it simply add the plugin
-				to
+			<!-- according to : http://central.sonatype.org/pages/apache-maven.html 
+				Nexus Staging Maven Plugin for Deployment and Release The Nexus Staging Maven 
+				Plugin is the recommended way to deploy your components to OSSRH and release 
+				them to the Central Repository. To configure it simply add the plugin to 
 				your Maven pom.xml. -->
 			<plugin>
 				<groupId>org.sonatype.plugins</groupId>
@@ -247,7 +309,7 @@
 			<plugin>
 				<groupId>com.github.github</groupId>
 				<artifactId>site-maven-plugin</artifactId>
-				<version>0.10</version>
+				<version>0.12</version>
 				<configuration>
 					<message>Creating site for ${project.version}</message>
 					<repositoryName>org.sidif.triplestore</repositoryName>      <!-- github repo name -->
@@ -265,46 +327,13 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
-				<version>3.0</version>
-				<configuration>
-					<!-- configuration of reports to be included in site -->
-					<reportPlugins>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-project-info-reports-plugin</artifactId>
-							<version>2.2</version>
-							<configuration>
-								<dependencyDetailsEnabled>true</dependencyDetailsEnabled>
-								<dependencyLocationsEnabled>true</dependencyLocationsEnabled>
-							</configuration>
-						</plugin>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-javadoc-plugin</artifactId>
-							<version>2.9</version>
-							<configuration>
-								<overview>${basedir}\src\main\java\overview.html</overview>
-								<verbose>true</verbose>
-							</configuration>
-						</plugin>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-surefire-report-plugin</artifactId>
-							<version>2.6</version>
-						</plugin>
-						<!-- http://maven.apache.org/plugins/maven-checkstyle-plugin/usage.html -->
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-checkstyle-plugin</artifactId>
-							<version>2.13</version>
-						</plugin>
-					</reportPlugins>
-				</configuration>
+				<version>3.6</version>
 			</plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
@@ -338,14 +367,44 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+	<!-- configuration of reports to be included in site -->
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<dependencyDetailsEnabled>true</dependencyDetailsEnabled>
+					<dependencyLocationsEnabled>true</dependencyLocationsEnabled>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<overview>${basedir}\src\main\java\overview.html</overview>
+					<verbose>true</verbose>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>2.6</version>
+			</plugin>
+			<!-- http://maven.apache.org/plugins/maven-checkstyle-plugin/usage.html -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.13</version>
+			</plugin>
+		</plugins>
+	</reporting>
 	<profiles>
-	  <!--  GPG on travis needs to be switched off by default
-	  -->
-		<!--
-			Work around Oracle's (IMHO silly) decision to make doclint default.
-			http://blog.joda.org/2014/02/turning-off-doclint-in-jdk-8-javadoc.html
-			http://stackoverflow.com/questions/15886209/maven-is-not-working-in-java-8-when-javadoc-tags-are-incomplete
-		-->
+		<!-- GPG on travis needs to be switched off by default -->
+		<!-- Work around Oracle's (IMHO silly) decision to make doclint default. 
+			http://blog.joda.org/2014/02/turning-off-doclint-in-jdk-8-javadoc.html http://stackoverflow.com/questions/15886209/maven-is-not-working-in-java-8-when-javadoc-tags-are-incomplete -->
 		<profile>
 			<id>doclint-java8-disable</id>
 			<activation>
