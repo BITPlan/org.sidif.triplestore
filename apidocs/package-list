@@ -2,5 +2,6 @@ org.sidif.parser
 org.sidif.parser.jjtree
 org.sidif.parser.node
 org.sidif.triple
+org.sidif.triple.impl
 org.sidif.util
 org.sidif.visitor
