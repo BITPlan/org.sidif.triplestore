@@ -45,27 +45,42 @@ public class TestSiDIFLanguageParser extends BaseTest {
   }
 
   @Test
+  /**
+   * test a few simple SiDIF statements to be parseable
+   * @throws Exception
+   */
   public void testSimpleSiDIF() throws Exception {
-    String sidifs[] = { "dad loves mum" };
+    String sidifs[] = { "dad loves mum",
+        "true is value of booleanLiteral",
+        "0x7F is value of hexLiteral",
+        "1 is value of integer",
+        "'a' is value of char",
+        "\"a multi\nline\n-comment \n\" is value of comment" };
     for (String sidif : sidifs) {
       LanguageParser lparser = getParser();
-      lparser.setGui(false);
-      super.runParser(lparser,sidif, 0);
+      lparser.setGui(true);
+      super.runParser(lparser, sidif, 0);
     }
   }
-  
+
   @Test
+  /**
+   * test parseability of SiDIF files in examples directory
+   */
   public void testSiDIFSamples() throws Exception {
-    File rootDir=new File ("src/test/resources");
-    String[] extensions={".sidif"};
-    checkgui=false;
-    List<SourceDirectory> sourceDirectories=new ArrayList<SourceDirectory>();
-    SourceDirectory sidifSrc=new SourceDirectory(rootDir.getCanonicalPath()+"/sidif", "utf-8", "SiDIF samples");
+    File rootDir = new File("src/test/resources");
+    String[] extensions = { ".sidif" };
+    checkgui = false;
+    super.gui=false;
+    List<SourceDirectory> sourceDirectories = new ArrayList<SourceDirectory>();
+    SourceDirectory sidifSrc = new SourceDirectory(
+        rootDir.getCanonicalPath() + "/sidif", "utf-8", "SiDIF samples");
     sourceDirectories.add(sidifSrc);
-    int progressStep=1;
-    int limit=200;
-    String[] ignorePrefixes={};
-    testParseFilesInDirectories(rootDir, sourceDirectories, extensions, ignorePrefixes, limit, progressStep);
+    int progressStep = 1;
+    int limit = 200;
+    String[] ignorePrefixes = {};
+    testParseFilesInDirectories(rootDir, sourceDirectories, extensions,
+        ignorePrefixes, limit, progressStep);
   }
 
 }

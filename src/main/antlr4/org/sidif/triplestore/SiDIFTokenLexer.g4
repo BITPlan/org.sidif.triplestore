@@ -13,49 +13,195 @@
  */
 lexer grammar SiDIFTokenLexer;
 
-IS: 'is';
-OF: 'of';
+ IS
+ :
+ 	'is'
+ ;
 
-// Keywords
-// Fragments
-fragment DIGIT: [0-9];
-fragment HEXDIGIT: DIGIT | [A-Fa-f];
-fragment WHITESPACE_CHAR:[ \r\t\n];
-// Single Quote Escape Sequence '\\\'' 
-fragment SQuote: '\'';
-fragment DQuote: '"';
-// See page 27  - FIXME octal and hex numbers not supported yet
-fragment EscSeq:  '\\a' | '\\b' | '\\f' | '\\n' | '\\r' | '\\t' | '\\v' | '\\?'  | '\\\'' | '\\"' | '\\';
+ OF
+ :
+ 	'of'
+ ;
 
-/**
+ // Keywords
+ 
+ // Literals
+ LITERAL
+ :
+  	DOUBLE_QUOTE_STRING_LITERAL
+  	| SINGLE_QUOTE_STRING_LITERAL
+    | DATE_LITERAL
+  	| INTEGER_LITERAL
+  	| HEX_LITERAL
+ 	| BOOLEAN_LITERAL
+  	| FLOAT_LITERAL
+ ;
+ 
+
+ /* A number: can be an integer value, or a decimal value */
+ HEX_LITERAL
+ :
+ 	'0' [xX] HEXDIGIT+
+ ;
+ 
+ // Fragments
+
+ fragment
+ DIGIT
+ :
+ 	[0-9]
+ ;
+ 
+ fragment
+ DASH
+ :
+   [-]
+ ;
+ 
+ fragment
+ SIGN
+ :
+   [+-]
+ ;  
+
+ fragment
+ HEXDIGIT
+ :
+ 	DIGIT
+ 	| [A-Fa-f]
+ ;
+
+ fragment
+ WHITESPACE_CHAR
+ :
+ 	[ \r\t\n]
+ ;
+ // Single Quote Escape Sequence '\\\'' 
+
+ fragment
+ SQuote
+ :
+ 	'\''
+ ;
+
+ fragment
+ DQuote
+ :
+ 	'"'
+ ;
+ // See page 27  - FIXME octal and hex numbers not supported yet
+
+ fragment
+ EscSeq
+ :
+ 	'\\a'
+ 	| '\\b'
+ 	| '\\f'
+ 	| '\\n'
+ 	| '\\r'
+ 	| '\\t'
+ 	| '\\v'
+ 	| '\\?'
+ 	| '\\\''
+ 	| '\\"'
+ 	| '\\'
+ ;
+
+ /**
  * Identifier which is not a keyword
  */
-IDENTIFIER:	([a-zA-ZäöüßÄÖÜ] [a-zA-Z0-9äöüßÄÖÜ_]*) ;
+ IDENTIFIER
+ :
+ 	(
+ 		[a-zA-ZäöüßÄÖÜ] [a-zA-Z0-9äöüßÄÖÜ_]*
+ 	)
+ ;
 
-// String Literals
-SINGLE_QUOTE_SINGLE_LINE_STRING_LITERAL	: SQuote ( EscSeq | ~['\r\n\\] | SQuote SQuote )* SQuote	;
-DOUBLE_QUOTE_SINGLE_LINE_STRING_LITERAL	: DQuote ( EscSeq | ~["\r\n\\] )*? DQuote	;
-SINGLE_QUOTE_STRING_LITERAL	: SQuote ( EscSeq | ~['\\] | SQuote SQuote )* SQuote	;
-DOUBLE_QUOTE_STRING_LITERAL	: DQuote ( EscSeq | ~["\\] )*? DQuote	;
+ // String Literals
 
-/* A number: can be an integer value, or a decimal value */
-HEX_LITERAL:  '0' [xX] HEXDIGIT+; 
+ SINGLE_QUOTE_SINGLE_LINE_STRING_LITERAL
+ :
+ 	SQuote
+ 	(
+ 		EscSeq
+ 		| ~['\r\n\\]
+ 		| SQuote SQuote
+ 	)* SQuote
+ ;
 
-// shorter INTEGER later
-INTEGER_LITERAL: DIGIT +;
+ DOUBLE_QUOTE_SINGLE_LINE_STRING_LITERAL
+ :
+ 	DQuote
+ 	(
+ 		EscSeq
+ 		| ~["\r\n\\]
+ 	)* DQuote
+ ;
 
-BOOLEAN_LITERAL
-    :   'true'
-    |   'false'
+ SINGLE_QUOTE_STRING_LITERAL
+ :
+ 	SQuote
+ 	(
+ 		EscSeq
+ 		| ~['\\]
+ 		| SQuote SQuote
+ 	)* SQuote
+ ;
+
+ DOUBLE_QUOTE_STRING_LITERAL
+ :
+ 	DQuote
+ 	(
+ 		EscSeq
+ 		| ~["\\]
+ 	)* DQuote
+ ;
+
+DATE_LITERAL
+:
+  DIGIT DIGIT DASH DIGIT DIGIT DASH DIGIT DIGIT DIGIT DIGIT
 ;
+ 
+ // shorter INTEGER later
 
-FLOAT_LITERAL: INTEGER_LITERAL '.' INTEGER_LITERAL;
+ INTEGER_LITERAL
+ :
+ 	SIGN? DIGIT+
+ ;
 
-LITERAL: DOUBLE_QUOTE_STRING_LITERAL | SINGLE_QUOTE_STRING_LITERAL | INTEGER_LITERAL | HEX_LITERAL |  BOOLEAN_LITERAL | FLOAT_LITERAL;
+ BOOLEAN_LITERAL
+ :
+ 	'true'
+ 	| 'false'
+ ;
 
-// Single Line Comment
-SINGLE_LINE_COMMENT:  ('//'|'#') ~('\n')* '\n' -> skip;
-// http://stackoverflow.com/questions/8284919/negating-inside-lexer-and-parser-rules
-MULTI_LINE_COMMENT:  '*>' ( ~'<' | '<' ~'*' )* '<*' -> skip;
-/* We're going to ignore all white space characters */
-WHITESPACE: WHITESPACE_CHAR+ -> skip;
+ FLOAT_LITERAL
+ :
+ 	INTEGER_LITERAL '.' INTEGER_LITERAL
+ ;
+ 
+
+ // Single Line Comment
+
+ SINGLE_LINE_COMMENT
+ :
+ 	(
+ 		'//'
+ 		| '#'
+ 	) ~( '\n' )* '\n' -> skip
+ ;
+ // http://stackoverflow.com/questions/8284919/negating-inside-lexer-and-parser-rules
+
+ MULTI_LINE_COMMENT
+ :
+ 	'*>'
+ 	(
+ 		~'<'
+ 		| '<' ~'*'
+ 	)* '<*' -> skip
+ ;
+ /* We're going to ignore all white space characters */
+ WHITESPACE
+ :
+ 	WHITESPACE_CHAR+ -> skip
+ ;
