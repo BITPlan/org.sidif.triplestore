@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 BITPlan GmbH
+ * Copyright © 2015-2017 BITPlan GmbH
  * Author: Wolfgang Fahl
  *
  * this is the Language definition for the Simple Graph Navigation Language

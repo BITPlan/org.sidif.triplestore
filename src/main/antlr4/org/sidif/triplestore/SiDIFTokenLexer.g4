@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 BITPlan GmbH
+ * Copyright © 2015-2017 BITPlan GmbH
  * Author: Wolfgang Fahl
  *
  * this is the lexer grammar part of the  Language definition for the Simple Graph Navigation Language
@@ -33,8 +33,10 @@ fragment EscSeq:  '\\a' | '\\b' | '\\f' | '\\n' | '\\r' | '\\t' | '\\v' | '\\?' 
 IDENTIFIER:	([a-zA-ZäöüßÄÖÜ] [a-zA-Z0-9äöüßÄÖÜ_]*) ;
 
 // String Literals
-SINGLE_QUOTE_STRING_LITERAL	: SQuote ( EscSeq | ~['\r\n\\] | SQuote SQuote )* SQuote	;
-DOUBLE_QUOTE_STRING_LITERAL	: DQuote ( EscSeq | ~["\r\n\\] )*? DQuote	;
+SINGLE_QUOTE_SINGLE_LINE_STRING_LITERAL	: SQuote ( EscSeq | ~['\r\n\\] | SQuote SQuote )* SQuote	;
+DOUBLE_QUOTE_SINGLE_LINE_STRING_LITERAL	: DQuote ( EscSeq | ~["\r\n\\] )*? DQuote	;
+SINGLE_QUOTE_STRING_LITERAL	: SQuote ( EscSeq | ~['\\] | SQuote SQuote )* SQuote	;
+DOUBLE_QUOTE_STRING_LITERAL	: DQuote ( EscSeq | ~["\\] )*? DQuote	;
 
 /* A number: can be an integer value, or a decimal value */
 HEX_LITERAL:  '0' [xX] HEXDIGIT+; 

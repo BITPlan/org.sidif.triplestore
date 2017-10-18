@@ -20,11 +20,16 @@
  */
 package org.sidif.triplestore;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 import org.sidif.parser.SiDIFLanguageParser;
 
 import com.bitplan.antlr.BaseTest;
 import com.bitplan.antlr.LanguageParser;
+import com.bitplan.antlr.SourceDirectory;
 
 /**
  * Unit tests for testing ANTLR based SiDIF Language Parser
@@ -47,7 +52,20 @@ public class TestSiDIFLanguageParser extends BaseTest {
       lparser.setGui(false);
       super.runParser(lparser,sidif, 0);
     }
-
+  }
+  
+  @Test
+  public void testSiDIFSamples() throws Exception {
+    File rootDir=new File ("src/test/resources");
+    String[] extensions={".sidif"};
+    checkgui=false;
+    List<SourceDirectory> sourceDirectories=new ArrayList<SourceDirectory>();
+    SourceDirectory sidifSrc=new SourceDirectory(rootDir.getCanonicalPath()+"/sidif", "utf-8", "SiDIF samples");
+    sourceDirectories.add(sidifSrc);
+    int progressStep=1;
+    int limit=200;
+    String[] ignorePrefixes={};
+    testParseFilesInDirectories(rootDir, sourceDirectories, extensions, ignorePrefixes, limit, progressStep);
   }
 
 }
