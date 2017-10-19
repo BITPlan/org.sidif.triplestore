@@ -27,12 +27,27 @@ parser grammar SiDIFParser;
  );
  
  link: (
- 	( IDENTIFIER IDENTIFIER IDENTIFIER ) |
- 	( IDENTIFIER IS IDENTIFIER OF IDENTIFIER ) 
+ 	( identifier identifier identifier ) |
+ 	( identifier IS identifier OF identifier ) 
  );
  
  value: (
- 	LITERAL IS IDENTIFIER OF IDENTIFIER
+ 	literal IS identifier OF identifier
  );
  
+ literal
+ :
+ 	DOUBLE_QUOTE_STRING_LITERAL
+ 	| SINGLE_QUOTE_STRING_LITERAL
+ 	| IRI_LITERAL
+ 	| DATE_LITERAL
+ 	| INTEGER_LITERAL
+ 	| HEX_LITERAL
+ 	| BOOLEAN_LITERAL
+ 	| FLOAT_LITERAL
+ ;
  
+ identifier
+ :
+ 	IDENTIFIER
+ ;

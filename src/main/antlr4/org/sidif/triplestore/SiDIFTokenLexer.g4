@@ -13,6 +13,8 @@
  */
 lexer grammar SiDIFTokenLexer;
 
+ // Keywords
+
  IS
  :
  	'is'
@@ -23,52 +25,120 @@ lexer grammar SiDIFTokenLexer;
  	'of'
  ;
 
- // Keywords
- 
  // Literals
- LITERAL
- :
-  	DOUBLE_QUOTE_STRING_LITERAL
-  	| SINGLE_QUOTE_STRING_LITERAL
-    | DATE_LITERAL
-  	| INTEGER_LITERAL
-  	| HEX_LITERAL
- 	| BOOLEAN_LITERAL
-  	| FLOAT_LITERAL
- ;
- 
 
  /* A number: can be an integer value, or a decimal value */
  HEX_LITERAL
  :
  	'0' [xX] HEXDIGIT+
  ;
- 
+
  // Fragments
+
+ fragment
+ ALPHA
+ :
+ 	[a-zA-Z]
+ ;
 
  fragment
  DIGIT
  :
  	[0-9]
  ;
- 
+
  fragment
- DASH
+ ALPHANUM
  :
-   [-]
+ 	DIGIT
+ 	| ALPHA
  ;
- 
- fragment
- SIGN
- :
-   [+-]
- ;  
 
  fragment
  HEXDIGIT
  :
  	DIGIT
  	| [A-Fa-f]
+ ;
+
+ ESCAPED
+ :
+ 	'%' HEXDIGIT HEXDIGIT
+ ;
+
+ fragment
+ Q_RESERVED
+ :
+ 	';'
+ 	| '/'
+ 	| '?'
+ 	| ':'
+ 	| '@'
+ 	| '+'
+ 	| '$'
+ 	| ','
+ ;
+
+ fragment
+ UNDERSCORE
+ :
+ 	'_'
+ ;
+
+ fragment
+ DASH
+ :
+ 	'-'
+ ;
+
+ fragment
+ DOT
+ :
+ 	'.'
+ ;
+
+ fragment
+ MARK
+ :
+ 	DASH
+ 	| UNDERSCORE
+ 	| DOT
+ 	| '!'
+ 	| '~'
+ 	| '*'
+ 	| '\''
+ 	| '('
+ 	| ')'
+ ;
+
+ fragment
+ RESERVED
+ :
+ 	Q_RESERVED
+ 	| '='
+ 	| '&'
+ ;
+
+ UNRESERVED
+ :
+ 	ALPHANUM
+ 	| MARK
+ ;
+
+ fragment
+ QC
+ :
+ 	ESCAPED
+ 	| Q_RESERVED
+ 	| UNRESERVED
+ ;
+
+ fragment
+ URIC
+ :
+ 	ESCAPED
+ 	| RESERVED
+ 	| UNRESERVED
  ;
 
  fragment
@@ -89,7 +159,6 @@ lexer grammar SiDIFTokenLexer;
  :
  	'"'
  ;
- // See page 27  - FIXME octal and hex numbers not supported yet
 
  fragment
  EscSeq
@@ -107,13 +176,16 @@ lexer grammar SiDIFTokenLexer;
  	| '\\'
  ;
 
- /**
- * Identifier which is not a keyword
- */
+ // non keyword identfier
+
  IDENTIFIER
  :
  	(
- 		[a-zA-ZäöüßÄÖÜ] [a-zA-Z0-9äöüßÄÖÜ_]*
+ 		ALPHA
+ 		(
+ 			ALPHA
+ 			| UNDERSCORE
+ 		)*
  	)
  ;
 
@@ -157,16 +229,80 @@ lexer grammar SiDIFTokenLexer;
  	)* DQuote
  ;
 
-DATE_LITERAL
-:
-  DIGIT DIGIT DASH DIGIT DIGIT DASH DIGIT DIGIT DIGIT DIGIT
-;
- 
+ // https://tools.ietf.org/html/rfc3986 - URI
+ // https://github.com/yaojingguo/antlr-url-grammar/blob/master/src/java/org/jingguo/url/URL.g
+
+ IRI_LITERAL
+ :
+ 	SCHEME ':' HIER_PART
+ 	(
+ 		'?' QUERY
+ 	)?
+ 	(
+ 		'#' FRAGMENT
+ 	)
+ ;
+
+ SCHEME
+ :
+ 	ALPHA
+ 	(
+ 		ALPHA
+ 		| DIGIT
+ 		|
+ 		(
+ 			'+'
+ 			| DASH
+ 			| DOT
+ 		)
+ 	)*
+ ;
+
+ HIER_PART
+ :
+ 	'//'
+ ;
+
+ QUERY
+ :
+ 	PARAM
+ 	(
+ 		'&' PARAM
+ 	)*
+ ;
+
+ PARAM
+ :
+ 	PNAME '=' PVALUE
+ ;
+
+ PNAME
+ :
+ 	QC+
+ ;
+
+ PVALUE
+ :
+ 	QC+
+ ;
+
+ FRAGMENT
+ :
+ 	(
+ 		URIC
+ 	)*
+ ;
+
+ DATE_LITERAL
+ :
+ 	DIGIT DIGIT DASH DIGIT DIGIT DASH DIGIT DASH DIGIT DIGIT DIGIT DIGIT
+ ;
+
  // shorter INTEGER later
 
  INTEGER_LITERAL
  :
- 	SIGN? DIGIT+
+ 	[+-]? DIGIT+
  ;
 
  BOOLEAN_LITERAL
@@ -179,7 +315,6 @@ DATE_LITERAL
  :
  	INTEGER_LITERAL '.' INTEGER_LITERAL
  ;
- 
 
  // Single Line Comment
 
