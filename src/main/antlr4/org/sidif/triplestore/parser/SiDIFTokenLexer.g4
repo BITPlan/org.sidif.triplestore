@@ -28,7 +28,27 @@ lexer grammar SiDIFTokenLexer;
  ;
 
  // Literals
- 
+
+ DATE_TIME_LITERAL
+ :
+ 	DateLiteral TimeLiteral
+ ;
+
+ DATE_LITERAL
+ :
+ 	DateLiteral
+ ;
+
+ TIME_LITERAL
+ :
+ 	TimeLiteral
+ ;
+
+ FLOAT_LITERAL
+ :
+ 	FloatLiteral
+ ;
+
  HEX_LITERAL
  :
  	HexLiteral
@@ -38,7 +58,7 @@ lexer grammar SiDIFTokenLexer;
  :
  	DecimalNumeral
  ;
- 
+
  SINGLE_QUOTE_STRING_LITERAL
  :
  	SQuoteLiteral
@@ -61,17 +81,17 @@ lexer grammar SiDIFTokenLexer;
  	NameStartChar NameChar*
  ;
 
- 
-
-
  MULTI_LINE_COMMENT
  :
- 	( DocComment | LineComment [\r\n]) + -> skip
+ 	(
+ 		DocComment
+ 		| LineComment [\r\n]
+ 	)+ -> skip
  ;
 
  SINGLE_LINE_COMMENT
  :
- 	LineComment+  -> skip
+ 	LineComment+ -> skip
  ;
 
  WHITESPACE

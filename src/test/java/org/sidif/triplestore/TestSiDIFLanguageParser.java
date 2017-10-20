@@ -56,7 +56,15 @@ public class TestSiDIFLanguageParser extends BaseTest {
         "1 is value of integer",
         "'a' is value of char",
         "\"a multi\nline\n-comment \n\" is value of comment",
-        "#\n#This is just acomment\n#over multiple lines"
+        "#\n#This is just acomment\n#over multiple lines\n1 is month of date",
+        "2.7 is floatvalue of it",
+        "2015-02-25 is exampleValue of Date\n" + 
+        "2015-02-25 11:34 is exampleValue of DateTime\n" + 
+        "1 is exampleValue of Number\n" + 
+        "3.1415926 is exampleValue of Number\n" + 
+        "\"Hello World!\" is exampleValue of Text\n" + 
+        "11:24 is exampleValue of Time\n" + 
+        "http://www.bitplan.com is exampleValue of IRI"
      };
     
     this.checkgui=true;
@@ -69,7 +77,7 @@ public class TestSiDIFLanguageParser extends BaseTest {
 
   @Test
   /**
-   * test parseability of SiDIF files in examples directory
+   * test parse ability of SiDIF files in examples directory
    */
   public void testSiDIFSamples() throws Exception {
     File rootDir = new File("src/test/resources");

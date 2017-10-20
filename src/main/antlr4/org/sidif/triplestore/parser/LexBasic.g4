@@ -82,7 +82,7 @@ fragment DecimalNumeral
    : '0' | [1-9] DecDigit*
    ;
 // -----------------------------------
-// Digits
+// DecDigits
 fragment HexDigit
    : [0-9a-fA-F]
    ;
@@ -117,6 +117,23 @@ fragment HexLiteral
  	'0' [xX] HexDigit+
  ;
  
+fragment
+DateLiteral
+:
+ 	DecDigit DecDigit DecDigit DecDigit Minus DecDigit DecDigit Minus DecDigit DecDigit 
+;
+ 
+fragment
+TimeLiteral
+:
+	DecDigit DecDigit Colon DecDigit DecDigit
+;
+ 
+fragment
+FloatLiteral
+:
+	DecimalNumeral Dot DecimalNumeral
+;
 // -----------------------------------
 // Character ranges
 fragment NameChar
@@ -201,6 +218,10 @@ fragment Star
 fragment Plus
    : '+'
    ;
+
+fragment Minus
+   : '-'
+   ;   
 
 fragment PlusAssign
    : '+='
