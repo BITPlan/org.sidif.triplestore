@@ -58,7 +58,7 @@ parser grammar SiDIFParser;
  	| INTEGER_LITERAL
  	//| IRI_LITERAL
  	//| DATE_LITERAL
- 	//| HEX_LITERAL
+ 	| HEX_LITERAL
  	| BOOLEAN_LITERAL
  	//| FLOAT_LITERAL
  ;

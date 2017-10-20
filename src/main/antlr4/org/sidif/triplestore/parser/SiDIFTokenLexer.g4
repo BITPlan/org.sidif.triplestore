@@ -28,19 +28,17 @@ lexer grammar SiDIFTokenLexer;
  ;
 
  // Literals
+ 
+ HEX_LITERAL
+ :
+ 	HexLiteral
+ ;
 
  INTEGER_LITERAL
  :
  	DecimalNumeral
  ;
-
- // Identifiers
-
- IDENTIFIER
- :
- 	NameStartChar NameChar*
- ;
-
+ 
  SINGLE_QUOTE_STRING_LITERAL
  :
  	SQuoteLiteral
@@ -56,14 +54,24 @@ lexer grammar SiDIFTokenLexer;
  	BoolLiteral
  ;
 
+ // Identifiers
+
+ IDENTIFIER
+ :
+ 	NameStartChar NameChar*
+ ;
+
+ 
+
+
  MULTI_LINE_COMMENT
  :
- 	DocComment+ -> skip
+ 	( DocComment | LineComment [\r\n]) + -> skip
  ;
 
  SINGLE_LINE_COMMENT
  :
- 	LineComment+ EOF? -> skip
+ 	LineComment+  -> skip
  ;
 
  WHITESPACE
