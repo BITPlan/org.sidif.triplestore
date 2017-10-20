@@ -81,8 +81,10 @@ public class TestSiDIFLanguageParser extends BaseTest {
    */
   public void testSiDIFSamples() throws Exception {
     File rootDir = new File("src/test/resources");
+    debug=false;
     String[] extensions = { ".sidif" };
     checkgui = false;
+    super.checkTree=false;
     super.gui=false;
     List<SourceDirectory> sourceDirectories = new ArrayList<SourceDirectory>();
     SourceDirectory sidifSrc = new SourceDirectory(

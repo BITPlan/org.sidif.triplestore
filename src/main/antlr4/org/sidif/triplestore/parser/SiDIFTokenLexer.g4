@@ -31,7 +31,7 @@ lexer grammar SiDIFTokenLexer;
 
  DATE_TIME_LITERAL
  :
- 	DateLiteral TimeLiteral
+ 	DateLiteral Hws TimeLiteral
  ;
 
  DATE_LITERAL
@@ -56,7 +56,7 @@ lexer grammar SiDIFTokenLexer;
 
  INTEGER_LITERAL
  :
- 	DecimalNumeral
+ 	(Minus | Plus)? DecimalNumeral
  ;
 
  SINGLE_QUOTE_STRING_LITERAL
@@ -73,6 +73,23 @@ lexer grammar SiDIFTokenLexer;
  :
  	BoolLiteral
  ;
+
+ IRI_LITERAL
+ :
+ [A-Za-z]+ '://' [A-Za-z]+ (Dot [A-Za-z]+  )*
+ /* 
+ 	SCHEME ':' HIER_PART
+ 	(
+ 		'?' QUERY
+ 	)?
+ 	(
+ 		'#' FRAGMENT
+ 	)
+ 	*/
+ ;
+
+
+ 
 
  // Identifiers
 
