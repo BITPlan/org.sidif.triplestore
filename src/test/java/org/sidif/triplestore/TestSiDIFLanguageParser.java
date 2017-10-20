@@ -55,7 +55,11 @@ public class TestSiDIFLanguageParser extends BaseTest {
         "0x7F is value of hexLiteral",
         "1 is value of integer",
         "'a' is value of char",
-        "\"a multi\nline\n-comment \n\" is value of comment" };
+        "\"a multi\nline\n-comment \n\" is value of comment",
+        "#\n#This is just acomment\n#over multiple lines"
+     };
+    
+    this.checkgui=true;
     for (String sidif : sidifs) {
       LanguageParser lparser = getParser();
       lparser.setGui(true);

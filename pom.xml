@@ -42,9 +42,10 @@
 		<!-- Dependency versions -->
 		<junit4.version>4.12</junit4.version>
 		<args4j.version>2.0.29</args4j.version>
+		<antlr.version>4.7</antlr.version>
 	</properties>
 	<dependencies>
-			<!-- JUnit testing -->
+		<!-- JUnit testing -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -135,11 +136,18 @@
 			<plugin>
 				<groupId>org.antlr</groupId>
 				<artifactId>antlr4-maven-plugin</artifactId>
-				<version>4.7</version>
+				<version>${antlr.version}</version>
 				<configuration>
 					<!-- basically this is the default setting -->
 					<sourceDirectory>src/main/antlr4</sourceDirectory>
-					<libDirectory>target/generated-sources/antlr4</libDirectory>
+					<outputDirectory>${project.build.directory}/generated-sources/antlr4</outputDirectory>
+					<grammars>SiDIFParser.g4</grammars>
+					<includes>
+						<include>SiDIFTokenLexer.g4</include>
+						<include>SiDIFParser.g4</include>
+					</includes>
+					<visitor>true</visitor>
+					<listener>true</listener>
 				</configuration>
 				<executions>
 					<execution>

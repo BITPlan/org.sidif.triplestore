@@ -23,8 +23,8 @@ package org.sidif.parser;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.sidif.triplestore.SiDIFParser;
-import org.sidif.triplestore.SiDIFTokenLexer;
+import org.sidif.triplestore.parser.SiDIFParser;
+import org.sidif.triplestore.parser.SiDIFTokenLexer;
 
 import com.bitplan.antlr.LanguageParser;
 

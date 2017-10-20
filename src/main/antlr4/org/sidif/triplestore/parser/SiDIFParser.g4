@@ -15,39 +15,56 @@
 parser grammar SiDIFParser;
 
  options {
- // use separate Lexer
+    // use separate Lexer
  	tokenVocab = SiDIFTokenLexer;
  }
- 
-  /* Grammar Start */
- links:
- (
- 	(link | value )+
- 	EOF
- );
- 
- link: (
- 	( identifier identifier identifier ) |
- 	( identifier IS identifier OF identifier ) 
- );
- 
- value: (
- 	literal IS identifier OF identifier
- );
- 
+
+ /* Grammar Start */
+ links
+ :
+ 	(
+ 		(
+ 			link
+ 			| value
+ 		)+ EOF
+ 	)
+ ;
+
+ link
+ :
+ 	(
+ 		(
+ 			identifier identifier identifier
+ 		)
+ 		|
+ 		(
+ 			identifier IS identifier OF identifier
+ 		)
+ 	)
+ ;
+
+ value
+ :
+ 	(
+ 		literal IS identifier OF identifier
+ 	)
+ ;
+
  literal
  :
  	DOUBLE_QUOTE_STRING_LITERAL
  	| SINGLE_QUOTE_STRING_LITERAL
- 	| IRI_LITERAL
- 	| DATE_LITERAL
+ 	//| CHAR_LITERAL
  	| INTEGER_LITERAL
- 	| HEX_LITERAL
+ 	//| IRI_LITERAL
+ 	//| DATE_LITERAL
+ 	//| HEX_LITERAL
  	| BOOLEAN_LITERAL
- 	| FLOAT_LITERAL
+ 	//| FLOAT_LITERAL
  ;
- 
+
  identifier
  :
  	IDENTIFIER
  ;
+ 
