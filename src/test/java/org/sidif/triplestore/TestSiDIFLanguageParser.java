@@ -64,7 +64,8 @@ public class TestSiDIFLanguageParser extends BaseTest {
         "3.1415926 is exampleValue of Number\n" + 
         "\"Hello World!\" is exampleValue of Text\n" + 
         "11:24 is exampleValue of Time\n" + 
-        "http://www.bitplan.com is exampleValue of IRI"
+        "http://www.bitplan.com is exampleValue of IRI",
+        "https://semantic-mediawiki.org/wiki/Help:List_of_datatypes is example of IRI"
      };
     
     this.checkgui=true;

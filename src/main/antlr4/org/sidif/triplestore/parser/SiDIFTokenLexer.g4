@@ -79,9 +79,70 @@ lexer grammar SiDIFTokenLexer;
 
 IRI_LITERAL
 :
-  [A-Za-z]+ ':' ([A-Za-z@]+)? ('//' [A-Za-z]+)? (Dot [A-Za-z]+)* ('/'[A-Za-z.]+)*
+  SCHEME ':' ([A-Za-z@]+)? ('//' [A-Za-z]+)? (Dot [A-Za-z]+)* ('/' ISEGMENT)*
 ;
 
+
+// IRI fragments
+fragment ALPHA
+:
+ [A-Za-z]
+;
+
+fragment DIGIT
+:
+[0-9]
+;
+
+fragment
+UCSCHAR
+   : '\u00A0' .. '\uD7FF'
+   | '\uF900' .. '\uFDCF'
+   | '\uFDF0' .. '\uFFEF'
+;
+
+fragment IUNRESERVED
+:
+ALPHA
+   | DIGIT
+   | ('-' | '.' | '_' | '~' | UCSCHAR)
+;
+
+fragment PCT_ENCODED
+   : '%' HexDigit HexDigit
+   ;
+   
+fragment SUB_DELIMS
+   : '!'
+   | '$'
+   | '&'
+   | '\''
+   | '('
+   | ')'
+   | '*'
+   | '+'
+   | ','
+   | ';'
+   | '='
+   ;
+
+fragment IPCHAR
+:
+IUNRESERVED
+|PCT_ENCODED
+|SUB_DELIMS
+| (':'|'@')
+;
+
+fragment SCHEME
+:
+ ALPHA ( ALPHA | DIGIT | ('+' | '-' | '.') )+
+;
+
+fragment ISEGMENT
+:
+IPCHAR*
+;
  // Identifiers
 
  IDENTIFIER
