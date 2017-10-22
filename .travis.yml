@@ -13,7 +13,7 @@ install:
   # make it locally available
   - pwd;cd rrd-antlr4;pwd;mvn clean install 
   # then install the local com.bitplan.antlr 
-  - pwd;cd ../org.sidif.triplestore;pwd;mvn install -DskipTests=true -Dgpg.skip=true
+  - pwd;cd ../org.sidif.triplestore;pwd;mvn clean compile install -DskipTests=true -Dgpg.skip=true
 
 # do the tests separately 
 script: 
