@@ -1,4 +1,20 @@
+# 
 # this is a java project using maven
-language: java
+language: 
+  java
+
 # switch off gpg handling
-install: mvn install -DskipTests=true -Dgpg.skip=true
+# and split install and test phase of maven since xvfb will only
+# be available in test phase
+# let's first compile without tests
+install: 
+  # get the Railroad Diagrams for ANTLR 4 grammar rules. 
+  - pwd;cd ..;pwd;git clone https://github.com/bkiers/rrd-antlr4
+  # make it locally available
+  - pwd;cd rrd-antlr4;pwd;mvn clean install 
+  # then install the local com.bitplan.antlr 
+  - pwd;cd ../org.sidif.triplestore;pwd;mvn install -DskipTests=true -Dgpg.skip=true
+
+# do the tests separately 
+script: 
+  mvn test
