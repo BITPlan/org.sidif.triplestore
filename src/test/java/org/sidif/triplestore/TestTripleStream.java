@@ -22,7 +22,13 @@ package org.sidif.triplestore;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
+
 import org.junit.Test;
+import org.sidif.parser.SiDIFLanguageParser;
+import org.sidif.triple.Triple;
 
 /**
  * test Triple Stream functions
@@ -32,8 +38,11 @@ import org.junit.Test;
 public class TestTripleStream {
 
   @Test
-  public void testTripleStream() {
-    
+  public void testTripleStream() throws Exception {
+    SiDIFLanguageParser siDIFParser = new SiDIFLanguageParser();
+    File siDIFFile=new File("src/test/resources/sidif/royal92.sidif");
+    Stream<Triple> tripleStream = siDIFParser.getTripleStream(siDIFFile);
+    assertEquals(31390,tripleStream.count());
   }
 
 }

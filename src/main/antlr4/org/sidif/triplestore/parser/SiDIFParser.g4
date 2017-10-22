@@ -19,41 +19,65 @@ parser grammar SiDIFParser;
  	tokenVocab = SiDIFTokenLexer;
  }
 
+ @header {
+  import org.sidif.triple.Triple;
+  import org.sidif.triple.impl.TripleImpl;
+}
+
  /* Grammar Start */
- links
+ triples
  :
  	(
- 		(
- 			link
- 			| value
- 		)+ EOF
+ 		tripleline+ EOF
  	)
  ;
 
- link
+ tripleline returns [Triple triple]
+ :
+ 	(
+ 		linktriple = link {$triple=$linktriple.triple;}
+ 		| valuetriple = value {$triple=$valuetriple.triple;}
+ 	)
+ 	
+
+ ;
+
+ link returns [Triple triple]
  :
  	(
  		(
- 			identifier identifier identifier
+ 			subject = identifier predicate = identifier object = identifier
  		)
  		|
  		(
- 			identifier IS identifier OF identifier
+ 			object = identifier IS predicate = identifier OF subject = identifier
  		)
+ 		{ 
+ 			$triple=new TripleImpl($subject.identName,$predicate.identName,$object.identName);
+ 		}
+
  	)
  ;
 
- value
+ value returns [Triple triple]
  :
  	(
- 		literal IS identifier OF identifier
+ 		subject = literal IS predicate = identifier OF object = identifier
+ 		{ 
+ 			$triple=new TripleImpl($subject.literalValue,$predicate.identName,$object.identName);
+ 		}
+
  	)
  ;
 
- literal
+ literal returns [Object literalValue]
  :
- 	DOUBLE_QUOTE_STRING_LITERAL
- 	| SINGLE_QUOTE_STRING_LITERAL
+ 	s = DOUBLE_QUOTE_STRING_LITERAL
+ 	{ $literalValue=$s.text; }
+
+ 	| s = SINGLE_QUOTE_STRING_LITERAL
+ 	{ $literalValue=$s.text; }
+
  	| INTEGER_LITERAL
  	| IRI_LITERAL
  	| DATE_TIME_LITERAL
@@ -64,8 +88,10 @@ parser grammar SiDIFParser;
  	| FLOAT_LITERAL
  ;
 
- identifier
+ identifier returns [String identName]
  :
- 	IDENTIFIER
+ 	ident = IDENTIFIER
+ 	{ $identName=$ident.text; }
+
  ;
  
