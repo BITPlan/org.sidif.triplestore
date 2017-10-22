@@ -25,6 +25,7 @@ import static org.junit.Assert.*;
 import java.util.List;
 import java.util.Set;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.sidif.triple.Triple;
 import org.sidif.triple.TripleQuery;
@@ -169,7 +170,8 @@ public class TestTripleStore extends BaseSiDIFTest {
     assertEquals(3, union.size());
   }
 
-  @Test
+  // deprecated since 2017-10
+  @Ignore
   public void testHasVersusIsOf() throws Exception {
     TripleStore tripleStore = getTripleStoreFromExample("roles");
     //debug=true;
