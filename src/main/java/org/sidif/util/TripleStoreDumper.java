@@ -26,7 +26,6 @@ import org.sidif.triple.Triple;
 import org.sidif.triple.TripleQuery;
 import org.sidif.triple.TripleStore;
 import org.sidif.triple.TripleStore.TripleContainer;
-import org.sidif.triple.impl.TripleImpl;
 import org.sidif.triple.Value;
 
 /**

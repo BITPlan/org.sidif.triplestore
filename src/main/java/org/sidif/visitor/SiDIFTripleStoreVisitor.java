@@ -33,6 +33,7 @@ import org.sidif.parser.node.Value;
 import org.sidif.triple.Triple;
 import org.sidif.triple.TripleStore;
 import org.sidif.triple.impl.ObjectHolder;
+import org.sidif.util.SiDIFReader;
 
 /**
  * a dump visitor for SiDIF
@@ -40,7 +41,7 @@ import org.sidif.triple.impl.ObjectHolder;
  * @author wf
  *
  */
-public class SiDIFTripleStoreVisitor implements SiDIFVisitor {
+public class SiDIFTripleStoreVisitor implements SiDIFVisitor, SiDIFReader {
 
   /**
    * get a triple Store from the given sidifText
@@ -48,7 +49,7 @@ public class SiDIFTripleStoreVisitor implements SiDIFVisitor {
    * @throws Exception
    * @return the tripleStore derived form the given sidifText
    */
-  public static TripleStore fromSiDIFText(String sidifText) throws Exception {
+  public TripleStore fromSiDIFText(String sidifText) throws Exception {
     SiDIF sidif=SiDIF.fromText(sidifText);
     TripleStore result=fromSiDIF(sidif);
     return result;   
@@ -60,7 +61,7 @@ public class SiDIFTripleStoreVisitor implements SiDIFVisitor {
    * @return a triple Store
    * @throws Exception
    */
-  public static TripleStore fromSiDIFFile(File sidifFile) throws Exception {
+  public TripleStore fromSiDIFFile(File sidifFile) throws Exception {
     SiDIF sidif=SiDIF.fromFile(sidifFile);
     TripleStore result=fromSiDIF(sidif);
     return result;
@@ -72,7 +73,7 @@ public class SiDIFTripleStoreVisitor implements SiDIFVisitor {
    * @return - the tripleStore
    * @throws Exception 
    */
-  public static TripleStore fromSiDIFStream(InputStream in) throws Exception {
+  public TripleStore fromSiDIFStream(InputStream in) throws Exception {
     SiDIF sidif=SiDIF.fromStream(in);
     TripleStore result=fromSiDIF(sidif);
     return result;

@@ -23,8 +23,11 @@ package org.sidif.triple.impl;
 import org.sidif.triple.Triple;
 import org.sidif.triple.Value;
 
-
-
+/**
+ * simple Triple holder
+ * @author wf
+ *
+ */
 public class TripleImpl implements Triple {
  
   public Object subject;
