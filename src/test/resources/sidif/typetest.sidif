@@ -70,3 +70,4 @@ false is allowedValue of Boolean
 "Hello World!" is exampleValue of Text
 11:24 is exampleValue of Time
 http://www.bitplan.com is exampleValue of IRI
+null is exampleValue of Time

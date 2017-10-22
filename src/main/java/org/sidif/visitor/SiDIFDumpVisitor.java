@@ -30,53 +30,58 @@ import org.sidif.triple.impl.ObjectHolder;
 
 /**
  * a dump visitor for SiDIF
+ * 
  * @author wf
  *
  */
 public class SiDIFDumpVisitor implements SiDIFVisitor {
 
-  
-	@Override
-	public Object visit(SimpleNode node, ObjectHolder data) {
-	  node.childrenAccept(this,data);
-		return data;
-	}
+  @Override
+  public Object visit(SimpleNode node, ObjectHolder data) {
+    node.childrenAccept(this, data);
+    return data;
+  }
 
-	@Override
-	public Object visit(Links node, ObjectHolder data) {
-	  node.childrenAccept(this,data);
-		return data;
-	}
-	
+  @Override
+  public Object visit(Links node, ObjectHolder data) {
+    node.childrenAccept(this, data);
+    return data;
+  }
 
-	@Override
-	public Object visit(Link node, ObjectHolder data) {
-    ObjectHolder<String> stringHolder=(ObjectHolder<String>) data;
-    String dump=stringHolder.getObject();
-    
-    dump+=node.getSubject()+" -- "+node.getLink()+" --> "+node.getTarget()+"\n";
-    
+  @Override
+  public Object visit(Link node, ObjectHolder data) {
+    ObjectHolder<String> stringHolder = (ObjectHolder<String>) data;
+    String dump = stringHolder.getObject();
+
+    dump += node.getSubject() + " -- " + node.getLink() + " --> "
+        + node.getTarget() + "\n";
+
     stringHolder.setObject(dump);
-    node.childrenAccept(this,data);
-    return data;   
-	}
+    node.childrenAccept(this, data);
+    return data;
+  }
 
-	@Override
-	public Object visit(Literal node, ObjectHolder data) {
-		node.childrenAccept(this,data);
-		return data;
-	}
+  @Override
+  public Object visit(Literal node, ObjectHolder data) {
+    node.childrenAccept(this, data);
+    return data;
+  }
 
-	@Override
-	public Object visit(Value node, ObjectHolder data) {
-    ObjectHolder<String> stringHolder=(ObjectHolder<String>) data;
-    String dump=stringHolder.getObject();
-    Literal literal=node.getLiteral();
-    org.sidif.triple.Value<?> literalValue=literal.getLiteralValue();
-    dump+=node.getConcept()+"."+node.getProperty()+"="+literal.getLiteral()+"("+literalValue.type+")\n";
+  @Override
+  public Object visit(Value node, ObjectHolder data) {
+    ObjectHolder<String> stringHolder = (ObjectHolder<String>) data;
+    String dump = stringHolder.getObject();
+    Literal literal = node.getLiteral();
+    org.sidif.triple.Value<?> literalValue = literal.getLiteralValue();
+    String valueString = "null";
+    if (literalValue != null) {
+      valueString = literal.getLiteral() + "(" + literalValue.type + ")";
+    }
+    dump += node.getConcept() + "." + node.getProperty() + "=" + valueString
+        + "\n";
     stringHolder.setObject(dump);
-    node.childrenAccept(this,data);
-    return data;   
-	}
+    node.childrenAccept(this, data);
+    return data;
+  }
 
 }

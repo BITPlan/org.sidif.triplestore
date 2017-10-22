@@ -33,7 +33,7 @@ import org.sidif.triple.TripleStore;
 public interface SiDIFReader {
 
   /**
-   * get a triple Store from the given sidifText
+   * get a triple Store from the given SiDIF Text
    * 
    * @param sidifText
    * @throws Exception
@@ -42,7 +42,7 @@ public interface SiDIFReader {
   public TripleStore fromSiDIFText(String sidifText) throws Exception;
 
   /**
-   * get a TripleStore from the given sidif File
+   * get a TripleStore from the given SiDIF File
    * 
    * @param sidifFile
    * @return a triple Store
@@ -51,7 +51,7 @@ public interface SiDIFReader {
   public TripleStore fromSiDIFFile(File sidifFile) throws Exception;
 
   /**
-   * create a TripleStore from the given sidif inputStream
+   * create a TripleStore from the given SiDIF inputStream
    * 
    * @param in
    *          - the inputStream to read from

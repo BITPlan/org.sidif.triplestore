@@ -104,7 +104,7 @@ public class TestSiDIFParser extends BaseSiDIFTest {
      * vcard (31)
      */
     int expectedSize[] = { 11, 15, 51, 7, 16, 4, 545, 22, 8, 209, 25614, 11, 8,
-        62, 3, 31 };
+        63, 3, 31 };
     int index = 0;
     for (String example : getAllExampleNames()) {
       TripleStore tripleStore = getTripleStoreFromExample(example);

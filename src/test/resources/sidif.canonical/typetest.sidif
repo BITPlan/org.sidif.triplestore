@@ -49,6 +49,7 @@ Text isA Type
 Time linksTo Schema_Org
 Time isA Type
 12:24:00 is exampleValue of Time
+Time exampleValue null
 SMW isA TypeSource
 https://semantic-mediawiki.org/wiki/Help:List_of_datatypes is url of SMW
 Annotation_URI linksTo SMW
