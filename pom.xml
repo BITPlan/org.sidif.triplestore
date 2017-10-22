@@ -137,18 +137,11 @@
 			<plugin>
 				<groupId>org.antlr</groupId>
 				<artifactId>antlr4-maven-plugin</artifactId>
-				<version>${antlr.version}</version>
+				<version>4.7</version>
 				<configuration>
 					<!-- basically this is the default setting -->
 					<sourceDirectory>src/main/antlr4</sourceDirectory>
-					<outputDirectory>${project.build.directory}/generated-sources/antlr4</outputDirectory>
-					<grammars>SiDIFParser.g4</grammars>
-					<includes>
-						<include>SiDIFTokenLexer.g4</include>
-						<include>SiDIFParser.g4</include>
-					</includes>
-					<visitor>true</visitor>
-					<listener>true</listener>
+					<libDirectory>target/generated-sources/antlr4</libDirectory>
 				</configuration>
 				<executions>
 					<execution>
