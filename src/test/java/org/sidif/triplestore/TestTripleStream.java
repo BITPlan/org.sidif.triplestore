@@ -90,7 +90,7 @@ public class TestTripleStream extends BaseSiDIFTest {
      * (31)
      */
     int expectedSize[] = { 11, 15, 51, 7, 16, 4, 546, 22, 8, 210, 31390, 11, 8,
-        63, 3, 31 };
+        62, 3, 31 };
     int index = 0;
     int limit = expectedSize.length;
     int total = 0;
