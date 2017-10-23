@@ -25,6 +25,7 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import org.sidif.triple.impl.ObjectHolder;
 
@@ -84,6 +85,72 @@ public class Value<T> extends ObjectHolder<T> {
       result = toString(); // +"("+type+")";
     }
     return result;
+  }
+
+  private static final String[] DATE_FORMATS = new String[] { "yyyy-MM-dd'T'",
+      "yyyy-MM-dd" };
+
+  private static final String[] TIME_FORMATS = new String[] { "HH:mm:ss.SSSZ",
+      "HH:mm:ssZ", "HH:mmZ", "HH:mm:ss.SSS", "HH:mm:ss", "HH:mm" };
+
+  /**
+   * create a Date from a given Token and SimpleDateFormat
+   * 
+   * @param image
+   * @param f
+   * @return the date for the given token and date format
+   */
+  public static Date toDate(String image, SimpleDateFormat f) {
+    f.setTimeZone(TimeZone.getTimeZone("UTC"));
+    try {
+      return f.parse(image);
+    } catch (final java.text.ParseException pe) {
+      // Ignore. Try the next.
+    }
+    return null;
+  }
+
+  /**
+   * convert the given dateTime String to a time or date value
+   * @param dateTime
+   * @return - the date time value
+   */
+  public static Value<?> getDateTime(String dateTime) {
+    // first try date/time combinations
+    for (final String dateformat : DATE_FORMATS) {
+      for (final String timeformat : TIME_FORMATS) {
+        final SimpleDateFormat f = new SimpleDateFormat(
+            dateformat + timeformat);
+        Date parseDate = toDate(dateTime, f);
+        if (parseDate != null) {
+          org.sidif.triple.Value<Timestamp> timeStampvalue = org.sidif.triple.Value
+              .getTimeStamp(parseDate.getTime());
+          return timeStampvalue;
+        }
+      }
+    }
+    // then date formats
+    for (final String dateformat : DATE_FORMATS) {
+      final SimpleDateFormat f = new SimpleDateFormat(dateformat);
+      Date parseDate = toDate(dateTime, f);
+      if (parseDate != null) {
+        org.sidif.triple.Value<Date> dateValue = org.sidif.triple.Value
+            .getDate(parseDate);
+        return dateValue;
+      }
+    }
+    // then time formats
+    for (final String timeformat : TIME_FORMATS) {
+      final SimpleDateFormat f = new SimpleDateFormat(timeformat);
+      Date parseDate = toDate(dateTime, f);
+      if (parseDate != null) {
+        org.sidif.triple.Value<java.sql.Time> timeValue = org.sidif.triple.Value
+            .getTime(parseDate.getTime());
+        return timeValue;
+      }
+    }
+    // invalid dateTime
+    return null;
   }
 
   /**
@@ -225,14 +292,25 @@ public class Value<T> extends ObjectHolder<T> {
    * @return the wrapped iri
    * @throws URISyntaxException
    */
-  public static Value<?> getIRI(String iri) throws URISyntaxException {
+  public static Value<?> getIRI(String iri)  {
     Value<java.net.URI> result = new Value<java.net.URI>();
-    result.setObject(new java.net.URI(iri));
-    result.literal = true;
-    result.type = "IRI";
-    return result;
+    try {
+      result.setObject(new java.net.URI(iri));
+      result.literal = true;
+      result.type = "IRI";
+      return result;
+    } catch (URISyntaxException e) {
+      // fall back to string representation
+      return getString(iri);
+    }
   }
 
+  /**
+   * get a Boolean from the given image
+   * 
+   * @param image
+   * @return the Value
+   */
   public static Value<?> getBoolean(String image) {
     Value<Boolean> result = new Value<Boolean>();
     result.setObject(new Boolean(image));

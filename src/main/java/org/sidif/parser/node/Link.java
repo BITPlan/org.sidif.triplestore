@@ -22,9 +22,7 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=true,TRACK_TOKENS=false,NODE_PREFIX=,NODE_EXTENDS=,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package org.sidif.parser.node;
 
-import org.sidif.parser.jjtree.*;
 import org.sidif.parser.jjtree.SiDIF;
-import org.sidif.parser.node.SiDIFVisitor;
 
 public
 class Link extends SimpleNode {

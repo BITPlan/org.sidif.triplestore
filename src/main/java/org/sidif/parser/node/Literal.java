@@ -22,11 +22,6 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=true,TRACK_TOKENS=false,NODE_PREFIX=,NODE_EXTENDS=,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package org.sidif.parser.node;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
-
 import org.sidif.parser.jjtree.ParseException;
 import org.sidif.parser.jjtree.SiDIF;
 import org.sidif.parser.jjtree.Token;
@@ -70,65 +65,17 @@ class Literal extends SimpleNode {
 
   }
 
-  private static final String[] DATE_FORMATS = new String[] { "yyyy-MM-dd'T'",
-      "yyyy-MM-dd" };
-
-  private static final String[] TIME_FORMATS = new String[] { "HH:mm:ss.SSSZ",
-      "HH:mm:ssZ", "HH:mmZ", "HH:mm:ss.SSS", "HH:mm:ss", "HH:mm" };
-  
+ 
   /**
-   * create a Date from a given Token and SimpleDateFormat
-   * 
-   * @param token
-   * @param f
-   * @return the date for the given token and date format
-   */
-  public Date toDate(Token token, SimpleDateFormat f) {
-    f.setTimeZone(TimeZone.getTimeZone("UTC"));
-    try {
-      return f.parse(token.image);
-    } catch (final java.text.ParseException pe) {
-      // Ignore. Try the next.
-    }
-    return null;
-  }
-
-  /**
-   * 
+   * convert the given token content to a date
    * @param token
    * @throws ParseException
    * @return the Value for this token
    */
   public org.sidif.triple.Value<?> toDate(Token token) throws ParseException {
-    // first try date/time combinations
-    for (final String dateformat : DATE_FORMATS) {
-      for (final String timeformat : TIME_FORMATS) {
-        final SimpleDateFormat f = new SimpleDateFormat(dateformat + timeformat);
-        Date parseDate = toDate(token, f);
-        if (parseDate != null) {
-          org.sidif.triple.Value<Timestamp> timeStampvalue = org.sidif.triple.Value.getTimeStamp(parseDate.getTime());
-          return timeStampvalue;
-        }
-      }
-    }
-    // then date formats
-    for (final String dateformat : DATE_FORMATS) {
-      final SimpleDateFormat f = new SimpleDateFormat(dateformat);
-      Date parseDate = toDate(token, f);
-      if (parseDate != null) {
-        org.sidif.triple.Value<Date> dateValue = org.sidif.triple.Value.getDate(parseDate);
-        return dateValue;
-      }
-    }
-    // then time formats
-    for (final String timeformat : TIME_FORMATS) {
-      final SimpleDateFormat f = new SimpleDateFormat(timeformat);
-      Date parseDate = toDate(token, f);
-      if (parseDate != null) {
-        org.sidif.triple.Value<java.sql.Time> timeValue=org.sidif.triple.Value.getTime(parseDate.getTime());
-        return timeValue;
-      }
-    }
+    org.sidif.triple.Value<?> result=org.sidif.triple.Value.getDateTime(token.image);
+    if (result!=null)
+      return result;
     throw new ParseException("Could not parse the datetime string '"
         + token.image + "' @ line " + token.beginLine + ", column "
         + token.beginColumn);
@@ -161,14 +108,8 @@ class Literal extends SimpleNode {
     } else if (type.equals("Time")) {
       // http://stackoverflow.com/questions/2305973/java-util-date-vs-java-sql-date
       literalValue = toDate(token);
-    } else if (type.equals("IRI")) {
-      try {
-        literalValue=org.sidif.triple.Value.getIRI(token.image);
-      }
-      catch (java.net.URISyntaxException use)
-      {
-        throw new ParseException(use.getMessage());
-      }
+    } else if (type.equals("IRI")) {  
+      literalValue=org.sidif.triple.Value.getIRI(token.image);
     } else {
       throw new ParseException("Unknown type '"+type+"' for literal '"+token.image+"'");
     }

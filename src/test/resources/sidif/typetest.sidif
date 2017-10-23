@@ -69,5 +69,5 @@ false is allowedValue of Boolean
 3.1415926 is exampleValue of Number
 "Hello World!" is exampleValue of Text
 11:24 is exampleValue of Time
+#null is exampleValue of Time
 http://www.bitplan.com is exampleValue of IRI
-null is exampleValue of Time

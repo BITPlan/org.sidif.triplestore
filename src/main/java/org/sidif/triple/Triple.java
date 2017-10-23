@@ -79,4 +79,11 @@ public interface Triple {
    */
   public abstract String toString();
 
+  /**
+   * check that the triples are the same
+   * @param other
+   * @return
+   */
+  public abstract boolean sameAs(Triple other);
+
 }

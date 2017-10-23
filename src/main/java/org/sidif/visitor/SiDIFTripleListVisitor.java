@@ -34,6 +34,7 @@ import org.sidif.parser.node.SimpleNode;
 import org.sidif.parser.node.Value;
 import org.sidif.triple.Triple;
 import org.sidif.triple.impl.ObjectHolder;
+import org.sidif.triple.impl.Resolver;
 import org.sidif.triple.impl.TripleImpl;
 import org.sidif.util.SiDIFReader;
 
@@ -45,6 +46,7 @@ import org.sidif.util.SiDIFReader;
  */
 public class SiDIFTripleListVisitor implements SiDIFVisitor, SiDIFReader {
 
+  Resolver resolver=new Resolver();
   /**
    * get a list of triples from the given sidifText
    * @param sidifText
@@ -94,16 +96,6 @@ public class SiDIFTripleListVisitor implements SiDIFVisitor, SiDIFReader {
     return tripleList;
   }
   
-  private Object currentSubject;
-
-  /**
-   * set the current subject
-   * 
-   * @param subject
-   */
-  private void setCurrentSubject(Object subject) {
-    this.currentSubject = subject;
-  }
 
   @Override
   @SuppressWarnings({  "rawtypes" })
@@ -119,37 +111,14 @@ public class SiDIFTripleListVisitor implements SiDIFVisitor, SiDIFReader {
     return data;
   }
 
-  /**
-   * resolve the subject
-   * 
-   * @param subject
-   *          - if it is "it" then return the name of the current subject
-   * @return - the resolved subject
-   */
-  public Object resolve(Object subject) {
-    // resolve "it" references
-    if (subject.equals("it")) {
-      subject = currentSubject;
-    }
-    return subject;
-  }
+  
 
   @SuppressWarnings({ "unchecked", "rawtypes" })
   @Override
   public Object visit(Link node, ObjectHolder data) {
     List<Triple> tripleList = (List<Triple>) data.getObject();
-    Object subject = resolve(node.getSubject());
-    Object target = resolve(node.getTarget());
-    org.sidif.triple.Value<Object> value=new org.sidif.triple.Value<Object>();
-    value.setObject(target);
-    value.literal=false;
-    value.type="Reference";
-    Object link = node.getLink();
-    Triple triple = new TripleImpl(subject, link, value);
+    Triple triple=resolver.createTriple(node.getSubject(),node.getLink(),node.getTarget());
     tripleList.add(triple);
-    if (link.equals("isA")) {
-      setCurrentSubject(subject);
-    }
     node.childrenAccept(this, data);
     return data;
   }
@@ -164,11 +133,11 @@ public class SiDIFTripleListVisitor implements SiDIFVisitor, SiDIFReader {
   @SuppressWarnings({ "unchecked", "rawtypes" })
   public Object visit(Value node, ObjectHolder data) {
     List<Triple> tripleList= (List<Triple>) data.getObject();
-    Object concept = resolve(node.getConcept());
+    Object concept = resolver.resolve(node.getConcept());
     Object object=node.getLiteral().getLiteralValue();
     Triple triple = new TripleImpl(concept, node.getProperty(), object);
     tripleList.add(triple);
-    setCurrentSubject(concept);
+    resolver.setCurrentSubject(concept);
     node.childrenAccept(this, data);
     return data;
   }

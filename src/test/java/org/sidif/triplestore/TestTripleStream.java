@@ -31,6 +31,7 @@ import java.util.stream.Stream;
 import org.junit.Test;
 import org.sidif.parser.SiDIFLanguageParser;
 import org.sidif.triple.Triple;
+import org.sidif.triple.impl.TripleImpl;
 import org.sidif.util.SiDIFReader;
 import org.sidif.visitor.SiDIFTripleListVisitor;
 
@@ -60,10 +61,17 @@ public class TestTripleStream extends BaseSiDIFTest {
       Triple triple1 = iter1.next();
       Triple triple2 = iter2.next();
       if (triple1 == null || triple2 == null) {
-        result.add("null triple at " + index);
+        String nullTriple = "";
+        if (triple1 == null)
+          nullTriple += " 1";
+        if (triple2 == null)
+          nullTriple += " 2";
+        result.add("null triple " + nullTriple + " at " + +index);
       } else {
-        if (!triple1.equals(triple2)) {
-          result.add(triple1.toString() + "<>" + triple2.toString());
+        if (!triple1.sameAs(triple2)) {
+          TripleImpl triple1i=(TripleImpl) triple1;
+          TripleImpl triple2i=(TripleImpl) triple2;
+          result.add(triple1i.asDebug() + "<>" + triple2i.asDebug());
         }
       }
       index++;
@@ -84,8 +92,9 @@ public class TestTripleStream extends BaseSiDIFTest {
     int expectedSize[] = { 11, 15, 51, 7, 16, 4, 546, 22, 8, 210, 31390, 11, 8,
         63, 3, 31 };
     int index = 0;
-    int total=0;
-    debug=false;
+    int limit = expectedSize.length;
+    int total = 0;
+    debug = false;
     for (String example : super.getAllExampleNames()) {
       File sidifFile = this.getExampleFile(example);
       SiDIFReader siDIFReader = new SiDIFLanguageParser();
@@ -99,16 +108,19 @@ public class TestTripleStream extends BaseSiDIFTest {
       assertEquals("" + index + ":" + example, expectedSize[index],
           tripleStream2.count());
       List<String> diffs = checkEquals(tripleList, tripleList2);
-      System.out.println(String.format("%2d: %3d diffs for %s", index + 1,
-          diffs.size(), example));
-      total+=diffs.size();
       if (debug)
-      for (String diff:diffs) {
-        System.out.println(diff);
-      }
+        System.out.println(String.format("%2d: %3d diffs for %s", index + 1,
+            diffs.size(), example));
+      total += diffs.size();
+      if (debug)
+        for (String diff : diffs) {
+          System.out.println(diff);
+        }
       index++;
+      if (index > limit)
+        break;
     }
-    System.out.println(String.format("found %4d differences",total));
-    // assertEquals(0,total);
+    System.out.println(String.format("found %4d differences", total));
+    assertEquals(0, total);
   }
 }

@@ -43,7 +43,7 @@ public class TestTypes extends BaseSiDIFTest {
     if (debug)
       TripleStoreDumper.dump(tripleStore);
     int tripleStoreSize = tripleStore.size();
-    assertEquals(63, tripleStoreSize);
+    assertEquals(62, tripleStoreSize);
     int literals = 0;
     for (Triple triple : tripleStore.getTriples()) {
       if (debug)

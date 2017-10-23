@@ -31,7 +31,7 @@ rdf:about='http://www.recshop.fake/cd/Hide your heart'>
 </rdf:RDF> 
 " is comment of SiDIF
 CD isA Concept
-Title addsTo CD
+Title addsTo it
 Artist addsTo it
 Country addsTo it
 Company addsTo it

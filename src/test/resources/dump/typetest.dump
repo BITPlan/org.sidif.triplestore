@@ -67,4 +67,3 @@ Number.exampleValue=3.1415926(Double)
 Text.exampleValue="Hello World!"(String)
 Time.exampleValue=11:24(Time)
 IRI.exampleValue=http://www.bitplan.com(IRI)
-Time.exampleValue=null

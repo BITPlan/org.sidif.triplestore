@@ -22,10 +22,13 @@ parser grammar SiDIFParser;
  @header {
   import org.sidif.triple.Triple;
   import org.sidif.triple.impl.TripleImpl;
+  import org.sidif.triple.impl.Resolver;
+  import org.sidif.triple.Value;
 }
 
  @members {
-	Object currentSubject=null;
+ 	Resolver resolver=new Resolver();
+	
 	/**
 	 * create a new triple from the given subject, predicate and object
 	 * 
@@ -38,13 +41,18 @@ parser grammar SiDIFParser;
 	 * @return - the triple
 	 */
 	public Triple createTriple(Object subject, Object predicate, Object object) {
-	  if (subject.equals("it")) {
-        subject = currentSubject;
-      } else {
-    	    currentSubject=subject;
-      }	
-	  Triple triple=new TripleImpl(subject,predicate,object);
+	  Triple triple=resolver.createTriple(subject,predicate,object);
 	  return triple;
+	}
+	
+	/**
+	 * return the unquoted version or the given quoted string
+	 * by removing the first and last character
+	 * @param quoted - the quoted string
+	 * @return - the  unquoted string
+	 */
+	public String noQuotes(String quoted) {
+		return quoted.substring(1,quoted.length()-1);
 	}
 }
 
@@ -85,11 +93,11 @@ parser grammar SiDIFParser;
  		(
  			object = identifier IS predicate = identifier OF subject = identifier
  		)
- 		{ 
- 			$triple=createTriple($subject.identName,$predicate.identName,$object.identName);
- 		}
-
  	)
+ 	{ 
+ 			$triple=createTriple($subject.identName,$predicate.identName,$object.identName);
+ 	}
+
  ;
 
  value returns [Triple triple]
@@ -103,38 +111,37 @@ parser grammar SiDIFParser;
  	)
  ;
 
- literal returns [Object literalValue]
+ literal returns [Value literalValue]
  :
  	s = DOUBLE_QUOTE_STRING_LITERAL
- 	{ $literalValue=$s.text; }
+ 	{ $literalValue=Value.getString(noQuotes($s.text)); }
 
  	| s = SINGLE_QUOTE_STRING_LITERAL
- 	{ $literalValue=$s.text; }
+ 	{ $literalValue=Value.getString(noQuotes($s.text)); }
 
  	| s = INTEGER_LITERAL
- 	{ $literalValue=$s.text; }
+ 	{ $literalValue=Value.getInteger($s.text); }
 
  	| s = IRI_LITERAL
- 	{ $literalValue=$s.text; }
+ 	{ $literalValue=Value.getIRI($s.text); }
 
  	| s = DATE_TIME_LITERAL
- 	{ $literalValue=$s.text; }
+ 	{ $literalValue=Value.getDateTime($s.text); }
 
  	| s = DATE_LITERAL
- 	{ $literalValue=$s.text; }
+ 	{ $literalValue=Value.getDateTime($s.text); }
 
  	| s = TIME_LITERAL
- 	{ $literalValue=$s.text; }
+ 	{ $literalValue=Value.getDateTime($s.text); }
 
  	| s = HEX_LITERAL
- 	{ $literalValue=$s.text; }
+ 	{ $literalValue=Value.getString($s.text); }
 
  	| s = BOOLEAN_LITERAL
- 	{ $literalValue=$s.text; }
+ 	{ $literalValue=Value.getBoolean($s.text); }
 
  	| s = FLOAT_LITERAL
- 	{ $literalValue=$s.text; }
-
+ 	{ $literalValue=Value.getDouble($s.text); }
  ;
 
  identifier returns [String identName]

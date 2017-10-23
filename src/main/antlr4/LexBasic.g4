@@ -126,7 +126,7 @@ DateLiteral
 fragment
 TimeLiteral
 :
-	DecDigit DecDigit Colon DecDigit DecDigit
+	DecDigit DecDigit Colon DecDigit DecDigit (Colon DecDigit DecDigit)?
 ;
  
 fragment

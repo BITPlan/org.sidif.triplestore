@@ -142,8 +142,28 @@ public class TripleImpl implements Triple {
    */
   @Override
   public String toString() {
-    String result=nullValue(subject)+" "+nullValue(predicate)+" "+nullValue(object);
+    String result=String.format("%s %s %s",nullValue(subject),nullValue(predicate),nullValue(object));
     return result;
+  }
+  
+  public String asDebug(Object o) {
+    if (o==null) 
+      return "null";
+    else {
+      return o.toString()+"("+o.getClass().getName()+")";
+    }
+  }
+  
+  public String asDebug() {
+    return String.format("%s %s %s", asDebug(subject),asDebug(predicate),asDebug(object));
+  }
+
+  @Override
+  public boolean sameAs(Triple other) {
+    String dme=this.asDebug();
+    TripleImpl otheri = (TripleImpl) other;
+    String dother=otheri.asDebug();
+    return dme.equals(dother);
   }
   
 }
