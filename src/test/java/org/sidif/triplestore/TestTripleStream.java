@@ -23,6 +23,7 @@ package org.sidif.triplestore;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
@@ -43,16 +44,32 @@ public class TestTripleStream extends BaseSiDIFTest {
 
   /**
    * check that the two triple list have the same content
+   * 
    * @param tripleList1
    * @param tripleList2
+   * @return - a list of differences
    */
-  public void checkEquals(List<Triple> tripleList1, List<Triple> tripleList2) {
+  public List<String> checkEquals(List<Triple> tripleList1,
+      List<Triple> tripleList2) {
+    List<String> result = new ArrayList<String>();
     // https://stackoverflow.com/a/34818800/1497139
     Iterator<Triple> iter1 = tripleList1.iterator(),
         iter2 = tripleList2.iterator();
-    while (iter1.hasNext() && iter2.hasNext())
-      assertEquals(iter1.next(), iter2.next());
+    int index = 0;
+    while (iter1.hasNext() && iter2.hasNext()) {
+      Triple triple1 = iter1.next();
+      Triple triple2 = iter2.next();
+      if (triple1 == null || triple2 == null) {
+        result.add("null triple at " + index);
+      } else {
+        if (!triple1.equals(triple2)) {
+          result.add(triple1.toString() + "<>" + triple2.toString());
+        }
+      }
+      index++;
+    }
     assert !iter1.hasNext() && !iter2.hasNext();
+    return result;
   }
 
   @Test
@@ -67,6 +84,8 @@ public class TestTripleStream extends BaseSiDIFTest {
     int expectedSize[] = { 11, 15, 51, 7, 16, 4, 546, 22, 8, 210, 31390, 11, 8,
         63, 3, 31 };
     int index = 0;
+    int total=0;
+    debug=false;
     for (String example : super.getAllExampleNames()) {
       File sidifFile = this.getExampleFile(example);
       SiDIFReader siDIFReader = new SiDIFLanguageParser();
@@ -75,10 +94,21 @@ public class TestTripleStream extends BaseSiDIFTest {
       List<Triple> tripleList2 = siDIFReader2.fromSiDIFFile(sidifFile);
       Stream<Triple> tripleStream = tripleList.stream();
       Stream<Triple> tripleStream2 = tripleList2.stream();
-      assertEquals(""+index+":"+example,expectedSize[index], tripleStream.count());
-      assertEquals(""+index+":"+example,expectedSize[index], tripleStream2.count());
-      // checkEquals(tripleList,tripleList2);
+      assertEquals("" + index + ":" + example, expectedSize[index],
+          tripleStream.count());
+      assertEquals("" + index + ":" + example, expectedSize[index],
+          tripleStream2.count());
+      List<String> diffs = checkEquals(tripleList, tripleList2);
+      System.out.println(String.format("%2d: %3d diffs for %s", index + 1,
+          diffs.size(), example));
+      total+=diffs.size();
+      if (debug)
+      for (String diff:diffs) {
+        System.out.println(diff);
+      }
       index++;
     }
+    System.out.println(String.format("found %4d differences",total));
+    // assertEquals(0,total);
   }
 }

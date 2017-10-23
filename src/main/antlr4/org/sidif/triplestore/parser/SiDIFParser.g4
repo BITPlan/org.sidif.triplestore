@@ -15,7 +15,7 @@
 parser grammar SiDIFParser;
 
  options {
-    // use separate Lexer
+ // use separate Lexer
  	tokenVocab = SiDIFTokenLexer;
  }
 
@@ -24,7 +24,34 @@ parser grammar SiDIFParser;
   import org.sidif.triple.impl.TripleImpl;
 }
 
+ @members {
+	Object currentSubject=null;
+	/**
+	 * create a new triple from the given subject, predicate and object
+	 * 
+	 * remember the current subject and if the reference "it" is used replace it with
+	 * the current subject
+	 * 
+	 * @param subject - the subject
+	 * @param predicate - the  predicate
+	 * @param object - the object
+	 * @return - the triple
+	 */
+	public Triple createTriple(Object subject, Object predicate, Object object) {
+	  if (subject.equals("it")) {
+        subject = currentSubject;
+      } else {
+    	    currentSubject=subject;
+      }	
+	  Triple triple=new TripleImpl(subject,predicate,object);
+	  return triple;
+	}
+}
+
  /* Grammar Start */
+ /**
+  * a SIDIF file simply has a list of triple lines
+  */
  triples
  :
  	(
@@ -32,14 +59,20 @@ parser grammar SiDIFParser;
  	)
  ;
 
+ /**
+ * a line may either have a simple subject predicate object link 
+ * or a value assignment value is predicate of subject
+ */
  tripleline returns [Triple triple]
  :
  	(
- 		linktriple = link {$triple=$linktriple.triple;}
- 		| valuetriple = value {$triple=$valuetriple.triple;}
- 	)
- 	
+ 		linktriple = link
+ 		{$triple=$linktriple.triple;}
 
+ 		| valuetriple = value
+ 		{$triple=$valuetriple.triple;}
+
+ 	)
  ;
 
  link returns [Triple triple]
@@ -53,7 +86,7 @@ parser grammar SiDIFParser;
  			object = identifier IS predicate = identifier OF subject = identifier
  		)
  		{ 
- 			$triple=new TripleImpl($subject.identName,$predicate.identName,$object.identName);
+ 			$triple=createTriple($subject.identName,$predicate.identName,$object.identName);
  		}
 
  	)
@@ -62,9 +95,9 @@ parser grammar SiDIFParser;
  value returns [Triple triple]
  :
  	(
- 		subject = literal IS predicate = identifier OF object = identifier
+ 		object = literal IS predicate = identifier OF subject = identifier
  		{ 
- 			$triple=new TripleImpl($subject.literalValue,$predicate.identName,$object.identName);
+ 			$triple=createTriple($subject.identName,$predicate.identName,$object.literalValue);
  		}
 
  	)
@@ -78,14 +111,30 @@ parser grammar SiDIFParser;
  	| s = SINGLE_QUOTE_STRING_LITERAL
  	{ $literalValue=$s.text; }
 
- 	| INTEGER_LITERAL
- 	| IRI_LITERAL
- 	| DATE_TIME_LITERAL
- 	| DATE_LITERAL
- 	| TIME_LITERAL
- 	| HEX_LITERAL
- 	| BOOLEAN_LITERAL
- 	| FLOAT_LITERAL
+ 	| s = INTEGER_LITERAL
+ 	{ $literalValue=$s.text; }
+
+ 	| s = IRI_LITERAL
+ 	{ $literalValue=$s.text; }
+
+ 	| s = DATE_TIME_LITERAL
+ 	{ $literalValue=$s.text; }
+
+ 	| s = DATE_LITERAL
+ 	{ $literalValue=$s.text; }
+
+ 	| s = TIME_LITERAL
+ 	{ $literalValue=$s.text; }
+
+ 	| s = HEX_LITERAL
+ 	{ $literalValue=$s.text; }
+
+ 	| s = BOOLEAN_LITERAL
+ 	{ $literalValue=$s.text; }
+
+ 	| s = FLOAT_LITERAL
+ 	{ $literalValue=$s.text; }
+
  ;
 
  identifier returns [String identName]
