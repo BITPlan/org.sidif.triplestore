@@ -21,9 +21,9 @@
 package org.sidif.parser;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -35,6 +35,7 @@ import org.sidif.triplestore.parser.SiDIFParser;
 import org.sidif.triplestore.parser.SiDIFParser.TriplesContext;
 import org.sidif.triplestore.parser.SiDIFParserBaseListener;
 import org.sidif.triplestore.parser.SiDIFTokenLexer;
+import org.sidif.util.SiDIFReader;
 
 import com.bitplan.antlr.LanguageParser;
 
@@ -44,7 +45,7 @@ import com.bitplan.antlr.LanguageParser;
  * @author wf
  *
  */
-public class SiDIFLanguageParser extends LanguageParser {
+public class SiDIFLanguageParser extends LanguageParser implements SiDIFReader {
 
   private SiDIFTokenLexer lexer;
   private SiDIFParser parser;
@@ -90,15 +91,35 @@ public class SiDIFLanguageParser extends LanguageParser {
 
   }
 
-  /**
-   * get a triple Stream for the given siDIFFile
-   * @param siDIFFile
-   * @return the stream of Triples
-   * @throws Exception 
-   */
-  public Stream<Triple> getTripleStream(File siDIFFile) throws Exception {
-    this.setSourceFileName(siDIFFile.getPath());
+  @Override
+  public List<Triple> fromSiDIFText(String sidifText) throws Exception {
+    CharStream in = CharStreams.fromString(sidifText);
+    List<Triple> tripleList=fromCharStream(in);
+    return tripleList;
+  }
+
+  @Override
+  public List<Triple> fromSiDIFFile(File sidifFile) throws Exception {
+    this.setSourceFileName(sidifFile.getPath());
     CharStream in = CharStreams.fromFileName(this.getSourceFileName());
+    List<Triple> tripleList=fromCharStream(in);
+    return tripleList;
+  }
+
+  @Override
+  public List<Triple> fromSiDIFStream(InputStream is) throws Exception {
+    CharStream in = CharStreams.fromStream(is);
+    List<Triple> tripleList=fromCharStream(in);
+    return tripleList;
+  }
+  
+  /**
+   * get the list of triples from the given CharStream
+   * @param in - the CharStream to parse
+   * @return - the list of triples
+   * @throws Exception
+   */
+  public List<Triple> fromCharStream(CharStream in) throws Exception {
     lexer = new SiDIFTokenLexer(in);
     parser = new SiDIFParser(getTokens(lexer));
     TriplesContext triplesContext = parser.triples();
@@ -106,7 +127,7 @@ public class SiDIFLanguageParser extends LanguageParser {
     LinkListener linkListener=new LinkListener();
     walker.walk(linkListener,triplesContext);
     
-    return linkListener.tripleList.stream();
+    return linkListener.tripleList;
   }
 
 }

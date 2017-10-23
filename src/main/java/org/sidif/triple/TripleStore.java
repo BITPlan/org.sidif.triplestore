@@ -20,6 +20,8 @@
  */
 package org.sidif.triple;
 
+import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -30,6 +32,7 @@ import org.sidif.triple.impl.LinkedMultiValueMap;
 import org.sidif.triple.impl.MultiValueMap;
 import org.sidif.triple.impl.TripleImpl;
 import org.sidif.triple.impl.TripleQueryImpl;
+import org.sidif.util.SiDIFReader;
 
 /**
  * as simple ObjectStore
@@ -38,15 +41,16 @@ import org.sidif.triple.impl.TripleQueryImpl;
  *
  */
 public class TripleStore {
-  
+
   /**
    * return a default triple Query for all my triples
+   * 
    * @return the default query
    */
   public TripleQueryImpl query() {
     return new TripleQueryImpl(this);
   }
-  
+
   /**
    * a triple Container
    * 
@@ -259,7 +263,8 @@ public class TripleStore {
   public void add(Triple triple) {
     // FIXME null value handling ...
     if (bySubject.tripleLookup.containsKey(triple.getSubject())) {
-      List<Triple> existingTriples = bySubject.tripleLookup.get(triple.getSubject());
+      List<Triple> existingTriples = bySubject.tripleLookup
+          .get(triple.getSubject());
       for (Triple etriple : existingTriples) {
         if (etriple.getPredicate().equals(triple.getPredicate())
             && etriple.getObject().equals(triple.getObject()))
@@ -270,6 +275,17 @@ public class TripleStore {
     bySubject.add(triple.getSubject(), triple);
     byPredicate.add(triple.getPredicate(), triple);
     byObject.add(triple.getObject(), triple);
+  }
+
+  /**
+   * add all triples from the given collection of triples
+   * 
+   * @param triples
+   */
+  public void addAll(Collection<Triple> triples) {
+    for (Triple triple : triples) {
+      this.add(triple);
+    }
   }
 
   /**
@@ -285,20 +301,21 @@ public class TripleStore {
 
   /**
    * add the given select from the given source TripleStore to me
-   * @param source - the tripleStore to select triples from
+   * 
+   * @param source
+   *          - the tripleStore to select triples from
    * @param subject
    * @param predicate
    * @param object
    */
   public void addSelect(TripleStore source, Object subject, Object predicate,
       Object object) {
-    TripleQuery tripleQuery = source.query().query(subject,
-        predicate, object);
-    for (Triple triple:tripleQuery.getTriples()) {
+    TripleQuery tripleQuery = source.query().query(subject, predicate, object);
+    for (Triple triple : tripleQuery.getTriples()) {
       add(triple);
     }
   }
-  
+
   /**
    * get the list of all myTriples
    * 
@@ -316,6 +333,66 @@ public class TripleStore {
    */
   public int size() {
     return getTriples().size();
+  }
+
+  /**
+   * 
+   * @param tripleList
+   * @return
+   */
+  public static TripleStore fromTripleList(List<Triple> tripleList) {
+    TripleStore tripleStore = new TripleStore();
+    tripleStore.addAll(tripleList);
+    return tripleStore;
+  }
+
+  /**
+   * create a TripleStore from the given file
+   * 
+   * @param reader
+   *          - the SiDIFReader to use
+   * @param file
+   * @return the TripleStore
+   * @throws Exception
+   */
+  public static TripleStore fromSiDIFFile(SiDIFReader reader, File file)
+      throws Exception {
+    List<Triple> tripleList = reader.fromSiDIFFile(file);
+    TripleStore result = TripleStore.fromTripleList(tripleList);
+    return result;
+  }
+
+  /**
+   * create a TripleStore from the given InputStream
+   * 
+   * @param reader
+   *          - the SiDIFReader to use
+   * @param in
+   *          - the InputStream to read from
+   * @return the TripleStore
+   * @throws Exception
+   */
+  public static TripleStore fromSiDIFStream(SiDIFReader reader, InputStream in)
+      throws Exception {
+    List<Triple> tripleList = reader.fromSiDIFStream(in);
+    TripleStore result = TripleStore.fromTripleList(tripleList);
+    return result;
+  }
+
+  /**
+   * create a TripleStore from the given SiDIF Text
+   * 
+   * @param reader
+   *          - the SiDIFReader to use
+   * @param sidif
+   * @return
+   * @throws Exception
+   */
+  public static TripleStore fromSiDIFText(SiDIFReader reader, String sidif)
+      throws Exception {
+    List<Triple> tripleList = reader.fromSiDIFText(sidif);
+    TripleStore result = TripleStore.fromTripleList(tripleList);
+    return result;
   }
 
 }

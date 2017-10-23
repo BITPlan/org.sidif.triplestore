@@ -22,8 +22,9 @@ package org.sidif.util;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.List;
 
-import org.sidif.triple.TripleStore;
+import org.sidif.triple.Triple;
 
 /**
  * generic interface to read a TripleStore from SiDIF
@@ -33,30 +34,30 @@ import org.sidif.triple.TripleStore;
 public interface SiDIFReader {
 
   /**
-   * get a triple Store from the given SiDIF Text
+   * get a a list of triples from the given SiDIF Text
    * 
    * @param sidifText
    * @throws Exception
-   * @return the tripleStore derived form the given sidifText
+   * @return the list of triples derived form the given sidifText
    */
-  public TripleStore fromSiDIFText(String sidifText) throws Exception;
+  public List<Triple> fromSiDIFText(String sidifText) throws Exception;
 
   /**
-   * get a TripleStore from the given SiDIF File
+   * get a list of triples from the given SiDIF File
    * 
    * @param sidifFile
-   * @return a triple Store
+   * @return a a list of triples
    * @throws Exception
    */
-  public TripleStore fromSiDIFFile(File sidifFile) throws Exception;
+  public List<Triple> fromSiDIFFile(File sidifFile) throws Exception;
 
   /**
-   * create a TripleStore from the given SiDIF inputStream
+   * get a a list of triples from the given SiDIF inputStream
    * 
    * @param in
    *          - the inputStream to read from
-   * @return - the tripleStore
+   * @return - the list of triples
    * @throws Exception
    */
-  public TripleStore fromSiDIFStream(InputStream in) throws Exception;
+  public List<Triple> fromSiDIFStream(InputStream in) throws Exception;
 }

@@ -21,13 +21,12 @@
 package org.sidif.util;
 
 import java.io.File;
-import java.io.InputStream;
 
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 import org.sidif.triple.TripleStore;
-import org.sidif.visitor.SiDIFTripleStoreVisitor;
+import org.sidif.visitor.SiDIFTripleListVisitor;
 
 /**
  * builder for TripleStore
@@ -108,45 +107,14 @@ public class TripleStoreBuilder {
   @Option(name = "-if", aliases = { "--inputformat" }, usage = "input format \ndefault: sidif")
   protected String inputformat = "sidif";
   
+  /**
+   * get the SiDIF Reader
+   * @return 
+   */
   public static SiDIFReader getSiDIFReader() {
-    return new SiDIFTripleStoreVisitor();
+    return new SiDIFTripleListVisitor();
   }
 
-  /**
-   * create a TripleStore from the given file
-   * 
-   * @param file
-   * @return the TripleStore
-   * @throws Exception
-   */
-  public static TripleStore fromSiDIFFile(File file) throws Exception {
-    TripleStore result = getSiDIFReader().fromSiDIFFile(file);
-    return result;
-  }
-  
-  /**
-   * create a TripleStore from the given inputstream
-   * @param in
-   * @return the TripleStore
-   * @throws Exception
-   */
-  public TripleStore fromSiDIFStream(InputStream in) throws Exception {
-    TripleStore result = getSiDIFReader().fromSiDIFStream(in);
-    return result;
-  }
-
-  /**
-   * create a TripleStore from the given SiDIF Text
-   * 
-   * @param sidif
-   * @return
-   * @throws Exception
-   */
-  public static TripleStore fromSiDIFText(String sidif) throws Exception {
-    TripleStore result = getSiDIFReader().fromSiDIFText(sidif);
-    return result;
-  }
-  
   /**
    * work on the given input in the given inputformat
    * @param input
@@ -157,10 +125,10 @@ public class TripleStoreBuilder {
     if ("sidif".equals(inputformat)) {
       TripleStore tripleStore;
       if ("-".equals(input)) {
-        tripleStore = fromSiDIFStream(System.in);
+        tripleStore = TripleStore.fromSiDIFStream(getSiDIFReader(),System.in);
       } else {
         File sidifFile=new File(input);
-        tripleStore = fromSiDIFFile(sidifFile);
+        tripleStore = TripleStore.fromSiDIFFile(getSiDIFReader(),sidifFile);
       }
       boolean canonical=true;
       String sidif=SiDIFWriter.asSiDIF(tripleStore, canonical);
@@ -171,7 +139,7 @@ public class TripleStoreBuilder {
         FileUtils.writeStringToFile(outputFile, sidif);
       }
     } else {
-     throw new Exception("unknown inputformat "+inputformat); 
+     throw new Exception("unknown input format "+inputformat); 
     }
   }
 

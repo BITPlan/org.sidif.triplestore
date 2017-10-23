@@ -33,6 +33,7 @@ import org.sidif.triple.impl.TripleImpl;
 import org.sidif.triple.impl.TripleQueryImpl;
 import org.sidif.triple.impl.TripleQueryImpl.TopicType;
 import org.sidif.triple.TripleStore;
+import org.sidif.util.SiDIFReader;
 import org.sidif.util.TripleStoreBuilder;
 import org.sidif.util.TripleStoreDumper;
 
@@ -45,7 +46,7 @@ import org.sidif.util.TripleStoreDumper;
 public class TestTripleStore extends BaseSiDIFTest {
 
   /**
-   * test the multimaps used for the triplestore
+   * test the multimaps used for the triple store
    * attempt to add the same triple twice
    */
   @Test
@@ -192,7 +193,8 @@ public class TestTripleStore extends BaseSiDIFTest {
         "\"Training#sidif\" is sidif of it\n"+
         "ZQuestion needs Properties\n" + 
         "ZAnswer needs Properties";
-    TripleStore tripleStore=TripleStoreBuilder.fromSiDIFText(sidif);
+    SiDIFReader siDIFReader = TripleStoreBuilder.getSiDIFReader();
+    TripleStore tripleStore=TripleStore.fromSiDIFText(siDIFReader, sidif);
     debug=true;
     if (debug) {
       TripleStoreDumper.dump(tripleStore);

@@ -7,8 +7,8 @@ see http://www.sidif.org
 [![Build Status](https://travis-ci.org/BITPlan/org.sidif.triplestore.svg?branch=master)](https://travis-ci.org/BITPlan/org.sidif.triplestore)
 
 ### Documentation
-* [Project pages] (http://bitplan.github.io/org.sidif.triplestore/)
-* [Javadoc] (http://bitplan.github.io/org.sidif.triplestore/apidocs/index.html)
+* [Project pages](http://bitplan.github.io/org.sidif.triplestore/)
+* [Javadoc](http://bitplan.github.io/org.sidif.triplestore/apidocs/index.html)
 
 ### Distribution
 Available at Maven Central see 

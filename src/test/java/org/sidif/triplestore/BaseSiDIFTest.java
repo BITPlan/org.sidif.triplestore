@@ -26,6 +26,7 @@ import java.io.File;
 
 import org.sidif.parser.jjtree.SiDIF;
 import org.sidif.triple.TripleStore;
+import org.sidif.util.SiDIFReader;
 import org.sidif.util.TripleStoreBuilder;
 
 /**
@@ -94,7 +95,8 @@ public class BaseSiDIFTest {
   public TripleStore getTripleStoreFromExample(String exampleName)
       throws Exception {
     File exampleFile = getExampleFile(exampleName);
-    TripleStore tripleStore = TripleStoreBuilder.fromSiDIFFile(exampleFile);
+    SiDIFReader siDIFReader = TripleStoreBuilder.getSiDIFReader();
+    TripleStore tripleStore=TripleStore.fromSiDIFFile(siDIFReader,exampleFile);
     return tripleStore;
   }
 

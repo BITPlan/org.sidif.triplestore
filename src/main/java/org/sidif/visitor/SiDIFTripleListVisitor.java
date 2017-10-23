@@ -22,6 +22,8 @@ package org.sidif.visitor;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.sidif.parser.jjtree.SiDIF;
 import org.sidif.parser.node.Link;
@@ -31,65 +33,65 @@ import org.sidif.parser.node.SiDIFVisitor;
 import org.sidif.parser.node.SimpleNode;
 import org.sidif.parser.node.Value;
 import org.sidif.triple.Triple;
-import org.sidif.triple.TripleStore;
 import org.sidif.triple.impl.ObjectHolder;
+import org.sidif.triple.impl.TripleImpl;
 import org.sidif.util.SiDIFReader;
 
 /**
- * a dump visitor for SiDIF
+ * a visitor for SiDIF that adds triples to a list of Triples
  * 
  * @author wf
  *
  */
-public class SiDIFTripleStoreVisitor implements SiDIFVisitor, SiDIFReader {
+public class SiDIFTripleListVisitor implements SiDIFVisitor, SiDIFReader {
 
   /**
-   * get a triple Store from the given sidifText
+   * get a list of triples from the given sidifText
    * @param sidifText
    * @throws Exception
-   * @return the tripleStore derived form the given sidifText
+   * @return the list of triples derived form the given sidifText
    */
-  public TripleStore fromSiDIFText(String sidifText) throws Exception {
+  public List<Triple> fromSiDIFText(String sidifText) throws Exception {
     SiDIF sidif=SiDIF.fromText(sidifText);
-    TripleStore result=fromSiDIF(sidif);
+    List<Triple> result=fromSiDIF(sidif);
     return result;   
   }
   
   /**
-   * get a TripleStore from the given sidif File
+   * get a list of triples from the given SiDIF File
    * @param sidifFile
-   * @return a triple Store
+   * @return a list of triples 
    * @throws Exception
    */
-  public TripleStore fromSiDIFFile(File sidifFile) throws Exception {
+  public List<Triple> fromSiDIFFile(File sidifFile) throws Exception {
     SiDIF sidif=SiDIF.fromFile(sidifFile);
-    TripleStore result=fromSiDIF(sidif);
+    List<Triple> result=fromSiDIF(sidif);
     return result;
   }
   
   /**
    * create a TripleStore from the given sidif inputStream
    * @param in - the inputStream to read from
-   * @return - the tripleStore
+   * @return - the list of triples 
    * @throws Exception 
    */
-  public TripleStore fromSiDIFStream(InputStream in) throws Exception {
+  public List<Triple> fromSiDIFStream(InputStream in) throws Exception {
     SiDIF sidif=SiDIF.fromStream(in);
-    TripleStore result=fromSiDIF(sidif);
+    List<Triple> result=fromSiDIF(sidif);
     return result;
   }
   
   /**
-   * create a TripleStore from the given sidif Parser
+   * create a list of triples from the given sidif Parser
    * @param sidif
-   * @return the tripleStore
+   * @return the list of triples
    * @throws Exception
    */
-  public static TripleStore fromSiDIF(SiDIF sidif) throws Exception {
-    SiDIFVisitor visitor = new SiDIFTripleStoreVisitor();
-    TripleStore tripleStore = new TripleStore();
-    tripleStore = sidif.visit(visitor, tripleStore);
-    return tripleStore;
+  public static List<Triple> fromSiDIF(SiDIF sidif) throws Exception {
+    SiDIFVisitor visitor = new SiDIFTripleListVisitor();
+    List<Triple> tripleList=new ArrayList<Triple>();
+    sidif.visit(visitor, tripleList);
+    return tripleList;
   }
   
   private Object currentSubject;
@@ -104,12 +106,14 @@ public class SiDIFTripleStoreVisitor implements SiDIFVisitor, SiDIFReader {
   }
 
   @Override
+  @SuppressWarnings({  "rawtypes" })
   public Object visit(SimpleNode node, ObjectHolder data) {
     node.childrenAccept(this, data);
     return data;
   }
 
   @Override
+  @SuppressWarnings({  "rawtypes" })
   public Object visit(Links node, ObjectHolder data) {
     node.childrenAccept(this, data);
     return data;
@@ -130,9 +134,10 @@ public class SiDIFTripleStoreVisitor implements SiDIFVisitor, SiDIFReader {
     return subject;
   }
 
+  @SuppressWarnings({ "unchecked", "rawtypes" })
   @Override
   public Object visit(Link node, ObjectHolder data) {
-    TripleStore TripleStore = (TripleStore) data.getObject();
+    List<Triple> tripleList = (List<Triple>) data.getObject();
     Object subject = resolve(node.getSubject());
     Object target = resolve(node.getTarget());
     org.sidif.triple.Value<Object> value=new org.sidif.triple.Value<Object>();
@@ -140,7 +145,8 @@ public class SiDIFTripleStoreVisitor implements SiDIFVisitor, SiDIFReader {
     value.literal=false;
     value.type="Reference";
     Object link = node.getLink();
-    Triple triple = TripleStore.add(subject, link, value);
+    Triple triple = new TripleImpl(subject, link, value);
+    tripleList.add(triple);
     if (link.equals("isA")) {
       setCurrentSubject(subject);
     }
@@ -149,16 +155,19 @@ public class SiDIFTripleStoreVisitor implements SiDIFVisitor, SiDIFReader {
   }
 
   @Override
+  @SuppressWarnings({ "rawtypes" })
   public Object visit(Literal node, ObjectHolder data) {
     return data;
   }
 
   @Override
+  @SuppressWarnings({ "unchecked", "rawtypes" })
   public Object visit(Value node, ObjectHolder data) {
-    TripleStore TripleStore = (TripleStore) data.getObject();
+    List<Triple> tripleList= (List<Triple>) data.getObject();
     Object concept = resolve(node.getConcept());
     Object object=node.getLiteral().getLiteralValue();
-    Triple triple = TripleStore.add(concept, node.getProperty(), object);
+    Triple triple = new TripleImpl(concept, node.getProperty(), object);
+    tripleList.add(triple);
     setCurrentSubject(concept);
     node.childrenAccept(this, data);
     return data;
