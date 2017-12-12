@@ -21,6 +21,7 @@
 package org.sidif.util;
 
 import java.io.File;
+import java.io.InputStream;
 
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
@@ -116,6 +117,28 @@ public class TripleStoreBuilder {
   }
 
   /**
+   * get the TripleStore from the given File
+   * @param sidifFile
+   * @return the TripleStore
+   * @throws Exception
+   */
+  public static TripleStore fromFile(File sidifFile) throws Exception {
+    TripleStore tripleStore = TripleStore.fromSiDIFFile(getSiDIFReader(),sidifFile);
+    return tripleStore;
+  }
+  
+  /**
+   * get the tripleStore from the given input Stream
+   * @param in
+   * @return - the TripleStore
+   * @throws Exception
+   */
+  public static TripleStore fromStream(InputStream in) throws Exception {
+    TripleStore tripleStore = TripleStore.fromSiDIFStream(getSiDIFReader(),in);
+    return tripleStore;
+  }
+  
+  /**
    * work on the given input in the given inputformat
    * @param input
    * @param inputformat
@@ -125,10 +148,10 @@ public class TripleStoreBuilder {
     if ("sidif".equals(inputformat)) {
       TripleStore tripleStore;
       if ("-".equals(input)) {
-        tripleStore = TripleStore.fromSiDIFStream(getSiDIFReader(),System.in);
+        tripleStore = fromStream(System.in);
       } else {
         File sidifFile=new File(input);
-        tripleStore = TripleStore.fromSiDIFFile(getSiDIFReader(),sidifFile);
+        tripleStore = fromFile(sidifFile);
       }
       boolean canonical=true;
       String sidif=SiDIFWriter.asSiDIF(tripleStore, canonical);
