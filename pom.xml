@@ -7,7 +7,7 @@
 	<artifactId>org.sidif.triplestore</artifactId>
 	<packaging>jar</packaging>
 	<name>org.sidif.triplestore</name>
-	<version>0.0.7</version>
+	<version>0.0.8</version>
 	<description>Simple Data Interchange Format (SiDIF) and Triplestore see http://www.sidif.org</description>
 	<url>https://github.com/BITPlan/org.sidif.triplestore</url>
 	<licenses>
