@@ -25,7 +25,7 @@ package org.sidif.triple;
  * "as it is based upon the idea of making statements about resources 
  * (in particular web resources) in the form of subject–predicate–object expressions. "
  * 
- * this is a more generic Triple concept that does not dependend on the technical details
+ * this is a more generic Triple concept that does not depend on the technical details
  * of RDF
  */
 public interface Triple {

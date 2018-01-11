@@ -54,7 +54,7 @@ public class SiDIFLanguageParser extends LanguageParser implements SiDIFReader {
   protected ParseTree getRootContext(Parser parser) {
     if (!(parser instanceof SiDIFParser)) {
       throw new RuntimeException(
-          "wrong parser type for getRootContext, expected Rule but got "
+          "wrong parser type for getRootContext, expected SiDIFParser but got "
               + parser.getClass().getName());
     } else {
       SiDIFParser sidifParser = (SiDIFParser) parser;
