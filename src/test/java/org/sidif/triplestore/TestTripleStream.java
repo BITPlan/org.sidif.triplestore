@@ -94,7 +94,7 @@ public class TestTripleStream extends BaseSiDIFTest {
     int index = 0;
     int limit = expectedSize.length;
     int total = 0;
-    debug = false;
+    // debug = false;
     for (String example : super.getAllExampleNames()) {
       File sidifFile = this.getExampleFile(example);
       SiDIFReader siDIFReader = new SiDIFLanguageParser();
@@ -108,11 +108,11 @@ public class TestTripleStream extends BaseSiDIFTest {
       assertEquals("" + index + ":" + example, expectedSize[index],
           tripleStream2.count());
       List<String> diffs = checkEquals(tripleList, tripleList2);
-      if (debug)
+      if (isDebug())
         System.out.println(String.format("%2d: %3d diffs for %s", index + 1,
             diffs.size(), example));
       total += diffs.size();
-      if (debug)
+      if (isDebug())
         for (String diff : diffs) {
           System.out.println(diff);
         }
@@ -120,7 +120,8 @@ public class TestTripleStream extends BaseSiDIFTest {
       if (index > limit)
         break;
     }
-    System.out.println(String.format("found %4d differences", total));
+    if (isDebug())
+      System.out.println(String.format("found %4d differences", total));
     assertEquals(0, total);
   }
 }

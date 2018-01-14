@@ -58,7 +58,7 @@ public class TestSiDIFParser extends BaseSiDIFTest {
     SiDIF sidif = new SiDIF(reader);
     SiDIFVisitor visitor = new SiDIFDumpVisitor();
     String dump = sidif.visit(visitor, "");
-    if (debug)
+    if (isDebug())
       System.out.println(dump);
   }
 
@@ -75,7 +75,7 @@ public class TestSiDIFParser extends BaseSiDIFTest {
             .replace("sidif", "dump"));
         FileUtils.writeStringToFile(dumpFile, dump);
         String expected = FileUtils.readFileToString(dumpFile);
-        if (debug && dump.length() < maxLength) {
+        if (isDebug() && dump.length() < maxLength) {
           System.out.println(dump);
         }
         assertEquals(example, expected, dump);
@@ -109,7 +109,7 @@ public class TestSiDIFParser extends BaseSiDIFTest {
     for (String example : getAllExampleNames()) {
       TripleStore tripleStore = getTripleStoreFromExample(example);
       int storeSize = tripleStore.size();
-      if (debug) {
+      if (isDebug()) {
         System.out.println(example + " (" + storeSize + ")");
         TripleStoreDumper.dump(tripleStore);
       }
@@ -121,19 +121,19 @@ public class TestSiDIFParser extends BaseSiDIFTest {
   @Test
   public void testSelect() throws Exception {
     TripleStore tripleStore = getTripleStoreFromExample("vcard");
-    if (debug)
+    if (isDebug())
       TripleStoreDumper.dump(tripleStore);
     TripleQuery cardTriples = tripleStore.query().query(null, "isA", "VCard");
     // TripleContainer cardTriples = select(tripleStore,select);
     int cardSize = cardTriples.size();
     assertEquals(3, cardSize);
     for (Triple cardTriple : cardTriples.getTriples()) {
-      if (debug)
+      if (isDebug())
         TripleStoreDumper.dump(cardTriple, "card: ");
       TripleImpl propertySelect = new TripleImpl(cardTriple.getSubject(), null, null);
       TripleQuery cardProperties = tripleStore.query().queryTriple(propertySelect);
       for (Triple cardProperty : cardProperties.getTriples()) {
-        if (debug)
+        if (isDebug())
           TripleStoreDumper.dump(cardProperty, "");
       }
     }
@@ -147,7 +147,7 @@ public class TestSiDIFParser extends BaseSiDIFTest {
   @Test
   public void testUTF8() throws Exception {
     TripleStore tripleStore = this.getTripleStoreFromExample("utf8");
-    if (debug)
+    if (isDebug())
       TripleStoreDumper.dump(tripleStore);
     List<Triple> triples = tripleStore.query().select(null, "name", null);
     assertEquals(1, triples.size());

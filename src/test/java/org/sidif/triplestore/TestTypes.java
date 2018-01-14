@@ -40,13 +40,13 @@ public class TestTypes extends BaseSiDIFTest {
   public void testTypes() throws Exception {
     TripleStore tripleStore = getTripleStoreFromExample("typetest");
     // debug=true;
-    if (debug)
+    if (isDebug())
       TripleStoreDumper.dump(tripleStore);
     int tripleStoreSize = tripleStore.size();
     assertEquals(62, tripleStoreSize);
     int literals = 0;
     for (Triple triple : tripleStore.getTriples()) {
-      if (debug)
+      if (isDebug())
         TripleStoreDumper.dump(triple, "");
       Object object = triple.getObject();
       if (object != null) {
@@ -57,7 +57,7 @@ public class TestTypes extends BaseSiDIFTest {
           literals++;
       }
     }
-    if (debug)
+    if (isDebug())
       System.out.println("found " + literals + " literals");
     assertEquals(16, literals);
   }

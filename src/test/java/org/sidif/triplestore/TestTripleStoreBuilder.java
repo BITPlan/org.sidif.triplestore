@@ -74,7 +74,7 @@ public class TestTripleStoreBuilder extends BaseSiDIFTest {
     }
     errText = errStream.toString();
     outText = outStream.toString();
-    if (debug) {
+    if (isDebug()) {
       LOGGER.log(Level.INFO, "stderr:\n" + errText);
       LOGGER.log(Level.INFO, "stdout:\n" + outText);
     }
@@ -99,7 +99,7 @@ public class TestTripleStoreBuilder extends BaseSiDIFTest {
     int expectedExit = 0;
     int sleepTime = 0;
     testTripleStoreBuilder(args, expectedExit, sleepTime);
-    if (debug)
+    if (isDebug())
       System.out.println(outText);
     String expected = "\"UTF-8 test\" is comment of SiDIF\n"
         + "Tokyo isA City\n" + "\"東京\" is name of Tokyo";

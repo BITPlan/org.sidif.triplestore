@@ -63,7 +63,7 @@ public class TestGraph extends BaseSiDIFTest {
     int size = tripleStore.size();
     assertEquals(7,size);
     // debug=true;
-    if (debug) {
+    if (isDebug()) {
       System.out.println(size);
       TripleStoreDumper.dump(tripleStore);
     }
@@ -83,7 +83,7 @@ public class TestGraph extends BaseSiDIFTest {
   @Test
   public void testFamily() throws Exception {
     TripleStore tripleStore=getTripleStoreFromExample("familyTree");
-    if (debug)
+    if (isDebug())
       TripleStoreDumper.dump(tripleStore);
     int size = tripleStore.size();
     assertEquals(51,size);

@@ -59,7 +59,7 @@ public class TestTripleStore extends BaseSiDIFTest {
     tripleStore.add(triple2);
     tripleStore.add(triple3);
     // debug=true;
-    if (debug) {
+    if (isDebug()) {
       TripleStoreDumper.dump(tripleStore);
       System.out.println(tripleStore.size());
       System.out.println(tripleStore.bySubject.size());
@@ -82,13 +82,13 @@ public class TestTripleStore extends BaseSiDIFTest {
   public void testSelect() throws Exception {
     TripleStore tripleStore = super.getTripleStoreFromExample("triple1");
     // debug=true;
-    if (debug) {
+    if (isDebug()) {
       TripleStoreDumper.dump(tripleStore);
     }
     List<Triple> select1 = tripleStore.query().select("s", null, null);
     assertEquals(4, select1.size());
     Set<Object> os1 = tripleStore.byPredicate.getObjectSet("p1");
-    if (debug) {
+    if (isDebug()) {
       for (Object o : os1) {
         System.out.println(o.toString());
       }
@@ -116,11 +116,11 @@ public class TestTripleStore extends BaseSiDIFTest {
     TripleStore tripleStore = getTripleStoreFromExample("triple1");
     TripleQueryImpl query = tripleStore.query();
     // debug=true;
-    if (debug) {
+    if (isDebug()) {
       TripleStoreDumper.dump(tripleStore);
     }
     TripleQuery query1 = query.query("s", null, null);
-    if (debug) {
+    if (isDebug()) {
       System.out.println("query1");
       TripleStoreDumper.dump(query1, "");
     }
@@ -141,30 +141,30 @@ public class TestTripleStore extends BaseSiDIFTest {
     TripleQuery query = tripleStore.query();
     TripleQuery query1 = query.query("s", null, null);
     // debug = true;
-    if (debug) {
+    if (isDebug()) {
       System.out.println("query1");
       TripleStoreDumper.dump(query1, "");
     }
     TripleQuery query2 = query.query(null, "p1", null);
-    if (debug) {
+    if (isDebug()) {
       System.out.println("query2");
       TripleStoreDumper.dump(query, "");
     }
     TripleQuery intersect = query1.intersect(query2);
-    if (debug) {
+    if (isDebug()) {
       System.out.println("intersection query1,query2:");
       TripleStoreDumper.dump(intersect, "");
     }
     assertEquals(2, intersect.size());
     TripleQuery complement = query2.complement(query1);
-    if (debug) {
+    if (isDebug()) {
       System.out.println("complement query2,query1:");
       TripleStoreDumper.dump(complement, "");
     }
     assertEquals(3, complement.size());
     TripleQuery union = query.query(null, null, "o2").union(
         query.query(null, null, "o1"));
-    if (debug) {
+    if (isDebug()) {
       System.out.println("union object query o2 - o1");
       TripleStoreDumper.dump(union, "");
     }
@@ -176,7 +176,7 @@ public class TestTripleStore extends BaseSiDIFTest {
   public void testHasVersusIsOf() throws Exception {
     TripleStore tripleStore = getTripleStoreFromExample("roles");
     //debug=true;
-    if (debug) {
+    if (isDebug()) {
       TripleStoreDumper.dump(tripleStore);
     }
     Triple triple = tripleStore.query().selectSingle("properties","source",null);
@@ -195,8 +195,8 @@ public class TestTripleStore extends BaseSiDIFTest {
         "ZAnswer needs Properties";
     SiDIFReader siDIFReader = TripleStoreBuilder.getSiDIFReader();
     TripleStore tripleStore=TripleStore.fromSiDIFText(siDIFReader, sidif);
-    debug=true;
-    if (debug) {
+    // debug=true;
+    if (isDebug()) {
       TripleStoreDumper.dump(tripleStore);
     }
     TripleQuery query=tripleStore.query();

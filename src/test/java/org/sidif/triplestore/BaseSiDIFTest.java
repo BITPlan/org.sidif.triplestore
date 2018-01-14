@@ -43,7 +43,15 @@ public class BaseSiDIFTest {
       .getLogger("org.sidif.triplestore");
   
   // set to true for debugging
-  boolean debug = false;
+  private static boolean debug = false;
+  
+  public static boolean isDebug() {
+    return debug;
+  }
+
+  public static void setDebug(boolean pDebug) {
+    debug = pDebug;
+  }
 
   /**
    * get all example Names
@@ -66,7 +74,7 @@ public class BaseSiDIFTest {
     File exampleFile = new File("src/test/resources/sidif/" + exampleName
         + ".sidif");
     assertTrue(exampleName+" should exist",exampleFile.exists());
-    if (debug) {
+    if (isDebug()) {
       System.out.println("reading " + exampleFile.getName());
     }
     return exampleFile;

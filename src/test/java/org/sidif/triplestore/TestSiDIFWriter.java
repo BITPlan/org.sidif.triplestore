@@ -104,7 +104,7 @@ public class TestSiDIFWriter extends BaseSiDIFTest {
 				}
 				String sidif = FileUtils.readFileToString(inputFile);
 				List<String> sidifLines = FileUtils.readLines(inputFile);
-				if (debug)
+				if (isDebug())
 					System.out.println(sidifLines.size());
 				TripleStore tripleStore = this.getTripleStoreFromExample(exampleName);
 				boolean canonical = true;
@@ -117,7 +117,7 @@ public class TestSiDIFWriter extends BaseSiDIFTest {
 				String[] sidifWriteLinesArray = sidifWrite.split("\n");
 				List<String> sidifWriteLines = new ArrayList<String>(
 						Arrays.asList(sidifWriteLinesArray));
-				if (debug) {
+				if (isDebug()) {
 					System.out.println(sidifWriteLines.size());
 					System.out.println(sidifWrite);
 				}

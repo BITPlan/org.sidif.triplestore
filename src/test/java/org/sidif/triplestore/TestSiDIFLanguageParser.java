@@ -67,7 +67,7 @@ public class TestSiDIFLanguageParser extends BaseTest {
         "http://www.bitplan.com is exampleValue of IRI",
         "https://semantic-mediawiki.org/wiki/Help:List_of_datatypes is example of IRI"
      };
-    
+    super.debug=BaseSiDIFTest.isDebug();
     this.checkgui=true;
     for (String sidif : sidifs) {
       LanguageParser lparser = getParser();
@@ -81,8 +81,8 @@ public class TestSiDIFLanguageParser extends BaseTest {
    * test parse ability of SiDIF files in examples directory
    */
   public void testSiDIFSamples() throws Exception {
+    super.debug=BaseSiDIFTest.isDebug();
     File rootDir = new File("src/test/resources");
-    debug=false;
     String[] extensions = { ".sidif" };
     checkgui = false;
     super.checkTree=false;
