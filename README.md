@@ -14,7 +14,7 @@ see http://www.sidif.org
 ### Distribution
 Available at Maven Central see 
 
-http://search.maven.org/#artifactdetails|com.bitplan|org.sidif.triplestore|0.0.8|jar
+http://search.maven.org/#artifactdetails|com.bitplan|org.sidif.triplestore|0.0.9|jar
 
 Maven dependency:
 
@@ -22,7 +22,7 @@ Maven dependency:
 <dependency>
     <groupId>com.bitplan</groupId>
     <artifactId>org.sidif.triplestore</artifactId>
-    <version>0.0.8</version>
+    <version>0.0.9</version>
 </dependency>
 ```
 
@@ -35,4 +35,4 @@ Maven dependency:
 * 0.0.6 - 2017-05-24: fixes #3
 * 0.0.7 - 2017-10-15: refactors to use ANTLR parser
 * 0.0.8 - 2018-01-14: improves test handling 
-          
+* 0.0.9 - 2018-01-14: fixes ANTLR TreeViewer dependency

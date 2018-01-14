@@ -7,7 +7,7 @@
 	<artifactId>org.sidif.triplestore</artifactId>
 	<packaging>jar</packaging>
 	<name>org.sidif.triplestore</name>
-	<version>0.0.8</version>
+	<version>0.0.9</version>
 	<description>Simple Data Interchange Format (SiDIF) and Triplestore see http://www.sidif.org</description>
 	<url>https://github.com/BITPlan/org.sidif.triplestore</url>
 	<licenses>
@@ -42,7 +42,7 @@
 		<!-- Dependency versions -->
 		<junit4.version>4.12</junit4.version>
 		<args4j.version>2.0.29</args4j.version>
-		<antlr.version>4.7</antlr.version>
+		<antlr.version>4.7.1</antlr.version>
 	</properties>
 	<dependencies>
 		<!-- JUnit testing -->
@@ -65,19 +65,32 @@
 			<version>1.3</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- antlr runtime and tools -->
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr4</artifactId>
+			<version>${antlr.version}</version>
+		</dependency>
 		<!-- BITPlan antlr library -->
 		<dependency>
 			<groupId>com.bitplan.antlr</groupId>
 			<artifactId>com.bitplan.antlr</artifactId>
-			<version>0.0.2</version>
+			<version>0.0.6</version>
 		</dependency>
 		<dependency>
 			<groupId>com.bitplan.antlr</groupId>
 			<artifactId>com.bitplan.antlr</artifactId>
-			<version>0.0.2</version>
+			<version>0.0.5</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+
 		<!-- args4j command line utility -->
 		<dependency>
 			<groupId>args4j</groupId>
@@ -137,7 +150,7 @@
 			<plugin>
 				<groupId>org.antlr</groupId>
 				<artifactId>antlr4-maven-plugin</artifactId>
-				<version>4.7</version>
+				<version>4.7.1</version>
 				<configuration>
 					<!-- basically this is the default setting -->
 					<sourceDirectory>src/main/antlr4</sourceDirectory>
@@ -285,7 +298,7 @@
 			<plugin>
 				<groupId>org.sonatype.plugins</groupId>
 				<artifactId>nexus-staging-maven-plugin</artifactId>
-				<version>1.6.3</version>
+				<version>1.6.8</version>
 				<extensions>true</extensions>
 				<configuration>
 					<serverId>ossrh</serverId>
