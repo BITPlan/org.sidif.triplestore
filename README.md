@@ -5,6 +5,7 @@ see http://www.sidif.org
 
 ## Project
 [![Build Status](https://travis-ci.org/BITPlan/org.sidif.triplestore.svg?branch=master)](https://travis-ci.org/BITPlan/org.sidif.triplestore)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.bitplan/org.sidif.triplestore/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.bitplan/org.sidif.triplestore)
 
 ### Documentation
 * [Project pages](http://bitplan.github.io/org.sidif.triplestore/)
@@ -13,7 +14,7 @@ see http://www.sidif.org
 ### Distribution
 Available at Maven Central see 
 
-http://search.maven.org/#artifactdetails|com.bitplan|org.sidif.triplestore|0.0.7|jar
+http://search.maven.org/#artifactdetails|com.bitplan|org.sidif.triplestore|0.0.8|jar
 
 Maven dependency:
 
@@ -21,7 +22,7 @@ Maven dependency:
 <dependency>
     <groupId>com.bitplan</groupId>
     <artifactId>org.sidif.triplestore</artifactId>
-    <version>0.0.7</version>
+    <version>0.0.8</version>
 </dependency>
 ```
 
@@ -33,4 +34,5 @@ Maven dependency:
 * 0.0.5 - 2016-11-15: fixes #2
 * 0.0.6 - 2017-05-24: fixes #3
 * 0.0.7 - 2017-10-15: refactors to use ANTLR parser
+* 0.0.8 - 2018-01-14: improves test handling 
           
