@@ -11,6 +11,7 @@
 ### Documentation
 * [com.bitplan.simplerest Project pages](https://BITPlan.github.io/org.sidif.triplestore)
 * [Javadoc](https://BITPlan.github.io/org.sidif.triplestore/apidocs/index.html)
+* [Test-Report](https://BITPlan.github.io/org.sidif.triplestore/surefire-report.html)
 
 ### Maven dependency
 
