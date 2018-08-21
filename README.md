@@ -9,6 +9,7 @@
 [![BITPlan](http://wiki.bitplan.com/images/wiki/thumb/3/38/BITPlanLogoFontLessTransparent.png/198px-BITPlanLogoFontLessTransparent.png)](http://www.bitplan.com)
 
 ### Documentation
+* [Wiki](http://wiki.bitplan.com/index.php/SiDIF-TripleStore)
 * [com.bitplan.simplerest Project pages](https://BITPlan.github.io/org.sidif.triplestore)
 * [Javadoc](https://BITPlan.github.io/org.sidif.triplestore/apidocs/index.html)
 * [Test-Report](https://BITPlan.github.io/org.sidif.triplestore/surefire-report.html)
