@@ -1,16 +1,16 @@
-### com.bitplan.simplerest
+### org.sidif.triplestore
 [Simple Data Interchange Format (SiDIF) and Triplestore see http://www.sidif.org](http://wiki.bitplan.com/index.php/SiDIF-TripleStore) 
 
-[![Travis (.org)](https://img.shields.io/travis/BITPlan/com.bitplan.simplerest.svg)](https://travis-ci.org/BITPlan/com.bitplan.simplerest)
+[![Travis (.org)](https://img.shields.io/travis/BITPlan/org.sidif.triplestore.svg)](https://travis-ci.org/BITPlan/org.sidif.triplestore)
 [![Maven Central](https://img.shields.io/maven-central/v/com.bitplan/org.sidif.triplestore.svg)](https://search.maven.org/artifact/com.bitplan/org.sidif.triplestore/0.0.9/jar)
-[![GitHub issues](https://img.shields.io/github/issues/BITPlan/com.bitplan.simplerest.svg)](https://github.com/BITPlan/com.bitplan.simplerest/issues)
-[![GitHub issues](https://img.shields.io/github/issues-closed/BITPlan/com.bitplan.simplerest.svg)](https://github.com/BITPlan/com.bitplan.simplerest/issues/?q=is%3Aissue+is%3Aclosed)
-[![GitHub](https://img.shields.io/github/license/BITPlan/com.bitplan.simplerest.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![GitHub issues](https://img.shields.io/github/issues/BITPlan/org.sidif.triplestore.svg)](https://github.com/BITPlan/org.sidif.triplestore/issues)
+[![GitHub issues](https://img.shields.io/github/issues-closed/BITPlan/org.sidif.triplestore.svg)](https://github.com/BITPlan/org.sidif.triplestore/issues/?q=is%3Aissue+is%3Aclosed)
+[![GitHub](https://img.shields.io/github/license/BITPlan/org.sidif.triplestore.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![BITPlan](http://wiki.bitplan.com/images/wiki/thumb/3/38/BITPlanLogoFontLessTransparent.png/198px-BITPlanLogoFontLessTransparent.png)](http://www.bitplan.com)
 
 ### Documentation
 * [Wiki](http://wiki.bitplan.com/index.php/SiDIF-TripleStore)
-* [com.bitplan.simplerest Project pages](https://BITPlan.github.io/org.sidif.triplestore)
+* [org.sidif.triplestore Project pages](https://BITPlan.github.io/org.sidif.triplestore)
 * [Javadoc](https://BITPlan.github.io/org.sidif.triplestore/apidocs/index.html)
 * [Test-Report](https://BITPlan.github.io/org.sidif.triplestore/surefire-report.html)
 ### Maven dependency
@@ -28,8 +28,8 @@ Maven dependency
 
 ### How to build
 ```
-git clone https://github.com/BITPlan/com.bitplan.simplerest
-cd com.bitplan.simplerest
+git clone https://github.com/BITPlan/org.sidif.triplestore
+cd org.sidif.triplestore
 mvn install
 ```
 ## Version history

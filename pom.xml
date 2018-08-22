@@ -18,7 +18,7 @@
 	<description>Simple Data Interchange Format (SiDIF) and Triplestore see http://www.sidif.org</description>
 	<properties>
 		<!-- for parent pom to work -->
-		<github.project>com.bitplan.simplerest</github.project>
+		<github.project>org.sidif.triplestore</github.project>
 		<!-- for README.md generation -->
 		<documentation.wiki>http://wiki.bitplan.com/index.php/SiDIF-TripleStore</documentation.wiki>
 		<!-- Dependency versions -->
