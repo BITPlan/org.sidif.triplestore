@@ -1,7 +1,9 @@
-# 
 # this is a java project using maven
 language: 
   java
+# make sure we use a proper Java version and not some Oracle horror
+jdk:
+  - openjdk8
 
 # switch off gpg handling
 # and split install and test phase of maven since xvfb will only
