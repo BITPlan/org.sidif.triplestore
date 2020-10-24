@@ -68,18 +68,15 @@
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>2.6</version>
 		</dependency>
-
 		<!-- args4j command line utility -->
 		<dependency>
 			<groupId>args4j</groupId>
 			<artifactId>args4j</artifactId>
-			<version>${args4j.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
-	<pluginManagement>
+
 		<plugins>
 			<!-- jar creation -->
 			<plugin>
@@ -186,7 +183,9 @@
 					</execution>
 				</executions>
 			</plugin>
-	
+		</plugins>
+		<pluginManagement>
+			<plugins>
 				<!--This plugin's configuration is used to store Eclipse m2e settings 
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
