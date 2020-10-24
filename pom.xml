@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>com.bitplan.pom</groupId>
 		<artifactId>com.bitplan.pom</artifactId>
-		<version>0.0.9</version>
+		<version>0.0.34</version>
 		<relativePath>../com.bitplan.pom/pom.xml</relativePath>
 	</parent>
 	<groupId>com.bitplan</groupId>
@@ -31,7 +31,6 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit4.version}</version>
 			<scope>test</scope>
 			<exclusions>
 				<exclusion>
@@ -44,7 +43,6 @@
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-all</artifactId>
-			<version>1.3</version>
 			<scope>test</scope>
 		</dependency>
 		<!-- antlr runtime and tools -->
@@ -57,12 +55,12 @@
 		<dependency>
 			<groupId>com.bitplan.antlr</groupId>
 			<artifactId>com.bitplan.antlr</artifactId>
-			<version>0.0.6</version>
+			<version>0.0.8</version>
 		</dependency>
 		<dependency>
 			<groupId>com.bitplan.antlr</groupId>
 			<artifactId>com.bitplan.antlr</artifactId>
-			<version>0.0.5</version>
+			<version>0.0.8</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
