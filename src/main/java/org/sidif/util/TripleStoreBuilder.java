@@ -36,7 +36,7 @@ import org.sidif.visitor.SiDIFTripleListVisitor;
  *
  */
 public class TripleStoreBuilder {
-  public static final String VERSION = "0.0.7";
+  public static final String VERSION = "0.0.9";
   public static boolean testMode = false;
 
   private CmdLineParser parser;
@@ -128,6 +128,17 @@ public class TripleStoreBuilder {
   }
   
   /**
+   * create a TripleStore from the given sidifText
+   * @param sidifText
+   * @return the tripleStore
+   * @throws Exception 
+   */
+  public static TripleStore fromSiDIFText(String sidifText) throws Exception {
+    TripleStore tripleStore = TripleStore.fromSiDIFText(getSiDIFReader(),sidifText);
+    return tripleStore;
+  }
+  
+  /**
    * get the tripleStore from the given input Stream
    * @param in
    * @return - the TripleStore
@@ -213,5 +224,6 @@ public class TripleStoreBuilder {
     if (!testMode && result != 0)
       System.exit(result);
   }
+
 
 }
