@@ -36,7 +36,7 @@ import org.sidif.visitor.SiDIFTripleListVisitor;
  *
  */
 public class TripleStoreBuilder {
-  public static final String VERSION = "0.0.9";
+  public static final String VERSION = "0.0.10";
   public static boolean testMode = false;
 
   private CmdLineParser parser;

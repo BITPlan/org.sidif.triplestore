@@ -8,3 +8,4 @@
 * 0.0.7 - 2017-10-15: refactors to use ANTLR parser
 * 0.0.8 - 2018-01-14: improves test handling 
 * 0.0.9 - 2018-01-14: fixes ANTLR TreeViewer dependency
+* 0.0.10 - 2020-10-25: refactors to integrate with com.bitplan.wikitask

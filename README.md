@@ -2,7 +2,7 @@
 [Simple Data Interchange Format (SiDIF) and Triplestore see http://www.sidif.org](http://wiki.bitplan.com/index.php/SiDIF-TripleStore)
 
 [![Travis (.org)](https://img.shields.io/travis/BITPlan/org.sidif.triplestore.svg)](https://travis-ci.org/BITPlan/org.sidif.triplestore)
-[![Maven Central](https://img.shields.io/maven-central/v/com.bitplan/org.sidif.triplestore.svg)](https://search.maven.org/artifact/com.bitplan/org.sidif.triplestore/0.0.9/jar)
+[![Maven Central](https://img.shields.io/maven-central/v/com.bitplan/org.sidif.triplestore.svg)](https://search.maven.org/artifact/com.bitplan/org.sidif.triplestore/0.0.10/jar)
 
 [![GitHub issues](https://img.shields.io/github/issues/BITPlan/org.sidif.triplestore.svg)](https://github.com/BITPlan/org.sidif.triplestore/issues)
 [![GitHub issues](https://img.shields.io/github/issues-closed/BITPlan/org.sidif.triplestore.svg)](https://github.com/BITPlan/org.sidif.triplestore/issues/?q=is%3Aissue+is%3Aclosed)
@@ -22,11 +22,11 @@ Maven dependency
 <dependency>
   <groupId>com.bitplan</groupId>
   <artifactId>org.sidif.triplestore</artifactId>
-  <version>0.0.9</version>
+  <version>0.0.10</version>
 </dependency>
 ```
 
-[Current release at repo1.maven.org](https://repo1.maven.org/maven2/com/bitplan/org.sidif.triplestore/0.0.9/)
+[Current release at repo1.maven.org](https://repo1.maven.org/maven2/com/bitplan/org.sidif.triplestore/0.0.10/)
 
 ### How to build
 ```
@@ -44,3 +44,4 @@ mvn install
 * 0.0.7 - 2017-10-15: refactors to use ANTLR parser
 * 0.0.8 - 2018-01-14: improves test handling 
 * 0.0.9 - 2018-01-14: fixes ANTLR TreeViewer dependency
+* 0.0.10 - 2020-10-25: refactors to integrate with com.bitplan.wikitask

@@ -14,7 +14,7 @@
 	<artifactId>org.sidif.triplestore</artifactId>
 	<packaging>jar</packaging>
 	<name>org.sidif.triplestore</name>
-	<version>0.0.9</version>
+	<version>0.0.10</version>
 	<description>Simple Data Interchange Format (SiDIF) and Triplestore see http://www.sidif.org</description>
 	<properties>
 		<!-- for parent pom to work -->
