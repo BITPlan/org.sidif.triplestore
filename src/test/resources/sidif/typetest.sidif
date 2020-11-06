@@ -1,8 +1,7 @@
 "
  Test supported basetypes for SiDIF
   see http://www.sidif.org
-"
-is commment of SiDIF
+" is commment of SiDIF
 Metamodel isA Context
 "
 Metamodel level
