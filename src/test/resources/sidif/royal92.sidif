@@ -8592,7 +8592,6 @@ Edward_Borough is parentOf of F329
 Edward_Borough isA Person
 "I862" is id of it
 "Edward /Borough/" is name of it
-1533-04-00 is died of it
 1533 is yearDied of it
 4 is monthDied of it
 "male" is sex of it
@@ -9550,7 +9549,6 @@ Edward is childOf of F369
 Edward isA Person
 "I986" is id of it
 "Edward" is name of it
-1473-12-00 is born of it
 1473 is yearBorn of it
 12 is monthBorn of it
 "Middleham Castle,Yorkshire,England" is birthPlace of it
@@ -11769,7 +11767,6 @@ Edward isA Person
 1332 is yearBorn of it
 6 is monthBorn of it
 "Woodstock" is birthPlace of it
-1382-10-00 is died of it
 1382 is yearDied of it
 10 is monthDied of it
 "London" is diedAt of it
@@ -11779,7 +11776,6 @@ Edward is childOf of F451
 Edward isA Person
 "I1233" is id of it
 "Joan (Joanna)" is name of it
-1335-02-00 is born of it
 1335 is yearBorn of it
 2 is monthBorn of it
 "Woodstock" is birthPlace of it
@@ -13225,7 +13221,6 @@ Eleanor_of_Aquitaine isA Person
 1152 is yearBorn of it
 8 is monthBorn of it
 "Normandy,England" is birthPlace of it
-1156-04-00 is died of it
 1156 is yearDied of it
 4 is monthDied of it
 "Wallingford,Castle,Berkshire,England" is diedAt of it
@@ -13440,7 +13435,6 @@ Henry_I_Beauclerc is childOf of F505
 Henry_I_Beauclerc isA Person
 "I1391" is id of it
 "Henry_I Beauclerc" is name of it
-1068-09-00 is born of it
 1068 is yearBorn of it
 9 is monthBorn of it
 "Selby,Yorkshire,England" is birthPlace of it
@@ -27737,13 +27731,11 @@ F373 isA Family
 John_1st_Welles is husbandOf of F374
 George is wifeOf of F374
 F374 isA Family
-1487-12-00 is weddingDate of it
 1487 is yearMarried of it
 12 is monthMarried of it
 John_1st_Welles is husbandOf of F375
 George is wifeOf of F375
 F375 isA Family
-1504-01-00 is weddingDate of it
 1504 is yearMarried of it
 1 is monthMarried of it
 Richard is husbandOf of F376
@@ -27762,7 +27754,6 @@ F377 isA Family
 William_Courtenay is husbandOf of F378
 George is wifeOf of F378
 F378 isA Family
-1495-10-00 is weddingDate of it
 1495 is yearMarried of it
 10 is monthMarried of it
 John_Grey is husbandOf of F379
@@ -28614,7 +28605,6 @@ F569 isA Family
 Eustace_of_Boulongne is husbandOf of F570
 Eustace_III_of_Boulogne is wifeOf of F570
 F570 isA Family
-1140-02-00 is weddingDate of it
 1140 is yearMarried of it
 2 is monthMarried of it
 Alfonso_VIII is husbandOf of F571
