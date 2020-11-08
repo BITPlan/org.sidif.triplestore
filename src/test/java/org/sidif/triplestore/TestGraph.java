@@ -2,7 +2,7 @@
  *
  * This file is part of the https://github.com/BITPlan/org.sidif.triplestore open source project
  *
- * Copyright © 2015-2018 BITPlan GmbH http://www.bitplan.com
+ * Copyright © 2015-2020 BITPlan GmbH http://www.bitplan.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ import org.sidif.util.TripleStoreDumper;
  *
  */
 public class TestGraph extends BaseSiDIFTest {
-  
+
   /**
    * check the given set against the given strings
    * @param title
@@ -49,7 +49,7 @@ public class TestGraph extends BaseSiDIFTest {
     List<String> objectStrings=new ArrayList<String>();
     for (Object object:set) {
       objectStrings.add(object.toString());
-    }  
+    }
     String[] setStrings = objectStrings.toArray(new String[strings.length]);
     Arrays.sort(setStrings);
     for (int i=0;i<strings.length;i++) {
@@ -69,17 +69,17 @@ public class TestGraph extends BaseSiDIFTest {
     }
     String subjects[]={"Graph","Labels","Nodes","Relationships","SiDIF"};
     String predicates[]={"comment","group","have","organize","recordsDataIn"};
-    String objects[]={ 
-        "\n" + 
-        "  Example from \n" + 
-        "  http://neo4j.com/docs/stable/what-is-a-graphdb.html\n" + 
+    String objects[]={
+        "\n" +
+        "  Example from \n" +
+        "  http://neo4j.com/docs/stable/what-is-a-graphdb.html\n" +
         "\n" ,
         "Nodes","Properties","Relationships"};
     check("subject",tripleStore.getSubjects(),subjects);
     check("predicate",tripleStore.getPredicates(),predicates);
     check("object",tripleStore.getObjects(),objects);
   }
-  
+
   @Test
   public void testFamily() throws Exception {
     TripleStore tripleStore=getTripleStoreFromExample("familyTree");
@@ -88,12 +88,12 @@ public class TestGraph extends BaseSiDIFTest {
     int size = tripleStore.size();
     assertEquals(51,size);
   }
-  
+
   @Test
   public void testRoyal92() throws Exception {
     TripleStore tripleStore=super.getTripleStoreFromExample("royal92");
     int size = tripleStore.size();
-    assertEquals(25614,size);
+    assertEquals(25604,size);
   }
-  
+
 }

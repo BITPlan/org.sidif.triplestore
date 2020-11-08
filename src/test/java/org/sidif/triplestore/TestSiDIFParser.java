@@ -2,7 +2,7 @@
  *
  * This file is part of the https://github.com/BITPlan/org.sidif.triplestore open source project
  *
- * Copyright © 2015-2018 BITPlan GmbH http://www.bitplan.com
+ * Copyright © 2015-2020 BITPlan GmbH http://www.bitplan.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ import org.sidif.visitor.SiDIFDumpVisitor;
 
 /**
  * test the Parser for SiDIF
- * 
+ *
  * @author wf
  *
  */
@@ -96,14 +96,14 @@ public class TestSiDIFParser extends BaseSiDIFTest {
      * rdf_cd (22)
      * rdf_json_anna_wilder (8)
      * royal92-14 (209)
-     * royal92 (25614)
+     * royal92 (25604)
      * trig_bob_alice (11)
      * turtle_spiderman (8)
      * typetest (62)
      * utf8 (3)
      * vcard (31)
      */
-    int expectedSize[] = { 11, 15, 51, 7, 16, 4, 545, 22, 8, 209, 25614, 11, 8,
+    int expectedSize[] = { 11, 15, 51, 7, 16, 4, 545, 22, 8, 209, 25604, 11, 8,
         62, 3, 31 };
     int index = 0;
     for (String example : getAllExampleNames()) {
@@ -141,7 +141,7 @@ public class TestSiDIFParser extends BaseSiDIFTest {
 
   /**
    * test UTF-8 support
-   * 
+   *
    * @throws Exception
    */
   @Test
