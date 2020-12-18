@@ -22,7 +22,7 @@
 		<!-- for README.md generation -->
 		<documentation.wiki>http://wiki.bitplan.com/index.php/SiDIF-TripleStore</documentation.wiki>
 		<!-- Dependency versions -->
-		<junit4.version>4.12</junit4.version>
+		<junit4.version>4.13.1</junit4.version>
 		<args4j.version>2.0.29</args4j.version>
 		<antlr.version>4.7.1</antlr.version>
 	</properties>
